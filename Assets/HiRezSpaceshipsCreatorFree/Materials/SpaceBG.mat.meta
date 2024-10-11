@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0c4101bd6783744468ff67c4fef53014
+timeCreated: 1554112727
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 153363
+  packageName: Hi-Rez Sci-Fi Spaceships Creator Free Sample
+  packageVersion: 1.31
+  assetPath: Assets/HiRezSpaceshipsCreatorFree/Materials/SpaceBG.mat
+  uploadId: 626481

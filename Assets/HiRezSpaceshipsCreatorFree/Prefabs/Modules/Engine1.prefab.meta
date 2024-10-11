@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 46b44d60b1f0369449bf47d8ef9e2fc3
+timeCreated: 1567082555
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 153363
+  packageName: Hi-Rez Sci-Fi Spaceships Creator Free Sample
+  packageVersion: 1.31
+  assetPath: Assets/HiRezSpaceshipsCreatorFree/Prefabs/Modules/Engine1.prefab
+  uploadId: 626481

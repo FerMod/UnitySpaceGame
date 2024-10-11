@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: dbba59eeb12705e4a8b677fd4d93ca90
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 153363
+  packageName: Hi-Rez Sci-Fi Spaceships Creator Free Sample
+  packageVersion: 1.31
+  assetPath: Assets/HiRezSpaceshipsCreatorFree/Scenes/LightingSettings.lighting
+  uploadId: 626481
