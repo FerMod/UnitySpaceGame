@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace MFlight.Demo
+namespace SpaceGame
 {
     public static class Utilities
     {

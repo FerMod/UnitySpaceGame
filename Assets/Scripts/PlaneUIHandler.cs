@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MFlight.Demo
+namespace SpaceGame
 {
     public class PlaneUIHandler : MonoBehaviour
     {

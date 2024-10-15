@@ -5,7 +5,7 @@
 
 using UnityEngine;
 
-namespace MFlight.Demo
+namespace SpaceGame
 {
     /// <summary>
     /// Combination of camera rig and controller for aircraft. Requires a properly set

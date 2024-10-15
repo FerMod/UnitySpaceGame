@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 namespace SpaceGame
 {
@@ -15,8 +14,6 @@ namespace SpaceGame
         public GameObject[] debris = { };
 
         public bool showSpawnRadius = false;
-
-        private bool isSplit = false;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -35,8 +32,6 @@ namespace SpaceGame
 
         void Split()
         {
-            isSplit = true;
-
             if (debris.Length == 0) return;
 
             for (int i = 0; i < amount; i++)

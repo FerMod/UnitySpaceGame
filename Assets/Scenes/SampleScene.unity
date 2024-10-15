@@ -251,6 +251,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MouseFlightHud
       objectReference: {fileID: 0}
+    - target: {fileID: 114423984889802770, guid: 16580bf03b0b2cd43a91d480153f3fa0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 430c8be16eea7fe4c922dd4c06b3a822, type: 3}
     - target: {fileID: 114491796399247544, guid: 16580bf03b0b2cd43a91d480153f3fa0, type: 3}
       propertyPath: plane
       value: 
@@ -259,6 +263,10 @@ PrefabInstance:
       propertyPath: mouseFlight
       value: 
       objectReference: {fileID: 2010321024}
+    - target: {fileID: 114970854943943124, guid: 16580bf03b0b2cd43a91d480153f3fa0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4d776843b5a3ca7408bf0f313410b4d3, type: 3}
     - target: {fileID: 224313560478563200, guid: 16580bf03b0b2cd43a91d480153f3fa0, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -378,7 +386,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4614794542237088, guid: 1ffc29c315992624cb793d6cbf2c4ac1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 285.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4614794542237088, guid: 1ffc29c315992624cb793d6cbf2c4ac1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1003,7 +1011,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 295.3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalPosition.z

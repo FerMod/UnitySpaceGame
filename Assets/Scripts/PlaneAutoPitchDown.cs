@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(MFlight.Demo.Plane))]
+[RequireComponent(typeof(SpaceGame.Plane))]
 public class PlaneAutoPitchDown : MonoBehaviour
 {
     [Header("Components")]
-    [SerializeField] private MFlight.Demo.Plane _plane;
+    [SerializeField] private SpaceGame.Plane _plane;
 
     [Header("Stall Detection")]
     [SerializeField] private bool _isInStall;

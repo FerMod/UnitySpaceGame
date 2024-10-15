@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace MFlight.Demo
+namespace SpaceGame
 {
     public class PlayerInputControl : MonoBehaviour
     {
