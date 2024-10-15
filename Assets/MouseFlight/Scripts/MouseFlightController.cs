@@ -5,7 +5,7 @@
 
 using UnityEngine;
 
-namespace MFlight
+namespace MFlight.Demo
 {
     /// <summary>
     /// Combination of camera rig and controller for aircraft. Requires a properly set
@@ -14,34 +14,47 @@ namespace MFlight
     public class MouseFlightController : MonoBehaviour
     {
         [Header("Components")]
-        [SerializeField] [Tooltip("Transform of the aircraft the rig follows and references")]
-        private Transform aircraft = null;
+        [SerializeField] [Tooltip("Aircraft the rig follows and references")]
+        private Plane _plane = null;
         [SerializeField] [Tooltip("Transform of the object the mouse rotates to generate MouseAim position")]
-        private Transform mouseAim = null;
+        private Transform _mouseAim = null;
         [SerializeField] [Tooltip("Transform of the object on the rig which the camera is attached to")]
-        private Transform cameraRig = null;
+        private Transform _cameraRig = null;
         [SerializeField] [Tooltip("Transform of the camera itself")]
-        private Transform cam = null;
+        private Transform _cam = null;
 
         [Header("Options")]
         [SerializeField] [Tooltip("Follow aircraft using fixed update loop")]
-        private bool useFixed = true;
+        private bool _useFixed = true;
 
         [SerializeField] [Tooltip("How quickly the camera tracks the mouse aim point.")]
-        private float camSmoothSpeed = 5f;
+        private float _camSmoothSpeed = 5f;
 
         [SerializeField] [Tooltip("Mouse sensitivity for the mouse flight target")]
-        private float mouseSensitivity = 3f;
+        private float _mouseSensitivity = 3f;
+
+        [SerializeField]
+        [Tooltip("How quickly the camera swaps between keyboard and mouse camera positions")]
+        private float _controlSwapCamSmoothSpeed = 5f;
 
         [SerializeField] [Tooltip("How far the boresight and mouse flight are from the aircraft")]
-        private float aimDistance = 500f;
+        private float _aimDistance = 500f;
 
         [Space]
         [SerializeField] [Tooltip("How far the boresight and mouse flight are from the aircraft")]
-        private bool showDebugInfo = false;
+        private bool _showDebugInfo = false;
 
-        private Vector3 frozenDirection = Vector3.forward;
-        private bool isMouseAimFrozen = false;
+        private Vector3 _frozenDirection = Vector3.forward;
+        private bool _isMouseFrozen = false;
+        private bool _hasGoneOffScreen;
+
+        /// <summary>
+        /// Flags that returns true if the mouseAim position has moved off screen since the last camera lock has occured.
+        /// </summary>
+        public bool HasMouseAimGoneOffScreenDuringLock
+        {
+            get { return _hasGoneOffScreen; }
+        }
 
         /// <summary>
         /// Get a point along the aircraft's boresight projected out to aimDistance meters.
@@ -52,9 +65,9 @@ namespace MFlight
         {
             get
             {
-                return aircraft == null
-                     ? transform.forward * aimDistance
-                     : (aircraft.transform.forward * aimDistance) + aircraft.transform.position;
+                return _plane == null
+                     ? transform.forward * _aimDistance
+                     : (_plane.transform.forward * _aimDistance) + _plane.transform.position;
             }
         }
 
@@ -66,28 +79,88 @@ namespace MFlight
         {
             get
             {
-                if (mouseAim != null)
+                if (_mouseAim != null)
                 {
-                    return isMouseAimFrozen
+                    return IsMouseAimFrozen
                         ? GetFrozenMouseAimPos()
-                        : mouseAim.position + (mouseAim.forward * aimDistance);
+                        : _mouseAim.position + (_mouseAim.forward * _aimDistance);
                 }
                 else
                 {
-                    return transform.forward * aimDistance;
+                    return transform.forward * _aimDistance;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Gets a bool indicating if the mouse has been frozen and some mouse controls for plane control should not be
+        /// active
+        /// </summary>
+        public bool IsMouseAimFrozen
+        {
+            get
+            {
+                return _isMouseFrozen;
+            }
+            set
+            {
+                if (value)
+                {
+                    _frozenDirection = _mouseAim.forward;
+                }
+                else
+                {
+                    if ((CheckAimOffScreen() || HasMouseAimGoneOffScreenDuringLock) && LastManualInputTime > LastCameraLockTime)
+                    {
+                        _mouseAim.forward = _plane.transform.forward;
+                    }
+                    else
+                    {
+                        _mouseAim.forward = _frozenDirection;
+                    }
+                }
+
+                _isMouseFrozen = value;
+            }
+        }
+
+        private float _lastCameraLockTime;
+
+        /// <summary>
+        /// Time of the last camera lock requested by the user
+        /// </summary>
+        public float LastCameraLockTime
+        {
+            get { return _lastCameraLockTime; }
+            set
+            {
+                _lastCameraLockTime = value;
+            }
+        }
+
+        private float _lastManualInputTime;
+
+        /// <summary>
+        /// Time of the manual input (keyboard)detection
+        /// </summary>
+        public float LastManualInputTime
+        {
+            get { return _lastManualInputTime; }
+            set
+            {
+                _lastManualInputTime = value;
             }
         }
 
         private void Awake()
         {
-            if (aircraft == null)
+            if (_plane == null)
                 Debug.LogError(name + "MouseFlightController - No aircraft transform assigned!");
-            if (mouseAim == null)
+            if (_mouseAim == null)
                 Debug.LogError(name + "MouseFlightController - No mouse aim transform assigned!");
-            if (cameraRig == null)
+            if (_cameraRig == null)
                 Debug.LogError(name + "MouseFlightController - No camera rig transform assigned!");
-            if (cam == null)
+            if (_cam == null)
                 Debug.LogError(name + "MouseFlightController - No camera transform assigned!");
 
             // To work correctly, the entire rig must not be parented to anything.
@@ -98,70 +171,115 @@ namespace MFlight
 
         private void Update()
         {
-            if (useFixed == false)
+            if (_useFixed == false)
                 UpdateCameraPos();
 
             RotateRig();
         }
 
+        /// <summary>
+        /// Sets the camera lock state
+        /// </summary>
+        /// <param name="value"></param>
+        public void SetCameraLocked(bool value)
+        {
+            if (value)
+            {
+                LastCameraLockTime = Time.time;
+                IsMouseAimFrozen = true;
+                _hasGoneOffScreen = false;
+            }
+            else
+            {
+                IsMouseAimFrozen = false;
+            }
+        }
+
         private void FixedUpdate()
         {
-            if (useFixed == true)
+            if (_useFixed == true)
                 UpdateCameraPos();
         }
 
         private void RotateRig()
         {
-            if (mouseAim == null || cam == null || cameraRig == null)
+            if (_mouseAim == null || _cam == null || _cameraRig == null)
                 return;
 
-            // Freeze the mouse aim direction when the free look key is pressed.
-            if (Input.GetKeyDown(KeyCode.C))
-            {
-                isMouseAimFrozen = true;
-                frozenDirection = mouseAim.forward;
-            }
-            else if  (Input.GetKeyUp(KeyCode.C))
-            {
-                isMouseAimFrozen = false;
-                mouseAim.forward = frozenDirection;
-            }
-
             // Mouse input.
-            float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
-            float mouseY = -Input.GetAxis("Mouse Y") * mouseSensitivity;
+            float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity;
+            float mouseY = -Input.GetAxis("Mouse Y") * _mouseSensitivity;
 
             // Rotate the aim target that the plane is meant to fly towards.
             // Use the camera's axes in world space so that mouse motion is intuitive.
-            mouseAim.Rotate(cam.right, mouseY, Space.World);
-            mouseAim.Rotate(cam.up, mouseX, Space.World);
+            _mouseAim.Rotate(_cam.right, mouseY, Space.World);
+            _mouseAim.Rotate(_cam.up, mouseX, Space.World);
 
+            RotateCameraToMouseAim();
+        }
+
+        public bool CheckAimOffScreen()
+        {
+            //Logic only applies when the mouse aim is frozen.
+            if (!IsMouseAimFrozen) return false;
+
+            var viewPos = Camera.main.WorldToViewportPoint(MouseAimPos);
+            if (viewPos.x >= 0 && viewPos.x <= 1 && viewPos.y >= 0 && viewPos.y <= 1 && viewPos.z > 0)
+            {
+                // Object is within the bounds of the viewport so return true.
+                return false;
+            }
+
+            //Object outside of bound, exit.
+            _hasGoneOffScreen = true;
+            return true;
+        }
+
+        /// <summary>
+        /// Adjusts the mouse aim to follow the plane forward vector
+        /// </summary>
+        /// <param name="forceCamera">Set to true if you want to camera to also move as part of this function</param>
+        public void AdjustAim(bool forceCamera = false)
+        {
+            _mouseAim.transform.rotation = Damp(_mouseAim.transform.rotation, _plane.transform.rotation, _controlSwapCamSmoothSpeed, Time.deltaTime);
+            if (forceCamera)
+            {
+                RotateCameraToMouseAim();
+            }
+        }
+
+        /// <summary>
+        /// Rotates the camera to point towards the mouseAim position. The movement is damped and is framerate independant.
+        /// </summary>
+        private void RotateCameraToMouseAim()
+        {
             // The up vector of the camera normally is aligned to the horizon. However, when
             // looking straight up/down this can feel a bit weird. At those extremes, the camera
             // stops aligning to the horizon and instead aligns to itself.
-            Vector3 upVec = (Mathf.Abs(mouseAim.forward.y) > 0.9f) ? cameraRig.up : Vector3.up;
+
+            Vector3 upVec = (Mathf.Abs(_mouseAim.forward.y) > 0.9f) ? _cameraRig.up : Vector3.up;
 
             // Smoothly rotate the camera to face the mouse aim.
-            cameraRig.rotation = Damp(cameraRig.rotation,
-                                      Quaternion.LookRotation(mouseAim.forward, upVec),
-                                      camSmoothSpeed,
+            _cameraRig.rotation = Damp(_cameraRig.rotation,
+                                      Quaternion.LookRotation(_mouseAim.forward, upVec),
+                                      _camSmoothSpeed,
                                       Time.deltaTime);
         }
 
         private Vector3 GetFrozenMouseAimPos()
         {
-            if (mouseAim != null)
-                return mouseAim.position + (frozenDirection * aimDistance);
+            if (_mouseAim != null)
+                return _mouseAim.position + (_frozenDirection * _aimDistance);
             else
-                return transform.forward * aimDistance;
+                return transform.forward * _aimDistance;
         }
 
         private void UpdateCameraPos()
         {
-            if (aircraft != null)
+            if (_plane != null)
             {
                 // Move the whole rig to follow the aircraft.
-                transform.position = aircraft.position;
+                transform.position = _plane.transform.position;
             }
         }
 
@@ -182,18 +300,18 @@ namespace MFlight
 
         private void OnDrawGizmos()
         {
-            if (showDebugInfo == true)
+            if (_showDebugInfo == true)
             {
                 Color oldColor = Gizmos.color;
 
                 // Draw the boresight position.
-                if (aircraft != null)
+                if (_plane != null)
                 {
                     Gizmos.color = Color.white;
                     Gizmos.DrawWireSphere(BoresightPos, 10f);
                 }
 
-                if (mouseAim != null)
+                if (_mouseAim != null)
                 {
                     // Draw the position of the mouse aim position.
                     Gizmos.color = Color.red;
@@ -201,11 +319,11 @@ namespace MFlight
 
                     // Draw axes for the mouse aim transform.
                     Gizmos.color = Color.blue;
-                    Gizmos.DrawRay(mouseAim.position, mouseAim.forward * 50f);
+                    Gizmos.DrawRay(_mouseAim.position, _mouseAim.forward * 50f);
                     Gizmos.color = Color.green;
-                    Gizmos.DrawRay(mouseAim.position, mouseAim.up * 50f);
+                    Gizmos.DrawRay(_mouseAim.position, _mouseAim.up * 50f);
                     Gizmos.color = Color.red;
-                    Gizmos.DrawRay(mouseAim.position, mouseAim.right * 50f);
+                    Gizmos.DrawRay(_mouseAim.position, _mouseAim.right * 50f);
                 }
 
                 Gizmos.color = oldColor;

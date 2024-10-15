@@ -23,13 +23,10 @@ namespace MFlight.Demo
             if (mouseFlight == null)
                 Debug.LogError(name + ": Hud - Mouse Flight Controller not assigned!");
 
-            playerCam = mouseFlight.GetComponentInChildren<Camera>();
+            playerCam = mouseFlight.GetComponentInChildren<Camera>() ?? Camera.main;
 
-            playerCam ??= Camera.main;
             if (playerCam == null)
-            {
                 Debug.LogError(name + ": Hud - No camera found on assigned Mouse Flight Controller!");
-            }
         }
 
         private void Update()
@@ -50,8 +47,16 @@ namespace MFlight.Demo
 
             if (mousePos != null)
             {
-                mousePos.position = playerCam.WorldToScreenPoint(controller.MouseAimPos);
-                mousePos.gameObject.SetActive(mousePos.position.z > 1f);
+                if (controller.IsMouseAimFrozen && controller.LastManualInputTime > controller.LastCameraLockTime && mouseFlight.HasMouseAimGoneOffScreenDuringLock)
+                {
+                    mousePos.position = boresight.position;
+                    mousePos.gameObject.SetActive(boresight.position.z > 1f);
+                }
+                else
+                {
+                    mousePos.position = playerCam.WorldToScreenPoint(controller.MouseAimPos);
+                    mousePos.gameObject.SetActive(mousePos.position.z > 1f);
+                }
             }
         }
 
