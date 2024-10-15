@@ -25,6 +25,8 @@ namespace SpaceGame
         //This Vector3 acts as a collection of flags to override the auto pilot features for each axis if keyboard input is detected. 0 is false, 1 is true
         private Vector3 _enableAutoPilot;
 
+        InputAction fireAction;
+
         public void SetThrottleInput(InputAction.CallbackContext context)
         {
             if (plane == null) return;
@@ -61,7 +63,7 @@ namespace SpaceGame
             {
                 controller.LastManualInputTime = Time.time;
             }
-                
+
 
             if (context.canceled)
                 _overrideFlags.x = 0;
@@ -75,7 +77,7 @@ namespace SpaceGame
                 _overrideFlags.y = 1;
                 _enableAutoPilot.y = 0;
             }
-            
+
             if (context.performed)
             {
                 controller.LastManualInputTime = Time.time;
@@ -134,6 +136,14 @@ namespace SpaceGame
 
             //Toggle the flaps;
             plane.FlapsDeployed = !plane.FlapsDeployed;
+        }
+
+        public void Fire(InputAction.CallbackContext context)
+        {
+            if (plane == null) return;
+
+            // https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/api/UnityEngine.InputSystem.InputAction.CallbackContext.html
+            plane.IsFiring = !plane.IsFiring;
         }
 
         private void CheckAllInputCancelled()
@@ -216,7 +226,7 @@ namespace SpaceGame
             {
                 autoFlag = controller.LastManualInputTime < controller.LastCameraLockTime;
             }
-            
+
             if (controller != null && !flag)
             {
                 if (autoFlag)
@@ -229,8 +239,8 @@ namespace SpaceGame
             //    controller.AdjustAim();
 
             // Use either keyboard or autopilot input.
-            plane.Yaw = _enableAutoPilot.x == 0 ? _overrideInputValues.x * _inputSensitivity.x: autoYaw;
-            plane.Pitch = _enableAutoPilot.y == 0? _overrideInputValues.y * _inputSensitivity.y : autoPitch;
+            plane.Yaw = _enableAutoPilot.x == 0 ? _overrideInputValues.x * _inputSensitivity.x : autoYaw;
+            plane.Pitch = _enableAutoPilot.y == 0 ? _overrideInputValues.y * _inputSensitivity.y : autoPitch;
             plane.Roll = _enableAutoPilot.z == 0 ? _overrideInputValues.z * _inputSensitivity.z : autoRoll;
         }
 
