@@ -67,6 +67,7 @@ namespace SpaceGame
 
         [Header("Weappons")]
         public bool isFiring = false;
+        public PlaneWeapon laserWeapon;
 
         public Vector3 Velocity { get; private set; }
         public Vector3 Drag { get; private set; }
@@ -78,7 +79,6 @@ namespace SpaceGame
         public float AngleOfAttack { get; private set; }
         public float AngleOfAttackYaw { get; private set; }
         public Vector3 EffectiveInput { get; private set; }
-
 
         public float Pitch { set { pitch = Mathf.Clamp(value, -1f, 1f); } get { return pitch; } }
         public float Yaw { set { yaw = Mathf.Clamp(value, -1f, 1f); } get { return yaw; } }
@@ -293,7 +293,17 @@ namespace SpaceGame
         void Fire()
         {
             if (!isFiring) return;
-            Debug.Log("Pew");
+            
+            isFiring = false;
+            laserWeapon.Fire();
+
+            //const float kSpawnRate = 3; // 3 projectiles per second
+            //var projectileCount = kSpawnRate * context.duration;
+            //for (var i = 0; i < projectileCount; ++i)
+            //{
+            //    var projectile = UnityEngine.Object.Instantiate(projectile);
+            //    // Apply other changes to the projectile...
+            //}
         }
 
         private void Update()

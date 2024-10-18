@@ -167,6 +167,8 @@ namespace SpaceGame
             // When parented to something (such as an aircraft) it will inherit those
             // rotations causing unintended rotations as it gets dragged around.
             transform.parent = null;
+
+
         }
 
         private void Update()
