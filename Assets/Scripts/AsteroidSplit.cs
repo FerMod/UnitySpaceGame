@@ -3,6 +3,7 @@ using UnityEngine;
 namespace SpaceGame
 {
 
+    [RequireComponent(typeof(Rigidbody))]
     public class AsteroidSplit : MonoBehaviour
     {
 
