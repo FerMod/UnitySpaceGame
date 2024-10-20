@@ -71,6 +71,6 @@ dotnet_naming_rule.private_fields_camel_case.severity = suggestion
 dotnet_naming_rule.private_fields_camel_case.style = camel_case
 
 # Public members must be first word upper
-dotnet_naming_rule.public_symbols_first_word_upper.symbols = public_members
-dotnet_naming_rule.public_symbols_first_word_upper.severity = warning
-dotnet_naming_rule.public_symbols_first_word_upper.style = first_word_upper
+#dotnet_naming_rule.public_symbols_first_word_upper.symbols = public_members
+#dotnet_naming_rule.public_symbols_first_word_upper.severity = warning
+#dotnet_naming_rule.public_symbols_first_word_upper.style = first_word_upper
