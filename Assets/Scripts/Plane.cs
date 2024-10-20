@@ -65,7 +65,7 @@ namespace SpaceGame
         [SerializeField] private float gLimit;
         [SerializeField] private float gLimitPitch;
 
-        [Header("Weappons")]
+        [Header("Weapons")]
         public bool isFiringLaser = false;
         public PlaneWeapon laserWeapon;
 
