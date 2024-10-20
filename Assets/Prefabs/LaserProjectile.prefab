@@ -105,11 +105,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_templateMaterial: {fileID: 2100000, guid: f68f8c3a3d76fb74cbb880d372c81620, type: 2}
-  m_doNotOverwriteTemplateMaterialProperties: 1
+  m_doNotOverwriteTemplateMaterialProperties: 0
   m_startPos: {x: 0, y: 0, z: 0}
-  m_endPos: {x: 0, y: 0, z: 50}
-  m_lineColor: {r: 0.034482718, g: 1, b: 0, a: 0}
-  m_lineWidth: 66
+  m_endPos: {x: 0, y: 0, z: 1}
+  m_lineColor: {r: 1, g: 0, b: 0, a: 0}
+  m_lineWidth: 1
   m_lightSaberFactor: 0.747
 --- !u!114 &11468384
 MonoBehaviour:
@@ -225,6 +225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   force: 100
   damage: 25
+  radius: 100
 --- !u!65 &9055100933072836592
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -244,5 +245,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 7, y: 7, z: 58}
-  m_Center: {x: -0.5, y: 0, z: 25}
+  m_Size: {x: 0.5, y: 0.5, z: 1.5}
+  m_Center: {x: 0, y: 0, z: 0.5}

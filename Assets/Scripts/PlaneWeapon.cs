@@ -56,7 +56,6 @@ namespace SpaceGame
         private GameObject CreateProjectile(GameObject gameObject, Vector3 position, Vector3 direction)
         {
             var instance = Instantiate(gameObject, position, Quaternion.LookRotation(direction.normalized));
-            instance.transform.localScale *= 0.1f;
             return instance;
         }
 
