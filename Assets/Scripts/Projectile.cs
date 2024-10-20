@@ -22,7 +22,7 @@ namespace SpaceGame
         {
             if (collision.gameObject.TryGetComponent(out Health health))
             {
-                health.ChangeHealth(-100);
+                health.ChangeHealth(damage);
             }
 
             Destroy(gameObject);
