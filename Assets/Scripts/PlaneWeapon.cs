@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace SpaceGame
@@ -6,7 +7,15 @@ namespace SpaceGame
     {
         public GameObject projectile;
         public float projectileLifeTime = 5f;
+
+        /// <summary>
+        /// Projectiles per second.
+        /// </summary>
+        public float fireRate = 3f;
+
         public Transform[] projectileSpawnPoints;
+
+        private bool canFire = true;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -21,6 +30,15 @@ namespace SpaceGame
         }
 
         public void Fire()
+        {
+            if (!canFire) return;
+            canFire = false;
+
+            FireProjectiles();
+            StartCoroutine(FireRateHandler());
+        }
+
+        private void FireProjectiles()
         {
             var direction = transform.forward;
             foreach (var spawnPoint in projectileSpawnPoints)
@@ -37,5 +55,13 @@ namespace SpaceGame
             instance.transform.localScale *= 0.1f;
             return instance;
         }
+
+        IEnumerator FireRateHandler()
+        {
+            var timeToNextFire = 1 / fireRate;
+            yield return new WaitForSecondsRealtime(timeToNextFire);
+            canFire = true;
+        }
+
     }
 }

@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright (c) Brian Hernandez. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for details.
 //
@@ -66,7 +66,7 @@ namespace SpaceGame
         [SerializeField] private float gLimitPitch;
 
         [Header("Weappons")]
-        public bool isFiring = false;
+        public bool isFiringLaser = false;
         public PlaneWeapon laserWeapon;
 
         public Vector3 Velocity { get; private set; }
@@ -91,7 +91,7 @@ namespace SpaceGame
         public float StallPitch { get { return _stallRotationPower.y; } }
         public float StallRoll { get { return _stallRotationPower.z; } }
 
-        public bool IsFiring { set { isFiring = value; } get { return isFiring; } }
+        public bool IsFiringLaser { set { isFiringLaser = value; } get { return isFiringLaser; } }
 
         private Vector3 lastVelocity;
 
@@ -290,25 +290,15 @@ namespace SpaceGame
             lastVelocity = Velocity;
         }
 
-        void Fire()
+        void FireLaser()
         {
-            if (!isFiring) return;
-            
-            isFiring = false;
+            if (!IsFiringLaser) return;
             laserWeapon.Fire();
-
-            //const float kSpawnRate = 3; // 3 projectiles per second
-            //var projectileCount = kSpawnRate * context.duration;
-            //for (var i = 0; i < projectileCount; ++i)
-            //{
-            //    var projectile = UnityEngine.Object.Instantiate(projectile);
-            //    // Apply other changes to the projectile...
-            //}
         }
 
         private void Update()
         {
-            Fire();
+            FireLaser();
         }
 
         private void FixedUpdate()

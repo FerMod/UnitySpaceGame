@@ -142,8 +142,14 @@ namespace SpaceGame
         {
             if (plane == null) return;
 
-            // https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/api/UnityEngine.InputSystem.InputAction.CallbackContext.html
-            plane.IsFiring = !plane.IsFiring;
+            if (context.performed)
+            {
+                plane.IsFiringLaser = true;
+            }
+            else if (context.canceled)
+            {
+                plane.IsFiringLaser = false;
+            }
         }
 
         private void CheckAllInputCancelled()
