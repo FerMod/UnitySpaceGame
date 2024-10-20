@@ -6,6 +6,10 @@ namespace SpaceGame
     public class PlaneWeapon : MonoBehaviour
     {
         public GameObject projectile;
+
+        /// <summary>
+        /// Time until the projectile is destroyed.
+        /// </summary>
         public float projectileLifeTime = 5f;
 
         /// <summary>
