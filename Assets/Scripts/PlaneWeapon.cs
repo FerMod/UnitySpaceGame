@@ -5,8 +5,8 @@ namespace SpaceGame
     public class PlaneWeapon : MonoBehaviour
     {
         public GameObject projectile;
-        public Transform[] projectileSpawnPoints;
         public float projectileLifeTime = 5f;
+        public Transform[] projectileSpawnPoints;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -22,17 +22,18 @@ namespace SpaceGame
 
         public void Fire()
         {
-            foreach (Transform spawnPoint in projectileSpawnPoints)
+            var direction = transform.forward;
+            foreach (var spawnPoint in projectileSpawnPoints)
             {
-                Debug.DrawLine(spawnPoint.position, transform.forward * 10000, Color.red, 1f);
-                var laserProjectile = CreateProjectile(projectile, spawnPoint.position, transform.forward.normalized);
+                Debug.DrawLine(spawnPoint.position, direction * 10000, Color.red, projectileLifeTime);
+                var laserProjectile = CreateProjectile(projectile, spawnPoint.position, direction);
                 Destroy(laserProjectile, projectileLifeTime);
             }
         }
 
         private GameObject CreateProjectile(GameObject gameObject, Vector3 position, Vector3 direction)
         {
-            GameObject instance = Instantiate(gameObject, position, Quaternion.LookRotation(direction.normalized));
+            var instance = Instantiate(gameObject, position, Quaternion.LookRotation(direction.normalized));
             instance.transform.localScale *= 0.1f;
             return instance;
         }
