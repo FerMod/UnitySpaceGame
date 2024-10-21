@@ -2,22 +2,34 @@ using UnityEngine;
 
 namespace SpaceGame
 {
+    [RequireComponent(typeof(Rigidbody))]
     public class Projectile : MonoBehaviour
     {
 
-        public float force = 1000f;
+        public float speed = 100f;
         public float damage = 25f;
 
-        public float radius = 100f;
+        [Header("Explosion")]
+        public float explosionForce = 1000f;
+        public float explosionRadius = 100f;
+
+        private Rigidbody rb;
+
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
+            rb = GetComponent<Rigidbody>();
         }
 
         void Update()
         {
-            transform.position += force * Time.deltaTime * transform.forward;
+            //transform.position += speed * Time.deltaTime * transform.forward;
+        }
+
+        void FixedUpdate()
+        {
+            rb.AddForce(transform.forward * speed, ForceMode.Impulse);
         }
 
         void OnCollisionEnter(Collision collision)
@@ -27,9 +39,9 @@ namespace SpaceGame
                 health.ChangeHealth(-damage);
             }
 
-            if(collision.gameObject.TryGetComponent(out Rigidbody rigidbody))
+            if (collision.gameObject.TryGetComponent(out Rigidbody rigidbody))
             {
-                rigidbody.AddExplosionForce(force, transform.position, radius, 0f, ForceMode.Impulse);
+                rigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius, 0f, ForceMode.Impulse);
             }
 
             Destroy(gameObject);

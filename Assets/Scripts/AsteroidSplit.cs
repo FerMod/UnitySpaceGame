@@ -45,7 +45,6 @@ namespace SpaceGame
             {
 
                 var instance = SpawnDebris();
-                instance.transform.localScale *= Random.Range(0.2f, 0.8f);
 
                 // TODO: This logic should be handled on the proyectile logic
                 var rb = instance.GetComponent<Rigidbody>();
@@ -62,6 +61,7 @@ namespace SpaceGame
         {
             var index = Random.Range(0, debris.Length);
             var instance = Instantiate(debris[index], transform.position + Random.insideUnitSphere * spawnRadius, Random.rotation);
+            instance.transform.localScale *= Random.Range(0.2f, 0.8f);
             return instance;
         }
 

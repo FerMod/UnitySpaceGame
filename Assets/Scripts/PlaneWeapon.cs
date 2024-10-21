@@ -35,7 +35,7 @@ namespace SpaceGame
             var direction = transform.forward;
             foreach (var spawnPoint in projectileSpawnPoints)
             {
-                Debug.DrawLine(spawnPoint.position, direction * 10000, Color.red, projectileLifeTime);
+                Debug.DrawLine(spawnPoint.position, direction * 10000, Color.red, 0.5f);
                 var laserProjectile = CreateProjectile(projectile, spawnPoint.position, direction);
                 Destroy(laserProjectile, projectileLifeTime);
             }
@@ -43,7 +43,7 @@ namespace SpaceGame
 
         private GameObject CreateProjectile(GameObject gameObject, Vector3 position, Vector3 direction)
         {
-            var instance = Instantiate(gameObject, position, Quaternion.LookRotation(direction.normalized));
+            var instance = Instantiate(gameObject, position, Quaternion.LookRotation(direction));
             return instance;
         }
 
