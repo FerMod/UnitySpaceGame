@@ -42,7 +42,8 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -820,11 +821,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2377843616447248567, guid: e09411fb754afbb40be46e24889cb4c7, type: 3}
   m_PrefabInstance: {fileID: 5781468173529274961}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1189348868 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4734686959102738942, guid: e09411fb754afbb40be46e24889cb4c7, type: 3}
-  m_PrefabInstance: {fileID: 5781468173529274961}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1195477951
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,7 +845,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1195477951}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 916eb447b00cb9b49800dbe0194156ae, type: 3}
   m_Name: 
@@ -859,9 +855,9 @@ MonoBehaviour:
   minScale: 1
   maxScale: 20
   objects:
-  - {fileID: 1915019102}
-  - {fileID: 1961883969}
-  - {fileID: 1189348868}
+  - {fileID: 5873531149125259906, guid: ab361608d508b8245865674cd9563a95, type: 3}
+  - {fileID: 4895995648331898395, guid: 918d33f20e0bc6840b99c0c8bd9a3b10, type: 3}
+  - {fileID: 4734686959102738942, guid: e09411fb754afbb40be46e24889cb4c7, type: 3}
   showSpawnRadius: 1
 --- !u!4 &1195477953
 Transform:
@@ -1431,11 +1427,6 @@ GameObject:
 --- !u!4 &1961566159 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2452979200638227312, guid: 918d33f20e0bc6840b99c0c8bd9a3b10, type: 3}
-  m_PrefabInstance: {fileID: 5141069942150841842}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1961883969 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4895995648331898395, guid: 918d33f20e0bc6840b99c0c8bd9a3b10, type: 3}
   m_PrefabInstance: {fileID: 5141069942150841842}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2001807412 stripped
