@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 10825254}
   - component: {fileID: -3553738548812469523}
   - component: {fileID: -5738468512789664403}
+  - component: {fileID: 6202405748223549957}
   - component: {fileID: 9055100933072836592}
   m_Layer: 0
   m_Name: LaserProjectile
@@ -107,10 +108,10 @@ MonoBehaviour:
   m_templateMaterial: {fileID: 2100000, guid: f68f8c3a3d76fb74cbb880d372c81620, type: 2}
   m_doNotOverwriteTemplateMaterialProperties: 0
   m_startPos: {x: 0, y: 0, z: 0}
-  m_endPos: {x: 0, y: 0, z: 1}
+  m_endPos: {x: 0, y: 0, z: 2}
   m_lineColor: {r: 1, g: 0, b: 0, a: 0}
-  m_lineWidth: 1
-  m_lightSaberFactor: 0.747
+  m_lineWidth: 2
+  m_lightSaberFactor: 0.8
 --- !u!114 &11468384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,9 +224,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6297a4f587d0949449f891ee5383844e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 100
+  speed: 100
   damage: 25
-  radius: 100
+  explosionForce: 1000
+  explosionRadius: 100
+--- !u!54 &6202405748223549957
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136330}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!65 &9055100933072836592
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -245,5 +274,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5, y: 0.5, z: 1.5}
-  m_Center: {x: 0, y: 0, z: 0.5}
+  m_Size: {x: 0.5, y: 0.5, z: 2.5}
+  m_Center: {x: 0, y: 0, z: 1}
