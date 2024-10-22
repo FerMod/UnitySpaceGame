@@ -10,11 +10,11 @@ namespace SpaceGame
         public float damage = 25f;
 
         [Header("Explosion")]
+        public GameObject explosionEffect;
         public float explosionForce = 1000f;
         public float explosionRadius = 100f;
 
         private Rigidbody rb;
-
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
@@ -44,7 +44,20 @@ namespace SpaceGame
                 rigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius, 0f, ForceMode.Impulse);
             }
 
+            PlayExplosionEffect();
+
             Destroy(gameObject);
+        }
+
+        private void PlayExplosionEffect()
+        {
+            var effectInstance = Instantiate(explosionEffect, transform.position, transform.rotation);
+
+            effectInstance.TryGetComponent(out ParticleSystem effect);
+            effect?.Play();
+            var duration = effect?.main.duration ?? 0f;
+
+            Destroy(effectInstance, duration);
         }
     }
 }

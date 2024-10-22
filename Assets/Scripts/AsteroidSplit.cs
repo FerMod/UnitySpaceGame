@@ -48,11 +48,15 @@ namespace SpaceGame
 
                 // TODO: This logic should be handled on the proyectile logic
                 var rb = instance.GetComponent<Rigidbody>();
+
                 rb.AddExplosionForce(power, transform.position, spawnRadius * 100f, 0f, ForceMode.Impulse);
                 rb.AddRelativeTorque(RandomTorque(-10f, 10f));
                 // rb.angularVelocity = Random.insideUnitSphere * 0.9f;
 
-                Destroy(instance, Random.Range(5f, 8f));
+                if (ShouldDestroyObject(instance, Vector3.one))
+                {
+                    Destroy(instance, Random.Range(5f, 8f));
+                }
             }
 
             Destroy(gameObject);
@@ -61,8 +65,16 @@ namespace SpaceGame
         {
             var index = Random.Range(0, debris.Length);
             var instance = Instantiate(debris[index], transform.position + Random.insideUnitSphere * spawnRadius, Random.rotation);
-            instance.transform.localScale *= Random.Range(0.2f, 0.8f);
+            instance.transform.localScale = transform.localScale * Random.Range(0.2f, 0.8f);
             return instance;
+        }
+
+        private bool ShouldDestroyObject(GameObject gameObject, Vector3 minScale)
+        {
+            if (gameObject.transform.localScale.x < minScale.x) return true;
+            if (gameObject.transform.localScale.y < minScale.y) return true;
+            if (gameObject.transform.localScale.z < minScale.z) return true;
+            return false;
         }
 
         private Vector3 RandomTorque(float min, float max)
