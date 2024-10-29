@@ -1,0 +1,240 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ProceduralPlanet-DemoScene-VolcanoeyPlanet-Mat
+  m_Shader: {fileID: -6465566751694194690, guid: 3635fe22cef464dd08c27b0cfc41c0ea, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords:
+  - ENUM_4F36A403_SIMPLEX3D
+  - ENUM_85E93F22_SIMPLEX3D
+  - ENUM_CE90E89C_SIMPLEX3D
+  m_InvalidKeywords:
+  - ENUM1_A
+  - ENUM_2445079F_NOISE_DEBUG
+  - ENUM_446A580F_NOISE_DEBUG
+  - ENUM_C99A968D_A
+  - ENUM_VIEWMODE_NORMAL
+  - POLARBIOMENOISETYPE_A
+  - VIEWMODE_BIOME_DEBUG
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses:
+  - MOTIONVECTORS
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _DesertBiomeTexture1Main:
+        m_Texture: {fileID: 2800000, guid: 70320b99ff97a2a4f81bd0bbe37c4658, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DesertBiomeTexture1NormalMap:
+        m_Texture: {fileID: 2800000, guid: 5d1a91da624cbe3419894ef66da10da7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DesertBiomeTexture2Main:
+        m_Texture: {fileID: 2800000, guid: 70320b99ff97a2a4f81bd0bbe37c4658, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DesertBiomeTexture2NormalMap:
+        m_Texture: {fileID: 2800000, guid: e5739b0b04da44f349bbf0da2e5b11ae, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DesertBiomeTexture3Main:
+        m_Texture: {fileID: 2800000, guid: 70320b99ff97a2a4f81bd0bbe37c4658, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DesertBiomeTexture3NormalMap:
+        m_Texture: {fileID: 2800000, guid: e5739b0b04da44f349bbf0da2e5b11ae, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DesertBiomeTexture4Main:
+        m_Texture: {fileID: 2800000, guid: 70320b99ff97a2a4f81bd0bbe37c4658, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DesertBiomeTexture4NormalMap:
+        m_Texture: {fileID: 2800000, guid: ea2a1142599a64e368148a0f820f1318, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DesertBiomeTexture5Main:
+        m_Texture: {fileID: 2800000, guid: 70320b99ff97a2a4f81bd0bbe37c4658, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DesertBiomeTexture5NormalMap:
+        m_Texture: {fileID: 2800000, guid: ea2a1142599a64e368148a0f820f1318, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ForestBiomeTexture1Main:
+        m_Texture: {fileID: 2800000, guid: df6a65224a0114ddd86be26fcabbabf5, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ForestBiomeTexture1NormalMap:
+        m_Texture: {fileID: 2800000, guid: 1429f44d2651f40f3aa1fa99101c963e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ForestBiomeTexture2Main:
+        m_Texture: {fileID: 2800000, guid: 70320b99ff97a2a4f81bd0bbe37c4658, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ForestBiomeTexture2NormalMap:
+        m_Texture: {fileID: 2800000, guid: ea2a1142599a64e368148a0f820f1318, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ForestBiomeTexture3Main:
+        m_Texture: {fileID: 2800000, guid: 70320b99ff97a2a4f81bd0bbe37c4658, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ForestBiomeTexture3NormalMap:
+        m_Texture: {fileID: 2800000, guid: ea2a1142599a64e368148a0f820f1318, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ForestBiomeTexture4Main:
+        m_Texture: {fileID: 2800000, guid: 70320b99ff97a2a4f81bd0bbe37c4658, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ForestBiomeTexture4NormalMap:
+        m_Texture: {fileID: 2800000, guid: ea2a1142599a64e368148a0f820f1318, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ForestBiomeTexture5Main:
+        m_Texture: {fileID: 2800000, guid: 70320b99ff97a2a4f81bd0bbe37c4658, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ForestBiomeTexture5NormalMap:
+        m_Texture: {fileID: 2800000, guid: ea2a1142599a64e368148a0f820f1318, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PolarBiomeTexture1Main:
+        m_Texture: {fileID: 2800000, guid: 70320b99ff97a2a4f81bd0bbe37c4658, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PolarBiomeTexture1NormalMap:
+        m_Texture: {fileID: 2800000, guid: ea2a1142599a64e368148a0f820f1318, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PolarBiomeTexture2Main:
+        m_Texture: {fileID: 2800000, guid: 40795f9f7cad51b44bdb1f59959c6f0b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PolarBiomeTexture2NormalMap:
+        m_Texture: {fileID: 2800000, guid: e5739b0b04da44f349bbf0da2e5b11ae, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PolarBiomeTexture3Main:
+        m_Texture: {fileID: 2800000, guid: 784903b23ed9044b38a1f3147f350382, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PolarBiomeTexture3NormalMap:
+        m_Texture: {fileID: 2800000, guid: 4b7892a07b7874c29a6e9d76ed3e47eb, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PolarBiomeTexture4Main:
+        m_Texture: {fileID: 2800000, guid: 40795f9f7cad51b44bdb1f59959c6f0b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PolarBiomeTexture4NormalMap:
+        m_Texture: {fileID: 2800000, guid: e5739b0b04da44f349bbf0da2e5b11ae, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PolarBiomeTexture5Main:
+        m_Texture: {fileID: 2800000, guid: 70320b99ff97a2a4f81bd0bbe37c4658, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _PolarBiomeTexture5NormalMap:
+        m_Texture: {fileID: 2800000, guid: ea2a1142599a64e368148a0f820f1318, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_Lightmaps:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_LightmapsInd:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - unity_ShadowMasks:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - ENUM_4F36A403: 0
+    - ENUM_85E93F22: 0
+    - ENUM_CE90E89C: 0
+    - _BiomesEdgeNoiseScale: 0.8
+    - _BiomesEdgeNoiseStrength: 0.83
+    - _DesertBiomeDisplacementAmplitude: -0.25
+    - _DesertBiomeDisplacementPower: 0.21
+    - _DesertBiomeNoiseBaseRoughness: 4
+    - _DesertBiomeNoiseOctaves: 1
+    - _DesertBiomeNoisePersistence: 0.5
+    - _DesertBiomeNoiseRoughness: 0
+    - _DesertBiomeNoiseStrength: 1
+    - _ForestBiomeDisplacementAmplitude: -0.25
+    - _ForestBiomeDisplacementPower: 2
+    - _ForestBiomeNoiseBaseRoughness: 3.71
+    - _ForestBiomeNoiseOctaves: 2
+    - _ForestBiomeNoisePersistence: 0.5
+    - _ForestBiomeNoiseRoughness: 1.17
+    - _ForestBiomeNoiseStrength: 0.7
+    - _Metallic: 0
+    - _Occlusion: 1
+    - _PlanetMeshRadius: 1
+    - _PolarBiomeDisplacementAmplitude: -0.2
+    - _PolarBiomeDisplacementPower: 1.22
+    - _PolarBiomeNoiseBaseRoughness: 4
+    - _PolarBiomeNoiseOctaves: 2
+    - _PolarBiomeNoisePersistence: 0.5
+    - _PolarBiomeNoiseRoughness: 0.5
+    - _PolarBiomeNoiseStrength: 2
+    - _QueueControl: 0
+    - _QueueOffset: 0
+    - _Smoothness: 0.5
+    m_Colors:
+    - _BiomesEdgeNoiseOffset: {r: 123, g: 0, b: 0, a: 0}
+    - _DesertBiomeNoiseOffset: {r: 321, g: 678, b: 0, a: 0}
+    - _DesertBiomeTexture1BlendStartEnd: {r: 0.175, g: 0.225, b: 0, a: 0}
+    - _DesertBiomeTexture2BlendStartEnd: {r: 0.375, g: 0.425, b: 0, a: 0}
+    - _DesertBiomeTexture3BlendStartEnd: {r: 0.575, g: 0.625, b: 0, a: 0}
+    - _DesertBiomeTexture4BlendStartEnd: {r: 0.775, g: 0.825, b: 0, a: 0}
+    - _DesertBiomeTextureOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _DesertBiomeTextureTiling: {r: 32, g: 32, b: 0, a: 0}
+    - _ForestBiomeNoiseOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _ForestBiomeTexture1BlendStartEnd: {r: 0.175, g: 0.225, b: 0, a: 0}
+    - _ForestBiomeTexture2BlendStartEnd: {r: 0.375, g: 0.425, b: 0, a: 0}
+    - _ForestBiomeTexture3BlendStartEnd: {r: 0.575, g: 0.625, b: 0, a: 0}
+    - _ForestBiomeTexture4BlendStartEnd: {r: 0.775, g: 0.825, b: 0, a: 0}
+    - _ForestBiomeTextureOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _ForestBiomeTextureTiling: {r: 32, g: 32, b: 0, a: 0}
+    - _PolarBiomeNoiseOffset: {r: 10, g: 0, b: 0, a: 0}
+    - _PolarBiomeTexture1BlendStartEnd: {r: 0.175, g: 0.225, b: 0, a: 0}
+    - _PolarBiomeTexture2BlendStartEnd: {r: 0.375, g: 0.425, b: 0, a: 0}
+    - _PolarBiomeTexture3BlendStartEnd: {r: 0.575, g: 0.625, b: 0, a: 0}
+    - _PolarBiomeTexture4BlendStartEnd: {r: 0.775, g: 0.825, b: 0, a: 0}
+    - _PolarBiomeTextureOffset: {r: 0, g: 0, b: 0, a: 0}
+    - _PolarBiomeTextureTiling: {r: 16, g: 16, b: 0, a: 0}
+  m_BuildTextureStacks: []
+  m_AllowLocking: 1
+--- !u!114 &5009107272211080797
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 9
