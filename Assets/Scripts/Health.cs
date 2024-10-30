@@ -16,7 +16,14 @@ namespace SpaceGame
         // Define the health changed event and handler delegate.
         public delegate void HealthChangedHandler(object source, float oldHealth, float newHealth);
 
+        /// <summary>
+        /// Invoked when health changes.
+        /// </summary>
         public event HealthChangedHandler OnHealthChanged;
+
+        /// <summary>
+        /// Invoked when health reaches 0.
+        /// </summary>
         public event HealthChangedHandler OnNoHealth;
 
         public void ChangeHealth(float amount)
