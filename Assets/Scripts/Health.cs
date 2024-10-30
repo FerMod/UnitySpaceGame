@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace SpaceGame
@@ -5,7 +6,7 @@ namespace SpaceGame
     public class Health : MonoBehaviour
     {
         [SerializeField]
-        private float maxHealth = 100;
+        private float maxHealth = 100f;
         public float MaxHealth => maxHealth;
 
         [SerializeField]
@@ -14,7 +15,9 @@ namespace SpaceGame
 
         // Define the health changed event and handler delegate.
         public delegate void HealthChangedHandler(object source, float oldHealth, float newHealth);
+
         public event HealthChangedHandler OnHealthChanged;
+        public event HealthChangedHandler OnNoHealth;
 
         public void ChangeHealth(float amount)
         {
@@ -24,6 +27,11 @@ namespace SpaceGame
 
             // Fire health change event.
             OnHealthChanged?.Invoke(this, oldHealth, currentHealth);
+
+            if (currentHealth <= 0)
+            {
+                OnNoHealth?.Invoke(this, oldHealth, currentHealth);
+            }
         }
 
     }

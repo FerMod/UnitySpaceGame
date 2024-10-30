@@ -26,15 +26,12 @@ namespace SpaceGame
         void Start()
         {
             health = GetComponent<Health>();
-            health.OnHealthChanged += OnHealthChanged;
+            health.OnNoHealth += OnNoHealth;
         }
 
-        private void OnHealthChanged(object source, float oldHealth, float newHealth)
+        private void OnNoHealth(object source, float oldHealth, float newHealth)
         {
-            if (newHealth <= 0)
-            {
-                Split();
-            }
+            Split();
         }
 
         void Split()
