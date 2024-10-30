@@ -50,7 +50,7 @@ namespace SpaceGame
         IEnumerator FireRateHandler()
         {
             var timeToNextFire = 1 / fireRate;
-            yield return new WaitForSecondsRealtime(timeToNextFire);
+            yield return new WaitForSeconds(timeToNextFire);
             canFire = true;
         }
 
