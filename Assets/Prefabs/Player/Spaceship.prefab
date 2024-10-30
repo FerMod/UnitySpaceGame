@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 7388868019761161774}
   - component: {fileID: -6492651192501852831}
   m_Layer: 0
-  m_Name: PlayerSpaceship
+  m_Name: Spaceship
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -139,6 +139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectile: {fileID: 136330, guid: 0b3db167b5c1bc64fac1b50e7576c371, type: 3}
+  projectileLifeTime: 5
+  fireRate: 3
   projectileSpawnPoints:
   - {fileID: 7157822296719629059}
   - {fileID: 7094473320905611057}
