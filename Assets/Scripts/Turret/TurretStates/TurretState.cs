@@ -4,6 +4,7 @@ namespace SpaceGame
 {
     public abstract class TurretState
     {
+
         protected Turret parent;
 
         public virtual void Enter(Turret parent)
@@ -13,16 +14,18 @@ namespace SpaceGame
 
         public virtual void Update()
         {
-
         }
 
         public virtual void Exit()
         {
         }
 
-        public virtual void onTriggerEnter(Collider other)
+        public virtual void OnTriggerEnter(Collider other)
         {
+        }
 
+        public virtual void OnTriggerExit(Collider other)
+        {
         }
 
     }
