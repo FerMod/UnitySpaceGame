@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 namespace SpaceGame
@@ -31,12 +32,20 @@ namespace SpaceGame
         [SerializeField]
         private Transform[] gunBarrels;
 
+        [SerializeField]
+        private GameObject projectile;
+
+        [SerializeField]
+        private Animator animator;
+
         public Transform Rotator { get => rotator; set => rotator = value; }
         public Transform GhostRotator { get => ghostRotator; set => ghostRotator = value; }
         public Vector3 AimOffset { get => aimOffset; set => aimOffset = value; }
         public float RotationSpeed { get => rotationSpeed; set => rotationSpeed = value; }
         public Quaternion DefaultRotation { get => defaultRotation; set => defaultRotation = value; }
         public Transform[] GunBarrels { get => gunBarrels; set => gunBarrels = value; }
+        public GameObject Projectile { get => projectile; set => projectile = value; }
+        public Animator Animator { get => animator; set => animator = value; }
 
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -65,25 +74,31 @@ namespace SpaceGame
 
         public void ChangeState(TurretState newState)
         {
-            if (newState != null)
-            {
-                newState.Exit();
-            }
-
+            currentState?.Exit();
             currentState = newState;
             newState.Enter(this);
         }
 
-        public bool CanSeeTarget(Vector3 origin, Vector3 direction, String tag)
+        public bool RaycastTarget(Vector3 origin, Vector3 direction, string tag)
         {
-            RaycastHit hit;
             Debug.DrawLine(origin, direction * 1000, Color.blue, 0.2f);
-            if (Physics.Raycast(origin, direction, out hit, Mathf.Infinity, layerMask))
+            if (Physics.Raycast(origin, direction, out RaycastHit hit, Mathf.Infinity, layerMask))
             {
-                return hit.collider.tag == tag;
+                return hit.collider.CompareTag(tag);
             }
 
             return false;
+        }
+
+        public bool CanSeeTarget()
+        {
+            return GunBarrels.Any((e) => RaycastTarget(e.position, Target.position + AimOffset - e.position, "Player"));
+        }
+
+        public void Shoot(int index)
+        {
+            Quaternion headingDirection = Quaternion.FromToRotation(projectile.transform.forward, GunBarrels[index].forward);
+            Instantiate(projectile, GunBarrels[index].position, headingDirection);
         }
     }
 }

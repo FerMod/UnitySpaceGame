@@ -15,13 +15,6 @@ namespace SpaceGame
             }
         }
 
-        public override void OnTriggerExit(Collider other)
-        {
-            if (other.tag != "Player") return;
-            parent.Target = null;
-            parent.ChangeState(new IdleState());
-        }
-
         private void RotateTowardsTarget()
         {
             parent.GhostRotator.LookAt(parent.Target.position + parent.AimOffset);

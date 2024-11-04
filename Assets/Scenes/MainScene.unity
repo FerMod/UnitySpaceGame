@@ -152,6 +152,8 @@ MonoBehaviour:
   gunBarrels:
   - {fileID: 693282738}
   - {fileID: 749449231}
+  projectile: {fileID: 136330, guid: 0b3db167b5c1bc64fac1b50e7576c371, type: 3}
+  animator: {fileID: 0}
 --- !u!43 &349430326
 Mesh:
   m_ObjectHideFlags: 0
@@ -455,6 +457,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MouseFlightHud
       objectReference: {fileID: 0}
+    - target: {fileID: 1583529893924578, guid: 16580bf03b0b2cd43a91d480153f3fa0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 114423984889802770, guid: 16580bf03b0b2cd43a91d480153f3fa0, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -569,7 +575,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7501562413051527455, guid: 16580bf03b0b2cd43a91d480153f3fa0, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7501562413051527455, guid: 16580bf03b0b2cd43a91d480153f3fa0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -589,7 +595,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9013017426473470356, guid: 16580bf03b0b2cd43a91d480153f3fa0, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9013017426473470356, guid: 16580bf03b0b2cd43a91d480153f3fa0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1428,7 +1434,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1195477952
 MonoBehaviour:
   m_ObjectHideFlags: 0

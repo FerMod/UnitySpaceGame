@@ -12,13 +12,9 @@ namespace SpaceGame
                 parent.Rotator.rotation = Quaternion.RotateTowards(parent.Rotator.rotation, parent.DefaultRotation, Time.deltaTime * parent.RotationSpeed);
             }
 
-            if (parent.Target != null)
+            if (parent.Target != null && parent.CanSeeTarget())
             {
-                var canSeeTarget = parent.GunBarrels.Any((e) => parent.CanSeeTarget(e.position, parent.Target.position + parent.AimOffset - e.position, "Player"));
-                if (canSeeTarget)
-                {
-                    parent.ChangeState(new FindTargetState());
-                }
+                parent.ChangeState(new FindTargetState());
             }
         }
 

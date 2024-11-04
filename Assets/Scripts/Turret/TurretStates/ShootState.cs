@@ -5,6 +5,17 @@ namespace SpaceGame
 {
     public class ShootState : TurretState
     {
+        public override void Enter(Turret parent)
+        {
+            base.Enter(parent);
+
+            parent.Animator.SetBool("Shoot", true);
+        }
+
+        public override void Exit()
+        {
+            parent.Animator.SetBool("Shoot", false);
+        }
 
         public override void Update()
         {
@@ -13,11 +24,9 @@ namespace SpaceGame
                 parent.Rotator.LookAt(parent.Target.position + parent.AimOffset);
             }
 
-            var canSeePlayer = parent.GunBarrels.Any((e) => parent.CanSeeTarget(e.position, e.forward, "Player"));
-            Debug.Log("canSeePlayer: " + canSeePlayer);
-            if (!canSeePlayer)
+            if (!parent.RaycastTarget(parent.Rotator.position, parent.GunBarrels[0].forward, "Player"))
             {
-                parent.ChangeState(new IdleState());
+               // parent.ChangeState(new IdleState());
             }
         }
     }
