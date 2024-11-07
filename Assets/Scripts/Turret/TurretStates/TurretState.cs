@@ -26,11 +26,9 @@ namespace SpaceGame
 
         public virtual void OnTriggerExit(Collider other)
         {
-            if (other.tag == "Player")
-            {
-                parent.Target = null;
-                parent.ChangeState(new IdleState());
-            }
+            if (other.tag != "Player") return;
+            parent.Target = null;
+            parent.ChangeState(new IdleState());
         }
 
     }

@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 namespace SpaceGame
 {
-    public class PlaneWeapon : MonoBehaviour
+    public class Weapon : MonoBehaviour
     {
         public GameObject projectile;
 
@@ -32,18 +33,19 @@ namespace SpaceGame
 
         private void FireProjectiles()
         {
-            var direction = transform.forward;
             foreach (var spawnPoint in projectileSpawnPoints)
             {
-                Debug.DrawLine(spawnPoint.position, direction * 10000, Color.red, 0.5f);
-                var laserProjectile = CreateProjectile(projectile, spawnPoint.position, direction);
-                Destroy(laserProjectile, projectileLifeTime);
+                var instancedProjectile = CreateProjectile(projectile, spawnPoint);
+                Destroy(instancedProjectile, projectileLifeTime);
             }
         }
 
-        private GameObject CreateProjectile(GameObject gameObject, Vector3 position, Vector3 direction)
+        private GameObject CreateProjectile(GameObject gameObject, Transform spawnPoint)
         {
-            var instance = Instantiate(gameObject, position, Quaternion.LookRotation(direction));
+            var headingDirection = Quaternion.FromToRotation(projectile.transform.forward, spawnPoint.forward);
+
+            var instance = Instantiate(gameObject, spawnPoint.position, headingDirection);
+            Debug.DrawLine(spawnPoint.position, spawnPoint.forward * 10000, Color.red, 0.5f);
             return instance;
         }
 

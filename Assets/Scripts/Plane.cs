@@ -67,7 +67,7 @@ namespace SpaceGame
 
         [Header("Weapons")]
         public bool isFiringLaser = false;
-        public PlaneWeapon laserWeapon;
+        public Weapon laserWeapon;
 
         public Vector3 Velocity { get; private set; }
         public Vector3 Drag { get; private set; }

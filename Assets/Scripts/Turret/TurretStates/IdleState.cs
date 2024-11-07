@@ -12,7 +12,8 @@ namespace SpaceGame
                 parent.Rotator.rotation = Quaternion.RotateTowards(parent.Rotator.rotation, parent.DefaultRotation, Time.deltaTime * parent.RotationSpeed);
             }
 
-            if (parent.Target != null && parent.CanSeeTarget())
+            //Debug.Log($"HasTarget: {parent.Target != null} CanSeePlayer: {parent.Target != null && CanSeePlayer()}");
+            if (parent.Target != null && CanSeePlayer(Color.green))
             {
                 parent.ChangeState(new FindTargetState());
             }
@@ -23,6 +24,11 @@ namespace SpaceGame
             if (other.tag != "Player") return;
             parent.Target = other.transform;
             parent.ChangeState(new FindTargetState());
+        }
+
+        private bool CanSeePlayer(Color? color = null)
+        {
+            return parent.GunBarrels.Any((e) => parent.RaycastTarget(e.position, parent.Target.position + parent.AimOffset - e.position, "Player", color));
         }
     }
 }

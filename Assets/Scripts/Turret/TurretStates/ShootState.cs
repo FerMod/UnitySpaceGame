@@ -24,10 +24,21 @@ namespace SpaceGame
                 parent.Rotator.LookAt(parent.Target.position + parent.AimOffset);
             }
 
-            if (!parent.RaycastTarget(parent.Rotator.position, parent.GunBarrels[0].forward, "Player"))
+            // Debug.Log($"CanShootPlayer: {CanShootPlayer()}");
+            if (CanShootPlayer(Color.blue))
             {
-               // parent.ChangeState(new IdleState());
+                parent.Gun.Fire();
             }
+            else
+            {
+                parent.ChangeState(new IdleState());
+            }
+        }
+
+        private bool CanShootPlayer(Color? color = null)
+        {
+            return parent.GunBarrels.Any((e) => parent.RaycastTarget(e.position, e.forward, "Player", color));
+            // return parent.RaycastTarget(parent.Rotator.position, parent.GunBarrels[0].forward, "Player", color);
         }
     }
 }

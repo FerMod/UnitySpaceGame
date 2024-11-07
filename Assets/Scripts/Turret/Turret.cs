@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace SpaceGame
 {
+
+    [RequireComponent(typeof(Weapon))]
     public class Turret : MonoBehaviour
     {
 
@@ -30,27 +32,24 @@ namespace SpaceGame
         private LayerMask layerMask;
 
         [SerializeField]
-        private Transform[] gunBarrels;
-
-        [SerializeField]
-        private GameObject projectile;
-
-        [SerializeField]
         private Animator animator;
+
+        private Weapon gun;
 
         public Transform Rotator { get => rotator; set => rotator = value; }
         public Transform GhostRotator { get => ghostRotator; set => ghostRotator = value; }
         public Vector3 AimOffset { get => aimOffset; set => aimOffset = value; }
         public float RotationSpeed { get => rotationSpeed; set => rotationSpeed = value; }
         public Quaternion DefaultRotation { get => defaultRotation; set => defaultRotation = value; }
-        public Transform[] GunBarrels { get => gunBarrels; set => gunBarrels = value; }
-        public GameObject Projectile { get => projectile; set => projectile = value; }
         public Animator Animator { get => animator; set => animator = value; }
-
+        public Weapon Gun { get => gun; set => gun = value; }
+        public Transform[] GunBarrels { get => Gun.projectileSpawnPoints; }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
+            Gun = GetComponent<Weapon>();
+
             DefaultRotation = rotator.rotation;
             ChangeState(new IdleState());
 
@@ -79,9 +78,9 @@ namespace SpaceGame
             newState.Enter(this);
         }
 
-        public bool RaycastTarget(Vector3 origin, Vector3 direction, string tag)
+        public bool RaycastTarget(Vector3 origin, Vector3 direction, string tag, Color? color = null)
         {
-            Debug.DrawLine(origin, direction * 1000, Color.blue, 0.2f);
+            if (color != null) Debug.DrawLine(origin, direction * 100, (Color)color, 0.2f);
             if (Physics.Raycast(origin, direction, out RaycastHit hit, Mathf.Infinity, layerMask))
             {
                 return hit.collider.CompareTag(tag);
@@ -90,15 +89,14 @@ namespace SpaceGame
             return false;
         }
 
-        public bool CanSeeTarget()
+        public bool CanSeeTarget(Vector3 target, Color? color = null)
         {
-            return GunBarrels.Any((e) => RaycastTarget(e.position, Target.position + AimOffset - e.position, "Player"));
+            return Gun.projectileSpawnPoints.Any((e) => RaycastTarget(e.position, target, "Player", color));
         }
 
-        public void Shoot(int index)
+        public void Shoot()
         {
-            Quaternion headingDirection = Quaternion.FromToRotation(projectile.transform.forward, GunBarrels[index].forward);
-            Instantiate(projectile, GunBarrels[index].position, headingDirection);
+            Gun.Fire();
         }
     }
 }
