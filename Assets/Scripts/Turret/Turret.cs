@@ -80,7 +80,11 @@ namespace SpaceGame
 
         public bool RaycastTarget(Vector3 origin, Vector3 direction, string tag, Color? color = null)
         {
-            if (color != null) Debug.DrawLine(origin, direction * 100, (Color)color, 0.2f);
+            if (color != null)
+            {
+                Debug.DrawLine(origin, direction * 100, (Color)color, 0.2f);
+            }
+
             if (Physics.Raycast(origin, direction, out RaycastHit hit, Mathf.Infinity, layerMask))
             {
                 return hit.collider.CompareTag(tag);

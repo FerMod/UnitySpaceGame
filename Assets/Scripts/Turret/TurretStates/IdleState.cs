@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace SpaceGame
 {
+    [System.Serializable]
     public class IdleState : TurretState
     {
         public override void Update()
@@ -13,7 +14,7 @@ namespace SpaceGame
             }
 
             //Debug.Log($"HasTarget: {parent.Target != null} CanSeePlayer: {parent.Target != null && CanSeePlayer()}");
-            if (parent.Target != null && CanSeePlayer(Color.green))
+            if (parent.Target != null && CanSeePlayer())
             {
                 parent.ChangeState(new FindTargetState());
             }

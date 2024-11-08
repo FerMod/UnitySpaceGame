@@ -24,8 +24,7 @@ namespace SpaceGame
                 parent.Rotator.LookAt(parent.Target.position + parent.AimOffset);
             }
 
-            // Debug.Log($"CanShootPlayer: {CanShootPlayer()}");
-            if (CanShootPlayer(Color.blue))
+            if (CanShootPlayer())
             {
                 parent.Gun.Fire();
             }
