@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666d95bcca64e344cbd4220587dfc027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 136330, guid: a028ce65c6df0cd478c76b09ac912592, type: 3}
+  projectile: {fileID: 3711936489982471327, guid: f56de12fbe4de1549844f84c2ba90a86, type: 3}
   projectileLifeTime: 5
   fireRate: 10
   projectileSpawnPoints:
@@ -473,7 +473,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1583529893924578, guid: 16580bf03b0b2cd43a91d480153f3fa0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114423984889802770, guid: 16580bf03b0b2cd43a91d480153f3fa0, type: 3}
       propertyPath: m_Sprite
@@ -589,7 +589,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7501562413051527455, guid: 16580bf03b0b2cd43a91d480153f3fa0, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7501562413051527455, guid: 16580bf03b0b2cd43a91d480153f3fa0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -609,7 +609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9013017426473470356, guid: 16580bf03b0b2cd43a91d480153f3fa0, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9013017426473470356, guid: 16580bf03b0b2cd43a91d480153f3fa0, type: 3}
       propertyPath: m_LocalPosition.x
