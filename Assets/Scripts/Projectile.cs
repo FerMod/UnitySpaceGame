@@ -33,7 +33,7 @@ namespace SpaceGame
 
         void FixedUpdate()
         {
-            rb.AddForce(transform.forward * speed, ForceMode.Impulse);
+           rb.AddForce(transform.forward * speed, ForceMode.Impulse);
         }
 
         void OnCollisionEnter(Collision collision)

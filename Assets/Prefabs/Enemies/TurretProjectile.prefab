@@ -24,6 +24,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TurretProjectile
       objectReference: {fileID: 0}
+    - target: {fileID: 136330, guid: 0b3db167b5c1bc64fac1b50e7576c371, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 499656, guid: 0b3db167b5c1bc64fac1b50e7576c371, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.130945

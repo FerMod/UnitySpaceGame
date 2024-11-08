@@ -13,7 +13,6 @@ namespace SpaceGame
                 parent.Rotator.rotation = Quaternion.RotateTowards(parent.Rotator.rotation, parent.DefaultRotation, Time.deltaTime * parent.RotationSpeed);
             }
 
-            //Debug.Log($"HasTarget: {parent.Target != null} CanSeePlayer: {parent.Target != null && CanSeePlayer()}");
             if (parent.Target != null && CanSeePlayer())
             {
                 parent.ChangeState(new FindTargetState());
