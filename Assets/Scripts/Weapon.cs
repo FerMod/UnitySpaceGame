@@ -44,8 +44,8 @@ namespace SpaceGame
         {
             var headingDirection = Quaternion.FromToRotation(projectile.transform.forward, spawnPoint.forward);
 
+            //Debug.DrawLine(spawnPoint.position, spawnPoint.forward * 10000, Color.red, 0.5f);
             var instance = Instantiate(gameObject, spawnPoint.position, headingDirection);
-            Debug.DrawLine(spawnPoint.position, spawnPoint.forward * 10000, Color.red, 0.5f);
             return instance;
         }
 
