@@ -11,7 +11,8 @@ namespace SpaceGame
 
         protected TurretState currentState;
 
-        public Transform Target { get; set; }
+        public GameObject Target { get; set; }
+        public Transform TargetTransform { get => Target.transform; }
 
         [SerializeField]
         private Transform rotator;

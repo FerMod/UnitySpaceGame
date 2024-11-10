@@ -22,13 +22,13 @@ namespace SpaceGame
         public override void OnTriggerEnter(Collider other)
         {
             if (other.tag != "Player") return;
-            parent.Target = other.transform;
+            parent.Target = other.gameObject;
             parent.ChangeState(new FindTargetState());
         }
 
         private bool CanSeePlayer(Color? color = null)
         {
-            return parent.GunBarrels.Any((e) => parent.RaycastTarget(e.position, parent.Target.position + parent.AimOffset - e.position, "Player", color));
+            return parent.GunBarrels.Any((e) => parent.RaycastTarget(e.position, parent.Target.transform.position + parent.AimOffset - e.position, "Player", color));
         }
     }
 }
