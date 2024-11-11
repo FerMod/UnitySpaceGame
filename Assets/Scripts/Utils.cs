@@ -76,7 +76,7 @@ namespace SpaceGame
             Vector3 targetRelativePosition = targetPosition - shooterPosition;
             Vector3 targetRelativeVelocity = targetVelocity - shooterVelocity;
             float t = FirstOrderInterceptTime(shotSpeed, targetRelativePosition, targetRelativeVelocity);
-            return targetPosition + t * (targetRelativeVelocity);
+            return targetPosition + t * targetRelativeVelocity;
         }
 
         /// <summary>
