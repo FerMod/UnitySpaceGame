@@ -4,63 +4,6 @@ namespace SpaceGame
 {
     public static class Utils
     {
-        public static Vector3 PredictV3Pos(Vector3 muzzlePos, float bulletVelocity, Vector3 targetPos, Vector3 targetVelocity, bool useGravity = false)
-        {
-            Vector3 totarget = targetPos - muzzlePos;
-
-            float a = Vector3.Dot(targetVelocity, targetVelocity) - (bulletVelocity * bulletVelocity);
-
-            if (a == 0F) { Debug.Log("wasd"); }
-            if (bulletVelocity == 0F) { Debug.Log("bbb"); }
-
-            float b = 2 * Vector3.Dot(targetVelocity, totarget);
-            float c = Vector3.Dot(totarget, totarget);
-
-            float p = -b / (2 * a);
-            float q = Mathf.Sqrt((b * b) - 4 * a * c) / (2 * a);
-
-            float t1 = p - q;
-            float t2 = p + q;
-            float t;
-
-            if (t1 > t2 && t2 > 0)
-            {
-                t = t2;
-            }
-            else
-            {
-                t = t1;
-            }
-
-            Vector3 aimSpot = targetPos + targetVelocity * t;
-            Vector3 bulletPath = aimSpot - muzzlePos;
-
-            // If no drag
-            if (useGravity)
-            {
-                float timeToImpact = bulletPath.magnitude / bulletVelocity; // Speed must be in units per second
-                Vector3 gravityDrop = 0.5f * Physics.gravity * timeToImpact * timeToImpact; // 1/2gt^2
-                return aimSpot - gravityDrop;
-            }
-
-            return aimSpot;
-        }
-
-        public static Vector3 InterceptTarget(GameObject shooter, GameObject target, float shotSpeed)
-        {
-            // Positions
-            Vector3 shooterPosition = shooter.transform.position;
-            Vector3 targetPosition = target.transform.position;
-
-            // Velocities
-            Vector3 shooterVelocity = shooter.TryGetComponent(out Rigidbody shooterRigidbody) ? shooterRigidbody.linearVelocity : Vector3.zero;
-            Vector3 targetVelocity = target.TryGetComponent(out Rigidbody targetRigidbody) ? targetRigidbody.linearVelocity : Vector3.zero;
-
-            // Calculate intercept
-            Vector3 interceptPoint = FirstOrderIntercept(shooterPosition, shooterVelocity, shotSpeed, targetPosition, targetVelocity);
-            return interceptPoint;
-        }
-
         /// <summary>
         /// First-order intercept using absolute target position
         /// </summary>
