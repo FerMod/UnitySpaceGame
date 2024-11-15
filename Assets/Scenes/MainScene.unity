@@ -742,7 +742,7 @@ MonoBehaviour:
   target: {fileID: 502726371}
   degreesPerSecond: 90
   direction: {x: 0.5, y: 1, z: 0}
-  randomDirection: 0
+  randomDirection: 1
   interval: 3
 --- !u!135 &627306373
 SphereCollider:
