@@ -1,16 +1,19 @@
 using System.Linq;
 using UnityEngine;
+using SpaceGame.Extensions;
 
 namespace SpaceGame
 {
+
     [System.Serializable]
     public class IdleState : TurretState
     {
         public override void Update()
         {
-            if (parent.DefaultRotation != parent.Rotator.rotation)
+            if (parent.DefaultRotation != parent.HorizontalRotator.rotation)
             {
-                parent.Rotator.rotation = Quaternion.RotateTowards(parent.Rotator.rotation, parent.DefaultRotation, Time.deltaTime * parent.RotationSpeed);
+                //parent.HorizontalRotator.rotation = Quaternion.RotateTowards(parent.HorizontalRotator.rotation, parent.DefaultRotation, Time.deltaTime * parent.RotationSpeed);
+                parent.HorizontalRotator.rotation = parent.HorizontalRotator.rotation.RotateAxisTowards(parent.DefaultRotation, Time.deltaTime * parent.RotationSpeed, Axis.Y);
             }
 
             if (parent.Target != null && CanSeePlayer())

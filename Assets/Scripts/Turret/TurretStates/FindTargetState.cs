@@ -1,24 +1,54 @@
-using System;
+using NUnit.Framework.Constraints;
+using SpaceGame.Extensions;
 using UnityEngine;
 
 namespace SpaceGame
 {
+
+    [System.Serializable]
     public class FindTargetState : TurretState
     {
+
+
         public override void Update()
         {
             RotateTowardsTarget();
 
-            if (parent.GhostRotator.rotation.y == parent.Rotator.rotation.y)
+            if (CanShootTarget(parent.GhostRotator.rotation, parent.HorizontalRotator.rotation))
             {
                 parent.ChangeState(new ShootState());
             }
         }
 
+        private bool CanShootTarget(Quaternion fromRotation, Quaternion toRotation)
+        {
+            if (IsWithinTolerance(fromRotation.x, toRotation.x, parent.ShootTolerance))
+            {
+                return true;
+            }
+            if (IsWithinTolerance(fromRotation.y, fromRotation.y, parent.ShootTolerance))
+            {
+                return true;
+            }
+            if (IsWithinTolerance(fromRotation.z, fromRotation.z, parent.ShootTolerance))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool IsWithinTolerance(float fromAngle, float toAngle, float tolerance)
+        {
+            return Mathf.Abs(Mathf.DeltaAngle(fromAngle, toAngle)) <= tolerance;
+        }
+
         private void RotateTowardsTarget()
         {
             parent.GhostRotator.LookAt(parent.Target.transform.position + parent.AimOffset);
-            parent.Rotator.rotation = Quaternion.RotateTowards(parent.Rotator.rotation, parent.GhostRotator.rotation, Time.deltaTime * parent.RotationSpeed);
+
+            //parent.HorizontalRotator.rotation = Quaternion.RotateTowards(parent.HorizontalRotator.rotation, parent.GhostRotator.rotation, Time.deltaTime * parent.RotationSpeed);
+            parent.HorizontalRotator.localRotation = parent.HorizontalRotator.localRotation.RotateYAxisTowards(parent.GhostRotator.localRotation, Time.deltaTime * parent.RotationSpeed);
+            parent.VerticalRotator.localRotation = parent.VerticalRotator.localRotation.RotateXAxisTowards(parent.GhostRotator.localRotation, Time.deltaTime * parent.RotationSpeed);
         }
 
     }

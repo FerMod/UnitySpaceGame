@@ -12,10 +12,12 @@ namespace SpaceGame
         protected TurretState currentState;
 
         public GameObject Target { get; set; }
-        public Transform TargetTransform { get => Target.transform; }
 
         [SerializeField]
-        private Transform rotator;
+        private Transform horizontalRotator;
+
+        [SerializeField]
+        private Transform verticalRotator;
 
         [SerializeField]
         private Transform ghostRotator;
@@ -25,6 +27,9 @@ namespace SpaceGame
 
         [SerializeField]
         private Quaternion defaultRotation;
+
+        [SerializeField]
+        private float shootTolerance = 0.1f;
 
         [SerializeField]
         private float rotationSpeed;
@@ -37,11 +42,13 @@ namespace SpaceGame
 
         private Weapon gun;
 
-        public Transform Rotator { get => rotator; set => rotator = value; }
+        public Transform HorizontalRotator { get => horizontalRotator; set => horizontalRotator = value; }
+        public Transform VerticalRotator { get => verticalRotator; set => verticalRotator = value; }
         public Transform GhostRotator { get => ghostRotator; set => ghostRotator = value; }
         public Vector3 AimOffset { get => aimOffset; set => aimOffset = value; }
         public float RotationSpeed { get => rotationSpeed; set => rotationSpeed = value; }
         public Quaternion DefaultRotation { get => defaultRotation; set => defaultRotation = value; }
+        public float ShootTolerance { get => shootTolerance; set => shootTolerance = value; }
         public Animator Animator { get => animator; set => animator = value; }
         public Weapon Gun { get => gun; set => gun = value; }
         public Transform[] GunBarrels { get => Gun.projectileSpawnPoints; }
@@ -51,7 +58,7 @@ namespace SpaceGame
         {
             Gun = GetComponent<Weapon>();
 
-            DefaultRotation = rotator.rotation;
+            DefaultRotation = horizontalRotator.rotation;
             ChangeState(new IdleState());
 
         }
@@ -99,9 +106,33 @@ namespace SpaceGame
             return Gun.projectileSpawnPoints.Any((e) => RaycastTarget(e.position, target, "Player", color));
         }
 
+        public bool HasUnobstructedSight(Vector3 position, Color? color = null)
+        {
+            if (color != null)
+            {
+                Debug.DrawLine(GhostRotator.position, position, (Color)color, 0.2f);
+            }
+
+            return !Physics.Linecast(GhostRotator.position, position, ~layerMask, QueryTriggerInteraction.UseGlobal);
+        }
+
+        public Quaternion HorizontalRotationTowards(Quaternion initialRotation, Vector3 point)
+        {
+            var eulerAngles = initialRotation.eulerAngles;
+            eulerAngles.y = point.y;
+            return Quaternion.Euler(eulerAngles);
+        }
+
+        public Quaternion VerticalRotation(Quaternion initialRotation, Vector3 point)
+        {
+            var eulerAngles = initialRotation.eulerAngles;
+            eulerAngles.x = point.x;
+            return Quaternion.Euler(eulerAngles);
+        }
         public void Shoot()
         {
             Gun.Fire();
         }
     }
 }
+

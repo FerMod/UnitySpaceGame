@@ -5,9 +5,9 @@ namespace SpaceGame
     [RequireComponent(typeof(Rigidbody))]
     public class Projectile : MonoBehaviour
     {
-
         public float speed = 100f;
         public float damage = 25f;
+        public float lifetime = 5f;
 
         public GameObject hitEffect;
 
@@ -23,17 +23,19 @@ namespace SpaceGame
         void Start()
         {
             rb = GetComponent<Rigidbody>();
+
+            Destroy(gameObject, lifetime);
         }
 
         void Update()
         {
             //transform.position += speed * Time.deltaTime * transform.forward;
-            //rb.linearVelocity += 100 * speed * Time.deltaTime * transform.forward;
+            rb.linearVelocity += speed * Time.deltaTime * transform.forward;
         }
 
         void FixedUpdate()
         {
-            rb.AddForce(transform.forward * speed, ForceMode.Impulse);
+            // rb.AddForce(transform.forward * speed, ForceMode.VelocityChange);
         }
 
         void OnCollisionEnter(Collision collision)

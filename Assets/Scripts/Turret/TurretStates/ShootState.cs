@@ -1,8 +1,12 @@
+using SpaceGame.Extensions;
+using System;
 using System.Linq;
 using UnityEngine;
 
 namespace SpaceGame
 {
+
+    [System.Serializable]
     public class ShootState : TurretState
     {
         public override void Enter(Turret parent)
@@ -19,44 +23,55 @@ namespace SpaceGame
 
         public override void Update()
         {
-            if (parent.Target != null)
-            {
-                //parent.Rotator.LookAt(parent.TargetTransform.position + parent.AimOffset);
-
-                var targetSpeed = parent.Target.GetComponent<Rigidbody>().linearVelocity;
-                var projectileSpeed = parent.Gun.projectile.GetComponent<Projectile>().speed;
-                /*
-                 var leadingVector = Utils.PredictV3Pos(parent.GunBarrels[0].position, projectileSpeed, parent.TargetTransform.position, targetSpeed * 0.9f);
-                 Debug.DrawLine(parent.GunBarrels[0].position, leadingVector, Color.magenta, 0.1f);
-                 parent.Rotator.LookAt(leadingVector);
-                */
-
-                // === derived variables ===
-                //positions
-                Vector3 shooterPosition = parent.GunBarrels[0].position;
-                Vector3 targetPosition = parent.Target.transform.position;
-                //velocities
-                Vector3 shooterVelocity = Vector3.zero;
-                Vector3 targetVelocity = targetSpeed;
-
-                //calculate intercept
-                Vector3 interceptPoint = Utils.FirstOrderIntercept(shooterPosition, shooterVelocity, projectileSpeed, targetPosition, targetVelocity);
-                parent.Rotator.LookAt(interceptPoint);
-                Debug.DrawLine(shooterPosition, interceptPoint, Color.magenta, 0.1f);
-
-                parent.Gun.Fire();
-            }
-
-            if (!HasDirectSight())
+            if (parent.Target == null)
             {
                 parent.ChangeState(new IdleState());
+                return;
             }
+
+
+            //parent.Rotator.LookAt(parent.TargetTransform.position + parent.AimOffset);
+
+
+            // === derived variables ===
+            // Positions
+            Vector3 shooterPosition = parent.Gun.projectileSpawnPoints[0].position;
+            Vector3 targetPosition = parent.Target.transform.position + parent.AimOffset;
+
+            // Velocities
+            Vector3 shooterVelocity = parent.GetComponent<Rigidbody>()?.linearVelocity ?? Vector3.zero;
+            var projectileSpeed = parent.Gun.projectile.GetComponent<Projectile>().speed;
+            //Vector3 targetVelocity = parent.Target.GetComponent<Plane>().Velocity;
+            Vector3 targetVelocity = parent.Target.GetComponent<DebugScript>().Velocity;
+
+            //calculate intercept
+            Vector3 interceptPoint = Utils.FirstOrderIntercept(shooterPosition, shooterVelocity, projectileSpeed, targetPosition, targetVelocity);
+
+            parent.HorizontalRotator.LookYAxisAt(interceptPoint);
+            parent.VerticalRotator.LookXAxisAt(interceptPoint);
+
+            Debug.DrawLine(shooterPosition, interceptPoint, Color.magenta, 0.05f);
+            parent.Gun.Fire();
+
+            if (!HasDirectSight() && !HasUnobstructedPath(interceptPoint, Color.green))
+            {
+                Debug.Log("No direct line of sight");
+                // parent.ChangeState(new IdleState());
+            }
+            else
+            {
+            }
+        }
+
+        private bool HasUnobstructedPath(Vector3 toPosition, Color? color = null)
+        {
+            return parent.HasUnobstructedSight(toPosition, color);
         }
 
         private bool HasDirectSight(Color? color = null)
         {
             return parent.GunBarrels.Any((e) => parent.RaycastTarget(e.position, e.forward, "Player", color));
-            // return parent.RaycastTarget(parent.Rotator.position, parent.GunBarrels[0].forward, "Player", color);
+            //return parent.RaycastTarget(parent.Rotator.position, parent.GunBarrels[0].forward, "Player", color);
         }
     }
 }

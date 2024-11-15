@@ -2,6 +2,8 @@ using UnityEngine;
 
 namespace SpaceGame
 {
+
+    [System.Serializable]
     public abstract class TurretState
     {
 
