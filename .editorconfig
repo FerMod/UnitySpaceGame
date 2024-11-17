@@ -74,3 +74,10 @@ dotnet_naming_rule.private_fields_camel_case.style = camel_case
 #dotnet_naming_rule.public_symbols_first_word_upper.symbols = public_members
 #dotnet_naming_rule.public_symbols_first_word_upper.severity = warning
 #dotnet_naming_rule.public_symbols_first_word_upper.style = first_word_upper
+
+# Temporal fix to: https://developercommunity.visualstudio.com/t/Private-Unity-messages-incorrectly-marke/10779025
+[*.cs]
+dotnet_diagnostic.IDE0055.severity = none
+dotnet_diagnostic.IDE0052.severity = none
+dotnet_diagnostic.IDE0051.severity = none
+dotnet_diagnostic.IDE0044.severity = none

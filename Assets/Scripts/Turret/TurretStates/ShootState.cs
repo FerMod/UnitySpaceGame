@@ -1,5 +1,3 @@
-using SpaceGame.Extensions;
-using System;
 using System.Linq;
 using UnityEngine;
 
@@ -47,8 +45,7 @@ namespace SpaceGame
             //calculate intercept
             Vector3 interceptPoint = Utils.FirstOrderIntercept(shooterPosition, shooterVelocity, projectileSpeed, targetPosition, targetVelocity);
 
-            parent.HorizontalRotator.LookYAxisAt(interceptPoint);
-            parent.VerticalRotator.LookXAxisAt(interceptPoint);
+            parent.LookAt(interceptPoint);
 
             Debug.DrawLine(shooterPosition, interceptPoint, Color.magenta, 0.05f);
             parent.Gun.Fire();

@@ -1,6 +1,5 @@
 using System.Linq;
 using UnityEngine;
-using SpaceGame.Extensions;
 
 namespace SpaceGame
 {
@@ -13,7 +12,8 @@ namespace SpaceGame
             if (parent.DefaultRotation != parent.HorizontalRotator.rotation)
             {
                 //parent.HorizontalRotator.rotation = Quaternion.RotateTowards(parent.HorizontalRotator.rotation, parent.DefaultRotation, Time.deltaTime * parent.RotationSpeed);
-                parent.HorizontalRotator.rotation = parent.HorizontalRotator.rotation.RotateAxisTowards(parent.DefaultRotation, Time.deltaTime * parent.RotationSpeed, Axis.Y);
+                //parent.HorizontalRotator.rotation = parent.HorizontalRotator.rotation.RotateAxisTowards(parent.DefaultRotation, Time.deltaTime * parent.RotationSpeed, Axis.Y);
+                parent.Rotate(parent.DefaultRotation);
             }
 
             if (parent.Target != null && CanSeePlayer())

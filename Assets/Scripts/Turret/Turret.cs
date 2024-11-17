@@ -1,3 +1,4 @@
+using SpaceGame.Extensions;
 using System;
 using System.Linq;
 using UnityEngine;
@@ -58,7 +59,7 @@ namespace SpaceGame
         {
             Gun = GetComponent<Weapon>();
 
-            DefaultRotation = horizontalRotator.rotation;
+            DefaultRotation = Quaternion.Euler(HorizontalRotator.rotation.x, VerticalRotator.rotation.y, 0f);
             ChangeState(new IdleState());
 
         }
@@ -116,19 +117,18 @@ namespace SpaceGame
             return !Physics.Linecast(GhostRotator.position, position, ~layerMask, QueryTriggerInteraction.UseGlobal);
         }
 
-        public Quaternion HorizontalRotationTowards(Quaternion initialRotation, Vector3 point)
+        public void LookAt(Vector3 target)
         {
-            var eulerAngles = initialRotation.eulerAngles;
-            eulerAngles.y = point.y;
-            return Quaternion.Euler(eulerAngles);
+            HorizontalRotator.LookYAxisAt(target);
+            VerticalRotator.LookXAxisAt(target);
         }
 
-        public Quaternion VerticalRotation(Quaternion initialRotation, Vector3 point)
+        public void Rotate(Quaternion localRotation)
         {
-            var eulerAngles = initialRotation.eulerAngles;
-            eulerAngles.x = point.x;
-            return Quaternion.Euler(eulerAngles);
+            HorizontalRotator.localRotation = HorizontalRotator.localRotation.RotateYAxisTowards(localRotation, Time.deltaTime * RotationSpeed);
+            VerticalRotator.localRotation = VerticalRotator.localRotation.RotateXAxisTowards(localRotation, Time.deltaTime * RotationSpeed);
         }
+
         public void Shoot()
         {
             Gun.Fire();

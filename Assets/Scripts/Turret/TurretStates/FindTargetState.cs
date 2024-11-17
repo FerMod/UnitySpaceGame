@@ -1,5 +1,3 @@
-using NUnit.Framework.Constraints;
-using SpaceGame.Extensions;
 using UnityEngine;
 
 namespace SpaceGame
@@ -22,19 +20,19 @@ namespace SpaceGame
 
         private bool CanShootTarget(Quaternion fromRotation, Quaternion toRotation)
         {
-            if (IsWithinTolerance(fromRotation.x, toRotation.x, parent.ShootTolerance))
+            if (!IsWithinTolerance(fromRotation.x, toRotation.x, parent.ShootTolerance))
             {
-                return true;
+                return false;
             }
-            if (IsWithinTolerance(fromRotation.y, fromRotation.y, parent.ShootTolerance))
+            if (!IsWithinTolerance(fromRotation.y, fromRotation.y, parent.ShootTolerance))
             {
-                return true;
+                return false;
             }
-            if (IsWithinTolerance(fromRotation.z, fromRotation.z, parent.ShootTolerance))
+            if (!IsWithinTolerance(fromRotation.z, fromRotation.z, parent.ShootTolerance))
             {
-                return true;
+                return false;
             }
-            return false;
+            return true;
         }
 
         private bool IsWithinTolerance(float fromAngle, float toAngle, float tolerance)
@@ -47,8 +45,7 @@ namespace SpaceGame
             parent.GhostRotator.LookAt(parent.Target.transform.position + parent.AimOffset);
 
             //parent.HorizontalRotator.rotation = Quaternion.RotateTowards(parent.HorizontalRotator.rotation, parent.GhostRotator.rotation, Time.deltaTime * parent.RotationSpeed);
-            parent.HorizontalRotator.localRotation = parent.HorizontalRotator.localRotation.RotateYAxisTowards(parent.GhostRotator.localRotation, Time.deltaTime * parent.RotationSpeed);
-            parent.VerticalRotator.localRotation = parent.VerticalRotator.localRotation.RotateXAxisTowards(parent.GhostRotator.localRotation, Time.deltaTime * parent.RotationSpeed);
+            parent.Rotate(parent.GhostRotator.rotation);
         }
 
     }
