@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DebugScript : MonoBehaviour
@@ -14,8 +15,12 @@ public class DebugScript : MonoBehaviour
     private Vector3 previousPosition;
     public Vector3 Velocity { get; private set; }
 
+    private Rigidbody rb;
+
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
+
         previousPosition = transform.position;
 
         if (randomDirection)
@@ -33,6 +38,20 @@ public class DebugScript : MonoBehaviour
         // Update velocity
         Velocity = (transform.position - previousPosition) / Time.deltaTime;
         previousPosition = transform.position;
+    }
+
+    void FixedUpdate()
+    {
+        //rb.AddForce(direction * degreesPerSecond);
+
+        //// Calculate the offset from the pivot to the Rigidbody's center of mass
+        //Vector3 offset = rb.worldCenterOfMass - target.transform.position;
+
+        //// Calculate the velocity needed for rotation around the pivot
+        //Vector3 tangentialVelocity = Vector3.Cross(direction.normalized, offset) * degreesPerSecond;
+
+        //// Apply the force to simulate the rotation around the point
+        //rb.linearVelocity += tangentialVelocity;
     }
 
     IEnumerator ExecuteRepeatedly()

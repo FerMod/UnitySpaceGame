@@ -14,28 +14,13 @@ namespace SpaceGame.Extensions
 
         public static void LookAxisAt(this Transform transform, Vector3 target, Axis axis)
         {
-            // Obtain relative position of the target relative to this transform.
-            // But in the local transform space of the this transform.
-            var relativePosition = transform.InverseTransformDirection(target);
-
-            // Remove local difference in the axis direction
-            switch (axis)
-            {
-                case Axis.X:
-                    relativePosition.x = 0f;
-                    break;
-                case Axis.Y:
-                    relativePosition.y = 0f;
-                    break;
-                case Axis.Z:
-                    relativePosition.z = 0f;
-                    break;
-            }
-
-            // Convert it back to world space since LookAt expects a world position.
-            var targetPosition = transform.TransformPoint(relativePosition);
-
-            transform.transform.LookAt(targetPosition, transform.transform.up);
+            var previousAngles = transform.rotation.eulerAngles;
+            transform.LookAt(target);
+            transform.rotation = Quaternion.Euler(
+                axis == Axis.X ? transform.eulerAngles.x : previousAngles.x,
+                axis == Axis.Y ? transform.eulerAngles.y : previousAngles.y,
+                axis == Axis.Z ? transform.eulerAngles.z : previousAngles.z
+            );
         }
     }
 }

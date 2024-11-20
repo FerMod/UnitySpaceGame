@@ -33,8 +33,8 @@ namespace SpaceGame
 
             // === derived variables ===
             // Positions
-            Vector3 shooterPosition = parent.Gun.projectileSpawnPoints[0].position;
-            Vector3 targetPosition = parent.Target.transform.position + parent.AimOffset;
+            Vector3 shooterPosition = parent.transform.position;
+            Vector3 targetPosition = parent.Target.transform.position;
 
             // Velocities
             Vector3 shooterVelocity = parent.GetComponent<Rigidbody>()?.linearVelocity ?? Vector3.zero;
@@ -43,14 +43,24 @@ namespace SpaceGame
             Vector3 targetVelocity = parent.Target.GetComponent<DebugScript>().Velocity;
 
             //calculate intercept
-            Vector3 interceptPoint = Utils.FirstOrderIntercept(shooterPosition, shooterVelocity, projectileSpeed, targetPosition, targetVelocity);
+            // Vector3 interceptPoint = Utils.FirstOrderIntercept(shooterPosition, shooterVelocity, projectileSpeed, targetPosition, targetVelocity);
+            //interceptPoint = Utils.CalculateInterceptionPoint3D(shooterPosition, projectileSpeed, targetPosition, targetVelocity);
 
-            parent.LookAt(interceptPoint);
+            Vector3 ic = Utils.CalculateInterceptCourse(targetPosition, targetVelocity, shooterPosition, projectileSpeed);
+            ic.Normalize();
+            var interceptionTime = Utils.FindClosestPointOfApproach(targetPosition, targetVelocity, targetPosition, ic * projectileSpeed);
+            var interceptionPoint = targetPosition + targetVelocity * interceptionTime;
 
-            Debug.DrawLine(shooterPosition, interceptPoint, Color.magenta, 0.05f);
+            Vector3 Dist = targetPosition - shooterPosition;
+            var interceptionTime2 = Dist.magnitude / projectileSpeed;
+            var interceptionPoint2 = targetPosition + interceptionTime2 * targetVelocity;
+
+            parent.LookAt(interceptionPoint2);
+
+            Debug.DrawLine(shooterPosition, interceptionPoint2, Color.magenta, 0.05f);
             parent.Gun.Fire();
 
-            if (!HasDirectSight() && !HasUnobstructedPath(interceptPoint, Color.green))
+            if (!HasDirectSight() && !HasUnobstructedPath(interceptionPoint2, Color.green))
             {
                 Debug.Log("No direct line of sight");
                 // parent.ChangeState(new IdleState());

@@ -61,7 +61,6 @@ namespace SpaceGame
 
             DefaultRotation = Quaternion.Euler(HorizontalRotator.rotation.x, VerticalRotator.rotation.y, 0f);
             ChangeState(new IdleState());
-
         }
 
         // Update is called once per frame
