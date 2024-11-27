@@ -60,6 +60,7 @@ namespace SpaceGame.UI
 
         public void OnResumePressed()
         {
+            Debug.Log("RESUME");
             DeactivateMenu();
         }
 

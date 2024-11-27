@@ -26,8 +26,8 @@ public class NBodySimulation : MonoBehaviour
     void Awake()
     {
         bodies = FindObjectsByType<CelestialBody>(FindObjectsSortMode.None);
-        Debug.Log($"Setting fixedDeltaTime from {Time.fixedDeltaTime} to {Universe.physicsTimeStep}");
-        Time.fixedDeltaTime = Universe.physicsTimeStep;
+        //Debug.Log($"Setting fixedDeltaTime from {Time.fixedDeltaTime} to {Universe.physicsTimeStep}");
+        //Time.fixedDeltaTime = Universe.physicsTimeStep;
     }
 
     void FixedUpdate()
