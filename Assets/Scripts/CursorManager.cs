@@ -1,6 +1,4 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 namespace SpaceGame
 {
@@ -10,13 +8,13 @@ namespace SpaceGame
         public bool visible = false;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        private void Start()
         {
             Cursor.lockState = cursorLockMode;
             Cursor.visible = visible;
         }
 
-        void OnApplicationFocus(bool hasFocus)
+        private void OnApplicationFocus(bool hasFocus)
         {
             if (hasFocus)
             {

@@ -55,7 +55,9 @@ namespace SpaceGame
             //var interceptionTime2 = Dist.magnitude / projectileSpeed;
             //var interceptionPoint2 = targetPosition + interceptionTime2 * targetVelocity;
 
-            //GameUtilities.PredictiveAim(shooterPosition, projectileSpeed, targetPosition, targetVelocity, 0f, out Vector3 projectileVelocity);
+            // GameUtilities.PredictiveAim(shooterPosition, projectileSpeed, targetPosition, targetVelocity, 0f, out Vector3 interceptPoint);
+
+            interceptPoint = Utils.CalculateInterceptDirection(shooterPosition, targetPosition, targetVelocity, projectileSpeed);
 
             parent.LookAt(interceptPoint);
 
@@ -65,7 +67,7 @@ namespace SpaceGame
             if (!HasDirectSight() && !HasUnobstructedPath(interceptPoint, Color.green))
             {
                 Debug.Log("No direct line of sight");
-                parent.ChangeState(new IdleState());
+                //parent.ChangeState(new IdleState());
             }
             else
             {

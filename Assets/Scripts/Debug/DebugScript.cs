@@ -34,6 +34,7 @@ public class DebugScript : MonoBehaviour
     {
         // Spin the object around the target at degrees/second.
         transform.RotateAround(target.transform.position, direction, degreesPerSecond * Time.deltaTime);
+        //transform.position += degreesPerSecond * Time.deltaTime * transform.forward;
 
         // Update velocity
         Velocity = (transform.position - previousPosition) / Time.deltaTime;

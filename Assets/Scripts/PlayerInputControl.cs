@@ -25,8 +25,6 @@ namespace SpaceGame
         //This Vector3 acts as a collection of flags to override the auto pilot features for each axis if keyboard input is detected. 0 is false, 1 is true
         private Vector3 _enableAutoPilot;
 
-        InputAction fireAction;
-
         public void SetThrottleInput(InputAction.CallbackContext context)
         {
             if (plane == null) return;
