@@ -10,6 +10,7 @@ namespace SpaceGame.UI
     {
 
         [SerializeField] private GameObject pauseMenu;
+        [SerializeField] private GameObject optionsMenu;
         [SerializeField] private InputActionProperty pauseInputAction;
 
         private InputActionMap playerInputMap;
@@ -60,13 +61,13 @@ namespace SpaceGame.UI
 
         public void OnResumePressed()
         {
-            Debug.Log("RESUME");
             DeactivateMenu();
         }
 
         public void OnOptionsPressed()
         {
-
+            pauseMenu.SetActive(false);
+            optionsMenu.SetActive(true);
         }
 
         public void OnQuitPressed()
