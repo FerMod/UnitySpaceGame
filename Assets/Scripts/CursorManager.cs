@@ -1,31 +1,56 @@
+using SpaceGame.UI;
 using UnityEngine;
 
 namespace SpaceGame
 {
     public class CursorManager : MonoBehaviour
     {
-        public CursorLockMode cursorLockMode = CursorLockMode.Confined;
-        public bool visible = false;
+        public static CursorLockMode lockMode = CursorLockMode.Confined;
+        public static bool visible = false;
+
+        public static bool IsInPauseMenu { get; set; }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         private void Start()
         {
-            Cursor.lockState = cursorLockMode;
+            Cursor.lockState = lockMode;
             Cursor.visible = visible;
         }
 
         private void OnApplicationFocus(bool hasFocus)
         {
-            if (hasFocus)
+            if (hasFocus && !IsInPauseMenu)
             {
-                Cursor.lockState = cursorLockMode;
-                Cursor.visible = visible;
+                CaptureMouse();
             }
             else
             {
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
+                FreeMouse();
             }
+        }
+
+        public static void CaptureMouse()
+        {
+            Cursor.lockState = lockMode;
+            Cursor.visible = visible;
+        }
+
+        public static void FreeMouse()
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+
+        public static void EnableMenuCursor()
+        {
+            IsInPauseMenu = false;
+            FreeMouse();
+        }
+
+        public static void DisableMenuCursor()
+        {
+            IsInPauseMenu = false;
+            CaptureMouse();
         }
     }
 }

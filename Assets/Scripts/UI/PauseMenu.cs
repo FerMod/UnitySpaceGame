@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.HID;
 using UnityEngine.UI;
 
 namespace SpaceGame.UI
@@ -9,15 +10,20 @@ namespace SpaceGame.UI
     public class PauseMenu : MonoBehaviour
     {
 
-        [SerializeField] private GameObject pauseMenu;
-        [SerializeField] private GameObject optionsMenu;
-        [SerializeField] private InputActionProperty pauseInputAction;
+        public InputActionAsset inputActionAsset;
+        public GameObject pauseMenu;
+        public GameObject optionsMenu;
+        public InputActionProperty pauseInputAction;
+
+        public Hud hud;
 
         private InputActionMap playerInputMap;
         private bool isPaused = false;
 
         private void Start()
         {
+            playerInputMap = inputActionAsset.FindActionMap("Plane");
+
             pauseInputAction.action.Enable();
             pauseInputAction.action.performed += OnPause;
         }
@@ -29,19 +35,23 @@ namespace SpaceGame.UI
 
         void ActivateMenu()
         {
-            Cursor.visible = true;
+            CursorManager.EnableMenuCursor();
             Time.timeScale = 0;
             AudioListener.pause = true;
             pauseMenu.SetActive(true);
+            playerInputMap.Disable();
+            hud.IsFreezed = true;
             isPaused = true;
         }
 
         void DeactivateMenu()
         {
-            Cursor.visible = false;
+            CursorManager.DisableMenuCursor();
             Time.timeScale = 1;
             AudioListener.pause = false;
             pauseMenu.SetActive(false);
+            playerInputMap.Enable();
+            hud.IsFreezed = false;
             isPaused = false;
         }
 
@@ -73,6 +83,39 @@ namespace SpaceGame.UI
         public void OnQuitPressed()
         {
             Application.Quit();
+        }
+
+        /// <summary>
+        /// Method to deactivate an action map
+        /// </summary>
+        /// <param name="actionMapName"></param>
+        private void DeactivateActionMap(string actionMapName)
+        {
+            var actionMap = inputActionAsset.FindActionMap(actionMapName);
+            if (actionMap != null)
+            {
+                actionMap.Disable();
+                Debug.Log($"{actionMapName} has been deactivated.");
+            }
+            else
+            {
+                Debug.LogWarning($"Action map {actionMapName} not found.");
+            }
+        }
+
+        // Method to activate an action map
+        public void ActivateActionMap(string actionMapName)
+        {
+            var actionMap = inputActionAsset.FindActionMap(actionMapName);
+            if (actionMap != null)
+            {
+                actionMap.Enable();
+                Debug.Log($"{actionMapName} has been activated.");
+            }
+            else
+            {
+                Debug.LogWarning($"Action map {actionMapName} not found.");
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright (c) Brian Hernandez. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for details.
 //
@@ -18,6 +18,8 @@ namespace SpaceGame
 
         private Camera playerCam = null;
 
+        public bool IsFreezed { get; set; } = false;
+
         private void Awake()
         {
             if (mouseFlight == null)
@@ -31,6 +33,7 @@ namespace SpaceGame
 
         private void Update()
         {
+            if (IsFreezed) return;
             if (mouseFlight == null || playerCam == null)
                 return;
 
