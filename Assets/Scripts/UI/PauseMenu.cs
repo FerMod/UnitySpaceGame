@@ -9,15 +9,14 @@ namespace SpaceGame.UI
 
     public class PauseMenu : MonoBehaviour
     {
-
-        public InputActionAsset inputActionAsset;
         public GameObject pauseMenu;
         public GameObject optionsMenu;
+        public GameObject inGameHud;
+
+        public InputActionAsset inputActionAsset;
         public InputActionProperty pauseInputAction;
-
-        public Hud hud;
-
         private InputActionMap playerInputMap;
+
         private bool isPaused = false;
 
         private void Start()
@@ -39,8 +38,8 @@ namespace SpaceGame.UI
             Time.timeScale = 0;
             AudioListener.pause = true;
             pauseMenu.SetActive(true);
+            inGameHud.SetActive(false);
             playerInputMap.Disable();
-            hud.IsFreezed = true;
             isPaused = true;
         }
 
@@ -50,8 +49,8 @@ namespace SpaceGame.UI
             Time.timeScale = 1;
             AudioListener.pause = false;
             pauseMenu.SetActive(false);
+            inGameHud.SetActive(true);
             playerInputMap.Enable();
-            hud.IsFreezed = false;
             isPaused = false;
         }
 
@@ -82,7 +81,11 @@ namespace SpaceGame.UI
 
         public void OnQuitPressed()
         {
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+#else
             Application.Quit();
+#endif
         }
 
         /// <summary>

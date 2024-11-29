@@ -9,8 +9,8 @@ namespace SpaceGame
     [RequireComponent(typeof(Weapon))]
     public class Turret : MonoBehaviour
     {
-
-        protected TurretState currentState;
+        [SerializeField]
+        public TurretState currentState;
 
         public GameObject Target { get; set; }
 
@@ -61,6 +61,7 @@ namespace SpaceGame
 
             DefaultRotation = Quaternion.Euler(HorizontalRotator.rotation.x, VerticalRotator.rotation.y, 0f);
             ChangeState(new IdleState());
+
         }
 
         // Update is called once per frame

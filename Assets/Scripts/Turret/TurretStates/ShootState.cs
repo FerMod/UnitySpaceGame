@@ -33,13 +33,13 @@ namespace SpaceGame
 
             // === derived variables ===
             // Positions
-            Vector3 shooterPosition = parent.transform.position;
+            Vector3 shooterPosition = parent.GunBarrels[0].transform.position;
             Vector3 targetPosition = parent.Target.transform.position;
-
+           // Debug.Log(shooterPosition);
             // Velocities
             Vector3 shooterVelocity = parent.GetComponent<Rigidbody>()?.linearVelocity ?? Vector3.zero;
             var projectileSpeed = parent.Gun.projectile.GetComponent<Projectile>().speed;
-            //Vector3 targetVelocity = parent.Target.GetComponent<Plane>().Velocity;
+            // Vector3 targetVelocity = parent.Target.GetComponent<Plane>().Velocity;
             Vector3 targetVelocity = parent.Target.GetComponent<DebugScript>().Velocity;
 
             //calculate intercept
@@ -57,7 +57,7 @@ namespace SpaceGame
 
             // GameUtilities.PredictiveAim(shooterPosition, projectileSpeed, targetPosition, targetVelocity, 0f, out Vector3 interceptPoint);
 
-            interceptPoint = Utils.CalculateInterceptDirection(shooterPosition, targetPosition, targetVelocity, projectileSpeed);
+           // interceptPoint = Utils.CalculateInterceptDirection(shooterPosition, targetPosition, targetVelocity, projectileSpeed);
 
             parent.LookAt(interceptPoint);
 

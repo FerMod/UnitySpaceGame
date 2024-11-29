@@ -6,8 +6,8 @@ namespace SpaceGame
     [System.Serializable]
     public abstract class TurretState
     {
-
-        protected Turret parent;
+        [SerializeField]
+        public Turret parent;
 
         public virtual void Enter(Turret parent)
         {
