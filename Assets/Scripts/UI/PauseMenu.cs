@@ -30,6 +30,7 @@ namespace SpaceGame.UI
         private void OnDestroy()
         {
             pauseInputAction.action.Disable();
+            pauseInputAction.action.performed -= OnPause;
         }
 
         void ActivateMenu()
@@ -56,6 +57,12 @@ namespace SpaceGame.UI
 
         public void OnPause(InputAction.CallbackContext context)
         {
+            if (optionsMenu.activeSelf)
+            {
+                DisableOptionsMenu();
+                return;
+            }
+
             isPaused = !isPaused;
             if (isPaused)
             {
@@ -75,8 +82,7 @@ namespace SpaceGame.UI
 
         public void OnOptionsPressed()
         {
-            pauseMenu.SetActive(false);
-            optionsMenu.SetActive(true);
+            EnableOptionsMenu();
         }
 
         public void OnQuitPressed()
@@ -88,37 +94,18 @@ namespace SpaceGame.UI
 #endif
         }
 
-        /// <summary>
-        /// Method to deactivate an action map
-        /// </summary>
-        /// <param name="actionMapName"></param>
-        private void DeactivateActionMap(string actionMapName)
+        #region Options Menu
+        public void EnableOptionsMenu()
         {
-            var actionMap = inputActionAsset.FindActionMap(actionMapName);
-            if (actionMap != null)
-            {
-                actionMap.Disable();
-                Debug.Log($"{actionMapName} has been deactivated.");
-            }
-            else
-            {
-                Debug.LogWarning($"Action map {actionMapName} not found.");
-            }
+            pauseMenu.SetActive(false);
+            optionsMenu.SetActive(true);
         }
 
-        // Method to activate an action map
-        public void ActivateActionMap(string actionMapName)
+        public void DisableOptionsMenu()
         {
-            var actionMap = inputActionAsset.FindActionMap(actionMapName);
-            if (actionMap != null)
-            {
-                actionMap.Enable();
-                Debug.Log($"{actionMapName} has been activated.");
-            }
-            else
-            {
-                Debug.LogWarning($"Action map {actionMapName} not found.");
-            }
+            pauseMenu.SetActive(true);
+            optionsMenu.SetActive(false);
         }
+        #endregion
     }
 }

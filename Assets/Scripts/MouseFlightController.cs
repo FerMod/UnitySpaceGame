@@ -1,4 +1,4 @@
-﻿//
+//
 // Copyright (c) Brian Hernandez. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for details.
 //
@@ -14,34 +14,44 @@ namespace SpaceGame
     public class MouseFlightController : MonoBehaviour
     {
         [Header("Components")]
-        [SerializeField] [Tooltip("Aircraft the rig follows and references")]
+        [SerializeField]
+        [Tooltip("Aircraft the rig follows and references")]
         private Plane _plane = null;
-        [SerializeField] [Tooltip("Transform of the object the mouse rotates to generate MouseAim position")]
+        [SerializeField]
+        [Tooltip("Transform of the object the mouse rotates to generate MouseAim position")]
         private Transform _mouseAim = null;
-        [SerializeField] [Tooltip("Transform of the object on the rig which the camera is attached to")]
+        [SerializeField]
+        [Tooltip("Transform of the object on the rig which the camera is attached to")]
         private Transform _cameraRig = null;
-        [SerializeField] [Tooltip("Transform of the camera itself")]
+        [SerializeField]
+        [Tooltip("Transform of the camera itself")]
         private Transform _cam = null;
 
         [Header("Options")]
-        [SerializeField] [Tooltip("Follow aircraft using fixed update loop")]
+        [SerializeField]
+        [Tooltip("Follow aircraft using fixed update loop")]
         private bool _useFixed = true;
 
-        [SerializeField] [Tooltip("How quickly the camera tracks the mouse aim point.")]
+        [SerializeField]
+        [Tooltip("How quickly the camera tracks the mouse aim point.")]
         private float _camSmoothSpeed = 5f;
 
-        [SerializeField] [Tooltip("Mouse sensitivity for the mouse flight target")]
+        [SerializeField]
+        [Tooltip("Mouse sensitivity for the mouse flight target")]
         private float _mouseSensitivity = 3f;
+        public float MouseSensitivity { get => _mouseSensitivity; set => _mouseSensitivity = value; }
 
         [SerializeField]
         [Tooltip("How quickly the camera swaps between keyboard and mouse camera positions")]
         private float _controlSwapCamSmoothSpeed = 5f;
 
-        [SerializeField] [Tooltip("How far the boresight and mouse flight are from the aircraft")]
+        [SerializeField]
+        [Tooltip("How far the boresight and mouse flight are from the aircraft")]
         private float _aimDistance = 500f;
 
         [Space]
-        [SerializeField] [Tooltip("How far the boresight and mouse flight are from the aircraft")]
+        [SerializeField]
+        [Tooltip("How far the boresight and mouse flight are from the aircraft")]
         private bool _showDebugInfo = false;
 
         private Vector3 _frozenDirection = Vector3.forward;
@@ -209,8 +219,8 @@ namespace SpaceGame
                 return;
 
             // Mouse input.
-            float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity;
-            float mouseY = -Input.GetAxis("Mouse Y") * _mouseSensitivity;
+            float mouseX = Input.GetAxis("Mouse X") * MouseSensitivity;
+            float mouseY = -Input.GetAxis("Mouse Y") * MouseSensitivity;
 
             // Rotate the aim target that the plane is meant to fly towards.
             // Use the camera's axes in world space so that mouse motion is intuitive.

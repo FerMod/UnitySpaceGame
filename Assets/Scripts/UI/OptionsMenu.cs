@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,13 +10,48 @@ namespace SpaceGame.UI
 
     public class OptionsMenu : MonoBehaviour
     {
-        public GameObject pauseMenu;
-        public GameObject optionsMenu;
+        public GameObject menu;
+        public GameObject previousMenu;
+
+        [Space(16)]
+        public MouseFlightController mouseFlightController;
+
+        [Header("Menu")]
+        public Slider mouseSensitivity;
+
+        private void Start()
+        {
+            LoadData();
+
+            mouseSensitivity.onValueChanged.AddListener(OnMouseSensitivityChange);
+        }
+
+        private void OnDestroy()
+        {
+            mouseSensitivity.onValueChanged.RemoveListener(OnMouseSensitivityChange);
+        }
+
+        public void OnMouseSensitivityChange(float value)
+        {
+            mouseFlightController.MouseSensitivity = value;
+        }
 
         public void OnBackPressed()
         {
-            pauseMenu.SetActive(true);
-            optionsMenu.SetActive(false);
+            SaveData();
+
+            menu.SetActive(true);
+            previousMenu.SetActive(false);
+        }
+
+        private void LoadData()
+        {
+            mouseSensitivity.value = PlayerPrefs.GetFloat("MouseSensitivity", mouseFlightController.MouseSensitivity);
+        }
+
+        private void SaveData()
+        {
+            PlayerPrefs.SetFloat("MouseSensitivity", mouseSensitivity.value);
         }
     }
 }

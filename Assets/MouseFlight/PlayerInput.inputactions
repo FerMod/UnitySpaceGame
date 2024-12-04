@@ -45,7 +45,7 @@
                     "name": "Pitch",
                     "type": "Button",
                     "id": "a2696f7a-5bb3-42e5-aedd-16227ed159c8",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
