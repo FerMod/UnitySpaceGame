@@ -5803,7 +5803,7 @@ MonoBehaviour:
     key0: {r: 1, g: 0, b: 0, a: 1}
     key1: {r: 1, g: 0.71099186, b: 0, a: 1}
     key2: {r: 1, g: 1, b: 0, a: 0}
-    key3: {r: 0, g: 0.99607843, b: 0.99607843, a: 0}
+    key3: {r: 0.18534178, g: 0.8018868, b: 0.26987508, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
@@ -5876,7 +5876,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.647
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -10642,8 +10642,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0.99607843, b: 0.99607843, a: 1}
-  m_EffectDistance: {x: 6, y: 6}
+  m_EffectColor: {r: 0.13333334, g: 0.13333334, b: 0.13333334, a: 1}
+  m_EffectDistance: {x: 2, y: 2}
   m_UseGraphicAlpha: 1
 --- !u!114 &1590573801
 MonoBehaviour:
