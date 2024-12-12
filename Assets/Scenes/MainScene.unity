@@ -1953,10 +1953,6 @@ PrefabInstance:
       propertyPath: _plane
       value: 
       objectReference: {fileID: 1276877358}
-    - target: {fileID: 114412280367074530, guid: 1ffc29c315992624cb793d6cbf2c4ac1, type: 3}
-      propertyPath: _showDebugInfo
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -6906,6 +6902,30 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 4027105983177180, guid: 76845026de374da4aa455cd164e63143, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4027105983177180, guid: 76845026de374da4aa455cd164e63143, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4027105983177180, guid: 76845026de374da4aa455cd164e63143, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139681920160542, guid: 76845026de374da4aa455cd164e63143, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139681920160542, guid: 76845026de374da4aa455cd164e63143, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4139681920160542, guid: 76845026de374da4aa455cd164e63143, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3
+      objectReference: {fileID: 0}
     - target: {fileID: 4563113176137864, guid: 76845026de374da4aa455cd164e63143, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7145,7 +7165,7 @@ PrefabInstance:
       addedObject: {fileID: 1276877367}
     - targetCorrespondingSourceObject: {fileID: 1630319604630382, guid: 76845026de374da4aa455cd164e63143, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1276877377}
+      addedObject: {fileID: 1276877382}
   m_SourcePrefab: {fileID: 100100000, guid: 76845026de374da4aa455cd164e63143, type: 3}
 --- !u!114 &1276877358 stripped
 MonoBehaviour:
@@ -7228,7 +7248,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 9, y: 3, z: 12}
   m_Center: {x: 0, y: 0.05, z: -1}
---- !u!114 &1276877377
+--- !u!114 &1276877382
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7240,11 +7260,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f91098eeda1eb344ab94c9456ae5b5d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 1276877367}
+  plane: {fileID: 1276877358}
   spaceship: {fileID: 454432767}
   explosionForce: 500
   explosionRadius: 5
   explosionCenterOffset: {x: 0, y: 0, z: 0}
+  explosion: {fileID: 1173571998619323067, guid: eb34afed52f6789449ab6dca8bfbe210, type: 3}
 --- !u!1 &1280883477
 GameObject:
   m_ObjectHideFlags: 0

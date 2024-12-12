@@ -12,14 +12,12 @@ namespace SpaceGame
         /// </summary>
         public Transform spaceship;
 
-        public float explosionForce = 500f;
+        public float explosionForce = 300f;
         public float explosionRadius = 5f;
         public Vector3 explosionCenterOffset = Vector3.zero;
 
         [Header("Effects")]
-        public GameObject bigExplosion;
-        public GameObject mediumExplosion;
-        public GameObject smallExplosion;
+        public GameObject explosion;
 
         void Start()
         {
@@ -43,9 +41,7 @@ namespace SpaceGame
         public void Die()
         {
 
-            PlayEffect(bigExplosion, transform.position, transform.rotation);
-
-            //PlayEffectsRandom(1, 4, 0.1f, 1f);
+            PlayEffect(explosion, transform.position, transform.rotation);
 
             // Unparent all children
             var childCount = spaceship.transform.childCount;
@@ -69,7 +65,7 @@ namespace SpaceGame
             }
 
             // Destroy the spaceship itself
-            Destroy(plane);
+            // Destroy(plane);
         }
 
         private void PlayEffect(GameObject gameObject, Vector3 position, Quaternion rotation)
@@ -84,34 +80,5 @@ namespace SpaceGame
 
             Destroy(effectInstance, effect.main.duration);
         }
-        IEnumerator DelayAction(Transform transform, float delayTime)
-        {
-            //Wait for the specified delay time before continuing.
-            yield return new WaitForSeconds(delayTime);
-
-            PlayEffect(smallExplosion, transform.position, transform.rotation);
-        }
-
-
-        private void PlayEffectsRandom(int min, int max, float minDelay, float maxDelay)
-        {
-            StartCoroutine(PlayEffectsRandomCouroutine(min, max, minDelay, maxDelay));
-        }
-
-        private IEnumerator PlayEffectsRandomCouroutine(int min, int max, float minDelay, float maxDelay)
-        {
-            // Generate a random number of times to play the effect.
-            var randomTimes = Random.Range(min, max + 1);
-            for (var i = 0; i < randomTimes; i++)
-            {
-                // Wait for a random delay before playing the effect.
-                var randomDelay = Random.Range(minDelay, maxDelay);
-                yield return new WaitForSeconds(randomDelay);
-
-                // Call the PlayEffect method.
-                PlayEffect(mediumExplosion, transform.position, transform.rotation);
-            }
-        }
-
     }
 }

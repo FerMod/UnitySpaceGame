@@ -42,9 +42,12 @@ namespace SpaceGame
             currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
 
             // Fire health change event.
-            OnHealthChanged?.Invoke(this, oldHealth, currentHealth);
+            if (oldHealth != currentHealth)
+            {
+                OnHealthChanged?.Invoke(this, oldHealth, currentHealth);
+            }
 
-            if (currentHealth <= 0)
+            if (currentHealth <= 0 && oldHealth > 0)
             {
                 OnNoHealth?.Invoke(this, oldHealth, currentHealth);
             }
