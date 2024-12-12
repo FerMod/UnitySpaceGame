@@ -12,12 +12,11 @@ namespace SpaceGame
         /// </summary>
         public Transform spaceship;
 
-        public float explosionForce = 300f;
+        [Header("Explosion")]
+        public GameObject explosionEffect;
+        public float explosionForce = 100f;
         public float explosionRadius = 5f;
         public Vector3 explosionCenterOffset = Vector3.zero;
-
-        [Header("Effects")]
-        public GameObject explosion;
 
         void Start()
         {
@@ -41,7 +40,7 @@ namespace SpaceGame
         public void Die()
         {
 
-            PlayEffect(explosion, transform.position, transform.rotation);
+            PlayEffect(explosionEffect, transform.position, transform.rotation);
 
             // Unparent all children
             var childCount = spaceship.transform.childCount;

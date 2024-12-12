@@ -7262,7 +7262,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plane: {fileID: 1276877358}
   spaceship: {fileID: 454432767}
-  explosionForce: 500
+  explosionForce: 100
   explosionRadius: 5
   explosionCenterOffset: {x: 0, y: 0, z: 0}
   explosion: {fileID: 1173571998619323067, guid: eb34afed52f6789449ab6dca8bfbe210, type: 3}
