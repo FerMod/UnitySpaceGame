@@ -494,6 +494,7 @@ MonoBehaviour:
   projectileSpawnPoints:
   - {fileID: 693282738}
   - {fileID: 749449231}
+  fireSounds: []
 --- !u!54 &234296192
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7146,7 +7147,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3139207761791786427, guid: 76845026de374da4aa455cd164e63143, type: 3}
     m_RemovedGameObjects:
     - {fileID: 1950386001306352, guid: 76845026de374da4aa455cd164e63143, type: 3}
     m_AddedGameObjects:
@@ -7212,6 +7214,9 @@ MonoBehaviour:
   projectileSpawnPoints:
   - {fileID: 2001807412}
   - {fileID: 1534915086}
+  fireSounds:
+  - {fileID: 8300000, guid: c07f3ff6c56336c4ebc45574c779c802, type: 3}
+  - {fileID: 8300000, guid: 841aa47b04f5228458190d64951791db, type: 3}
 --- !u!114 &1276877367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7262,10 +7267,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plane: {fileID: 1276877358}
   spaceship: {fileID: 454432767}
+  explosionEffect: {fileID: 1173571998619323067, guid: eb34afed52f6789449ab6dca8bfbe210, type: 3}
   explosionForce: 100
   explosionRadius: 5
   explosionCenterOffset: {x: 0, y: 0, z: 0}
-  explosion: {fileID: 1173571998619323067, guid: eb34afed52f6789449ab6dca8bfbe210, type: 3}
 --- !u!1 &1280883477
 GameObject:
   m_ObjectHideFlags: 0
@@ -10786,6 +10791,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1353541978}
+  - component: {fileID: 1353541979}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -10802,12 +10808,25 @@ Transform:
   m_GameObject: {fileID: 1353541977}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -15.614664, y: 10.797718, z: 27.779036}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1353541979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1353541977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18db8984d1ca5544b4b4e2cfce7a865, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioFxSource: {fileID: 5393734164141153962, guid: 87fe6faccb7d9df4394db7687d3fe6be, type: 3}
 --- !u!1 &1372162679
 GameObject:
   m_ObjectHideFlags: 0
@@ -14448,11 +14467,11 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1805189001}
+  - {fileID: 1353541978}
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 1276877354}
   - {fileID: 659108612}
-  - {fileID: 1353541978}
   - {fileID: 520740754}
   - {fileID: 1301511311}
   - {fileID: 1195477953}

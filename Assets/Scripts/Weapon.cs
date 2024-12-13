@@ -1,7 +1,6 @@
-using System;
 using System.Collections;
 using UnityEngine;
-using static UnityEngine.UI.GridLayoutGroup;
+using SpaceGame.Extensions;
 
 namespace SpaceGame
 {
@@ -23,6 +22,15 @@ namespace SpaceGame
 
         private bool canFire = true;
 
+        public AudioClip[] fireSounds;
+
+        private AudioSource[] activeSounds;
+
+        private void Awake()
+        {
+            activeSounds = new AudioSource[projectileSpawnPoints.Length];
+        }
+
         public void Fire()
         {
             if (!canFire) return;
@@ -34,11 +42,18 @@ namespace SpaceGame
 
         private void FireProjectiles()
         {
-            foreach (var spawnPoint in projectileSpawnPoints)
+            for (var i = 0; i < projectileSpawnPoints.Length; i++)
             {
-                var instancedProjectile = CreateProjectile(projectile, spawnPoint);
+                var instancedProjectile = CreateProjectile(projectile, projectileSpawnPoints[i]);
+                PlayFireSound(i, instancedProjectile.transform);
                 Destroy(instancedProjectile, projectileLifeTime);
             }
+            //foreach (var spawnPoint in projectileSpawnPoints)
+            //{
+            //    var instancedProjectile = CreateProjectile(projectile, spawnPoint);
+            //    PlayFireSound(spawnPoint);
+            //    Destroy(instancedProjectile, projectileLifeTime);
+            //}
         }
 
         private GameObject CreateProjectile(GameObject gameObject, Transform spawnPoint)
@@ -48,6 +63,16 @@ namespace SpaceGame
             //Debug.DrawLine(spawnPoint.position, spawnPoint.forward * 10000, Color.red, 0.5f);
             var instance = Instantiate(gameObject, spawnPoint.position, headingDirection);
             return instance;
+        }
+
+        private void PlayFireSound(int index, Transform soundLocation)
+        {
+            if (activeSounds[index] != null)
+            {
+                activeSounds[index].Stop();
+            }
+
+            activeSounds[index] = SoundManager.Instance.PlayRandomSoundClip(fireSounds, soundLocation);
         }
 
         IEnumerator FireRateHandler()
