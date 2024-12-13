@@ -64,7 +64,7 @@ namespace SpaceGame
             }
 
             // Destroy the spaceship itself
-            // Destroy(plane);
+            Destroy(plane);
         }
 
         private void PlayEffect(GameObject gameObject, Vector3 position, Quaternion rotation)
