@@ -119,6 +119,35 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &20145941 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4734686959102738942, guid: e09411fb754afbb40be46e24889cb4c7, type: 3}
+  m_PrefabInstance: {fileID: 90272211}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &20145942 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2377843616447248567, guid: e09411fb754afbb40be46e24889cb4c7, type: 3}
+  m_PrefabInstance: {fileID: 90272211}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &20145943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20145941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c80229995ca748e4c89349737add2f1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bodyType: 1
+  radius: 0
+  surfaceGravity: 0
+  initialVelocity: {x: 25.3, y: 0.5, z: 0}
+  bodyName: Asteroid
+  rotationAxis: {x: 0, y: 1, z: 0}
+  rotationSpeed: 0
 --- !u!1 &36958502
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,9 +193,94 @@ Transform:
   - {fileID: 1290963366}
   - {fileID: 355303875}
   - {fileID: 906883605}
+  - {fileID: 20145942}
   - {fileID: 1351770767}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &90272211
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 36958504}
+    m_Modifications:
+    - target: {fileID: 2377843616447248567, guid: e09411fb754afbb40be46e24889cb4c7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377843616447248567, guid: e09411fb754afbb40be46e24889cb4c7, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377843616447248567, guid: e09411fb754afbb40be46e24889cb4c7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377843616447248567, guid: e09411fb754afbb40be46e24889cb4c7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 944
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377843616447248567, guid: e09411fb754afbb40be46e24889cb4c7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 39.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377843616447248567, guid: e09411fb754afbb40be46e24889cb4c7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 829
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377843616447248567, guid: e09411fb754afbb40be46e24889cb4c7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377843616447248567, guid: e09411fb754afbb40be46e24889cb4c7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377843616447248567, guid: e09411fb754afbb40be46e24889cb4c7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377843616447248567, guid: e09411fb754afbb40be46e24889cb4c7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377843616447248567, guid: e09411fb754afbb40be46e24889cb4c7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377843616447248567, guid: e09411fb754afbb40be46e24889cb4c7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377843616447248567, guid: e09411fb754afbb40be46e24889cb4c7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2377843616447248567, guid: e09411fb754afbb40be46e24889cb4c7, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4734686959102738942, guid: e09411fb754afbb40be46e24889cb4c7, type: 3}
+      propertyPath: m_Name
+      value: Asteroid
+      objectReference: {fileID: 0}
+    - target: {fileID: 6659057588869837146, guid: e09411fb754afbb40be46e24889cb4c7, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6914048416257407446, guid: e09411fb754afbb40be46e24889cb4c7, type: 3}
+      propertyPath: m_Mass
+      value: 0.0000001
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4734686959102738942, guid: e09411fb754afbb40be46e24889cb4c7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 20145943}
+  m_SourcePrefab: {fileID: 100100000, guid: e09411fb754afbb40be46e24889cb4c7, type: 3}
 --- !u!1001 &90866218
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1093,6 +1207,8 @@ MonoBehaviour:
   surfaceGravity: 90
   initialVelocity: {x: 0, y: 0, z: 0}
   bodyName: Sun
+  rotationAxis: {x: 0, y: 1, z: 0}
+  rotationSpeed: 10
 --- !u!54 &355303877
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1649,13 +1765,13 @@ GameObject:
   - component: {fileID: 627306377}
   - component: {fileID: 627306373}
   - component: {fileID: 627306372}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Target
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &627306372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1663,7 +1779,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 627306371}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: be449f6c9fa50dc4e94db530f8bc3022, type: 3}
   m_Name: 
@@ -5913,6 +6029,8 @@ MonoBehaviour:
   surfaceGravity: 5
   initialVelocity: {x: 260, y: 0, z: 0}
   bodyName: Mars
+  rotationAxis: {x: 0, y: 1, z: 0}
+  rotationSpeed: -10
 --- !u!54 &906883607
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6357,7 +6475,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!65 &1030248127
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6441,7 +6559,7 @@ Transform:
   m_GameObject: {fileID: 1030248126}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.3086666, z: -0, w: 0.9511703}
-  m_LocalPosition: {x: 10.51, y: 0, z: 30.89}
+  m_LocalPosition: {x: 4.82, y: 0, z: 21.79}
   m_LocalScale: {x: 20, y: 20, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6873,7 +6991,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1630319604630382, guid: 76845026de374da4aa455cd164e63143, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1630319604630382, guid: 76845026de374da4aa455cd164e63143, type: 3}
       propertyPath: m_TagString
@@ -10752,9 +10870,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bodyType: 0
   radius: 300
-  surfaceGravity: 10
+  surfaceGravity: 100
   initialVelocity: {x: 190, y: 0, z: 0}
   bodyName: Mercury
+  rotationAxis: {x: 0, y: 1, z: 0}
+  rotationSpeed: 7
 --- !u!54 &1351770769
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13584,7 +13704,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3474273008765036807, guid: fbea9e1ca7e9b954887f99b48117badc, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3508047869069176818, guid: fbea9e1ca7e9b954887f99b48117badc, type: 3}
       propertyPath: m_LocalScale.x

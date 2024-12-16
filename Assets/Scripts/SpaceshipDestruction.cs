@@ -28,15 +28,6 @@ namespace SpaceGame
             Die();
         }
 
-        void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                plane.GetComponent<Health>().ChangeHealth(-9999);
-
-            }
-        }
-
         public void Die()
         {
 

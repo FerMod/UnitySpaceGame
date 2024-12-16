@@ -72,6 +72,7 @@ namespace SpaceGame
                 activeSounds[index].Stop();
             }
 
+            if (fireSounds.Length <= 0) return;
             activeSounds[index] = SoundManager.Instance.PlayRandomSoundClip(fireSounds, soundLocation);
         }
 
