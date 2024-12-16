@@ -42,6 +42,7 @@ public class NBodySimulation : MonoBehaviour
         for (var i = 0; i < bodies.Length; i++)
         {
             bodies[i].UpdatePosition(Time.fixedDeltaTime);
+            bodies[i].UpdateRotation(Time.fixedDeltaTime);
         }
 
     }

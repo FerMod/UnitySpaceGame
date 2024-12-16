@@ -13,6 +13,11 @@ public class CelestialBody : GravityObject
     public float surfaceGravity;
     public Vector3 initialVelocity;
     public string bodyName = "Unnamed";
+
+    [Header("Rotation")]
+    public Vector3 rotationAxis = Vector3.up;
+    public float rotationSpeed = 0f;
+
     Transform meshHolder;
 
     public Vector3 velocity { get; private set; }
@@ -70,6 +75,12 @@ public class CelestialBody : GravityObject
     public void UpdatePosition(float timeStep)
     {
         rb.MovePosition(rb.position + velocity * timeStep);
+    }
+
+    public void UpdateRotation(float timeStep)
+    {
+        Quaternion deltaRotation = Quaternion.Euler(rotationAxis.normalized * -rotationSpeed * timeStep);
+        rb.MoveRotation(rb.rotation * deltaRotation);
     }
 
     void OnValidate()
