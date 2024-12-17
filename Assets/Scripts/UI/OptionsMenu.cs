@@ -28,7 +28,7 @@ namespace SpaceGame.UI
 
         private void OnDestroy()
         {
-            mouseSensitivity.onValueChanged.RemoveListener(OnMouseSensitivityChange);
+            mouseSensitivity?.onValueChanged.RemoveListener(OnMouseSensitivityChange);
         }
 
         public void OnMouseSensitivityChange(float value)
@@ -40,8 +40,8 @@ namespace SpaceGame.UI
         {
             SaveData();
 
-            menu.SetActive(true);
-            previousMenu.SetActive(false);
+            menu.SetActive(false);
+            previousMenu.SetActive(true);
         }
 
         private void LoadData()

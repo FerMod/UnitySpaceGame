@@ -33,7 +33,7 @@ namespace SpaceGame
         private GameObject InstantiateObject()
         {
             var index = Random.Range(0, objects.Length);
-            var instance = Instantiate(objects[index], Random.insideUnitSphere * spawnRadius, Random.rotation, transform);
+            var instance = Instantiate(objects[index], transform.position + Random.insideUnitSphere * spawnRadius, Random.rotation, transform);
             instance.transform.localScale *= Random.Range(minScale, maxScale);
             return instance;
         }
