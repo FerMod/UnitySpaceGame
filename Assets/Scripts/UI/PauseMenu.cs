@@ -2,6 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.HID;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace SpaceGame.UI
@@ -80,9 +81,21 @@ namespace SpaceGame.UI
             DeactivateMenu();
         }
 
+        public void OnRestartPressed()
+        {
+            SceneManager.LoadScene("MainScene");
+            DeactivateMenu();
+        }
+
         public void OnOptionsPressed()
         {
             EnableOptionsMenu();
+        }
+
+        public void OnMainMenuPressed()
+        {
+            SceneManager.LoadScene("StartMenu");
+            DeactivateMenu();
         }
 
         public void OnQuitPressed()

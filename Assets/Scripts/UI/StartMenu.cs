@@ -8,7 +8,7 @@ namespace SpaceGame.UI
     public class StartMenu : MonoBehaviour
     {
 
-        private void Awake()
+        private void Start()
         {
             CursorManager.FreeMouse();
         }
