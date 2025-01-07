@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3420febe786e5b64cbfcfb882c4b9c16
+timeCreated: 1474203981
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 72692
+  packageName: Free Missile
+  packageVersion: 1.1
+  assetPath: Assets/Missile/Materials/missie_material.mat
+  uploadId: 141585
