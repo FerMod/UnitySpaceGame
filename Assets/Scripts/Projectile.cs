@@ -17,10 +17,10 @@ namespace SpaceGame
         public float explosionRadius = 100f;
         public ForceMode forceMode = ForceMode.Impulse;
 
-        private Rigidbody rb;
+        protected Rigidbody rb;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        protected void Start()
         {
             rb = GetComponent<Rigidbody>();
 
