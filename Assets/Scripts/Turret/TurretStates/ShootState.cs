@@ -44,6 +44,11 @@ namespace SpaceGame
 
             //calculate intercept
             Vector3 interceptPoint = Utils.FirstOrderIntercept(shooterPosition, shooterVelocity, projectileSpeed, targetPosition, targetVelocity);
+            /*
+            var error = targetPosition - parent.Rigidbody.position;
+            var targetDir = error.normalized;
+            var currentDir = parent.Rigidbody.rotation * Vector3.forward;
+            */
             //interceptPoint = Utils.CalculateInterceptionPoint3D(shooterPosition, projectileSpeed, targetPosition, targetVelocity);
 
             //Vector3 ic = Utils.CalculateInterceptCourse(targetPosition, targetVelocity, shooterPosition, projectileSpeed);

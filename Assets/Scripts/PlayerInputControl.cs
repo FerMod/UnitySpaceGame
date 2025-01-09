@@ -136,7 +136,7 @@ namespace SpaceGame
             plane.FlapsDeployed = !plane.FlapsDeployed;
         }
 
-        public void Fire(InputAction.CallbackContext context)
+        public void FirePrimary(InputAction.CallbackContext context)
         {
             if (plane == null) return;
 
@@ -147,6 +147,20 @@ namespace SpaceGame
             else if (context.canceled)
             {
                 plane.IsFiringLaser = false;
+            }
+        }
+
+        public void FireSecondary(InputAction.CallbackContext context)
+        {
+            if (plane == null) return;
+
+            if (context.performed)
+            {
+                plane.IsFiringRocket = true;
+            }
+            else if (context.canceled)
+            {
+                plane.IsFiringRocket = false;
             }
         }
 

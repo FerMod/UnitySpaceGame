@@ -51,12 +51,16 @@ namespace SpaceGame
         public Quaternion DefaultRotation { get => defaultRotation; set => defaultRotation = value; }
         public float ShootTolerance { get => shootTolerance; set => shootTolerance = value; }
         public Animator Animator { get => animator; set => animator = value; }
+        public Rigidbody Rigidbody { get; private set; }
         public Weapon Gun { get => gun; set => gun = value; }
         public Transform[] GunBarrels { get => Gun.projectileSpawnPoints; }
+
+        
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
+            Rigidbody = GetComponent<Rigidbody>();
             Gun = GetComponent<Weapon>();
 
             DefaultRotation = Quaternion.Euler(HorizontalRotator.rotation.x, VerticalRotator.rotation.y, 0f);

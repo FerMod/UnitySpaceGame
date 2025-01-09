@@ -69,6 +69,9 @@ namespace SpaceGame
         public bool isFiringLaser = false;
         public Weapon laserWeapon;
 
+        public bool isFiringRocket = false;
+        public Weapon rocketWeapon;
+
         public Vector3 Velocity { get; private set; }
         public Vector3 Drag { get; private set; }
         public Vector3 AngularDrag { get; private set; }
@@ -92,8 +95,12 @@ namespace SpaceGame
         public float StallRoll { get { return _stallRotationPower.z; } }
 
         public bool IsFiringLaser { set { isFiringLaser = value; } get { return isFiringLaser; } }
+        public bool IsFiringRocket { set { isFiringRocket = value; } get { return isFiringRocket; } }
 
         private Vector3 lastVelocity;
+
+        [SerializeField]
+        Target target;
 
         private void Start()
         {
@@ -296,9 +303,16 @@ namespace SpaceGame
             laserWeapon.Fire();
         }
 
+        void FireRocket()
+        {
+            if (!IsFiringRocket) return;
+            rocketWeapon.Fire();
+        }
+
         private void Update()
         {
             FireLaser();
+            FireRocket();
         }
 
         private void FixedUpdate()
