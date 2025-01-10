@@ -40,29 +40,31 @@ namespace SpaceGame
 
         protected void OnCollisionEnter(Collision collision)
         {
-            DamageComponent(collision);
+            DamageComponent(collision.gameObject);
 
             PlayHitEffect();
-            AddExplosionForce(collision);
+            AddExplosionForce(collision.gameObject);
 
             Destroy(gameObject);
         }
 
-        protected void DamageComponent(Collision collision)
+        protected void DamageComponent(GameObject gameObject)
         {
-            collision.gameObject.TryGetComponent(out Health health);
-            if (health == null) return;
+            if (gameObject == null) return;
+            gameObject.TryGetComponent(out Health health);
 
+            if (health == null) return;
             health.ChangeHealth(-damage);
         }
 
-        protected void AddExplosionForce(Collision collision)
+        protected void AddExplosionForce(GameObject gameObject)
         {
             if (!isExplosive) return;
 
-            collision.gameObject.TryGetComponent(out Rigidbody rigidbody);
-            if (rigidbody == null) return;
+            if (gameObject == null) return;
+            gameObject.TryGetComponent(out Rigidbody rigidbody);
 
+            if (rigidbody == null) return;
             rigidbody.AddExplosionForce(explosionForce, transform.position, explosionRadius, 0f, forceMode);
         }
 
