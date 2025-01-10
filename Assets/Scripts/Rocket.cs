@@ -17,7 +17,6 @@ namespace SpaceGame
         public float turningGForce = 2f;
         public Transform target;
 
-
         public bool HasTarget => target != null;
 
         //void Update()
@@ -49,6 +48,7 @@ namespace SpaceGame
                 LookTowards(Time.fixedDeltaTime, target, turningGForce);
             }
 
+            //rb.AddRelativeForce(transform.forward * speed, ForceMode.Impulse);
             rb.linearVelocity = rb.rotation * new Vector3(0, 0, speed);
         }
 

@@ -6718,7 +6718,7 @@ Transform:
   m_GameObject: {fileID: 1195589703}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2779, y: 83.4, z: 3733}
+  m_LocalPosition: {x: -2629, y: 83.4, z: 3649}
   m_LocalScale: {x: 400, y: 400, z: 400}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -7103,6 +7103,10 @@ PrefabInstance:
       propertyPath: rocketWeapon
       value: 
       objectReference: {fileID: 1276877390}
+    - target: {fileID: 114329657595640044, guid: 76845026de374da4aa455cd164e63143, type: 3}
+      propertyPath: maximumThrust
+      value: 200000
+      objectReference: {fileID: 0}
     - target: {fileID: 114329657595640044, guid: 76845026de374da4aa455cd164e63143, type: 3}
       propertyPath: rudderAOACurve.m_Curve.Array.data[1].value
       value: 0
@@ -14388,7 +14392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7505445628943697435, guid: 1ad769ad1b3e05849a7e50e4b42f428a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7543737317710053614, guid: 1ad769ad1b3e05849a7e50e4b42f428a, type: 3}
       propertyPath: m_LocalPosition.x
