@@ -14,7 +14,7 @@ namespace SpaceGame.UI
         public GameObject previousMenu;
 
         [Space(16)]
-        public MouseFlightController mouseFlightController;
+        //public MouseFlightController mouseFlightController;
 
         [Header("Menu")]
         public Slider mouseSensitivity;
@@ -33,7 +33,7 @@ namespace SpaceGame.UI
 
         public void OnMouseSensitivityChange(float value)
         {
-            mouseFlightController.MouseSensitivity = value;
+            //mouseFlightController.MouseSensitivity = value;
         }
 
         public void OnBackPressed()
@@ -46,7 +46,8 @@ namespace SpaceGame.UI
 
         private void LoadData()
         {
-            mouseSensitivity.value = PlayerPrefs.GetFloat("MouseSensitivity", mouseFlightController.MouseSensitivity);
+            //mouseSensitivity.value = PlayerPrefs.GetFloat("MouseSensitivity", mouseFlightController.MouseSensitivity);
+            PlayerPrefs.GetFloat("MouseSensitivity");
         }
 
         private void SaveData()

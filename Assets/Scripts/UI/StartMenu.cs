@@ -8,6 +8,9 @@ namespace SpaceGame.UI
     public class StartMenu : MonoBehaviour
     {
 
+        public GameObject mainMenu;
+        public GameObject optionsMenu;
+
         private void Start()
         {
             CursorManager.FreeMouse();
@@ -21,6 +24,8 @@ namespace SpaceGame.UI
 
         public void OnOptionsPressed()
         {
+            mainMenu.SetActive(false);
+            optionsMenu.SetActive(true);
         }
 
         public void OnQuitPressed()
@@ -31,5 +36,6 @@ namespace SpaceGame.UI
             Application.Quit();
 #endif
         }
+
     }
 }
