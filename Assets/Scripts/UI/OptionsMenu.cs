@@ -8,6 +8,13 @@ using UnityEngine.UI;
 
 namespace SpaceGame.UI
 {
+    public static class PlayerPrefsKeys
+    {
+        public const string MouseSensitivity = "MouseSensitivity";
+        public const string MasterVolume = "MasterVolume";
+        public const string MusicVolume = "MusicVolume";
+        public const string EffectsVolume = "EffectsVolume";
+    }
 
     public class OptionsMenu : MonoBehaviour
     {
@@ -109,31 +116,32 @@ namespace SpaceGame.UI
 
         public void SaveControlsData()
         {
-            PlayerPrefs.SetFloat("MouseSensitivity", mouseSensitivity.value);
+            PlayerPrefs.SetFloat(PlayerPrefsKeys.MouseSensitivity, mouseSensitivity.value);
         }
 
         public void LoadControlsData()
         {
-            if (!PlayerPrefs.HasKey("MouseSensitivity")) return;
+            if (!PlayerPrefs.HasKey(PlayerPrefsKeys.MouseSensitivity)) return;
 
-            mouseSensitivity.value = PlayerPrefs.GetFloat("MouseSensitivity", mouseFlightController != null ? mouseFlightController.MouseSensitivity : 0f);
+            mouseSensitivity.value = PlayerPrefs.GetFloat(PlayerPrefsKeys.MouseSensitivity, mouseFlightController != null ? mouseFlightController.MouseSensitivity : 0f);
         }
 
         public void SaveSoundConfig()
         {
-            PlayerPrefs.SetFloat("MasterVolume", masterSlider.value);
-            PlayerPrefs.SetFloat("MusicVolume", musicSlider.value);
-            PlayerPrefs.SetFloat("EffectsVpolume", effectsSlider.value);
+            PlayerPrefs.SetFloat(PlayerPrefsKeys.MasterVolume, masterSlider.value);
+            PlayerPrefs.SetFloat(PlayerPrefsKeys.MusicVolume, musicSlider.value);
+            PlayerPrefs.SetFloat(PlayerPrefsKeys.EffectsVolume, effectsSlider.value);
         }
 
         public void LoadSoundConfig()
         {
-            if (!PlayerPrefs.HasKey("MasterVolume")) return;
+            if (!PlayerPrefs.HasKey(PlayerPrefsKeys.MasterVolume)) return;
 
-            masterSlider.value = PlayerPrefs.GetFloat("MasterVolume");
-            musicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
-            effectsSlider.value = PlayerPrefs.GetFloat("EffectsVolume");
+            masterSlider.value = PlayerPrefs.GetFloat(PlayerPrefsKeys.MasterVolume);
+            musicSlider.value = PlayerPrefs.GetFloat(PlayerPrefsKeys.MusicVolume);
+            effectsSlider.value = PlayerPrefs.GetFloat(PlayerPrefsKeys.EffectsVolume);
         }
         #endregion
     }
+
 }
