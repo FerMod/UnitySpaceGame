@@ -1493,8 +1493,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menu: {fileID: 1489840631}
   previousMenu: {fileID: 1616880989}
-  mouseFlightController: {fileID: 2010321024}
   mouseSensitivity: {fileID: 2002559345}
+  audioMixer: {fileID: 0}
+  masterSlider: {fileID: 0}
+  musicSlider: {fileID: 0}
+  effectsSlider: {fileID: 0}
 --- !u!1 &627306371
 GameObject:
   m_ObjectHideFlags: 0
