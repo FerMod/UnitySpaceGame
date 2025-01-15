@@ -14,10 +14,8 @@ namespace SpaceGame.UI
         public GameObject menu;
         public GameObject previousMenu;
 
-        [Space(16)]
-        //public MouseFlightController mouseFlightController;
-
-        [Header("Menu")]
+        [Header("Controls")]
+        public MouseFlightController mouseFlightController;
         public Slider mouseSensitivity;
 
         [Header("Sound")]
@@ -32,43 +30,57 @@ namespace SpaceGame.UI
             LoadData();
 
             // Controls
-            mouseSensitivity.onValueChanged.AddListener(OnMouseSensitivityChange);
+            mouseSensitivity.onValueChanged.AddListener(SetMouseSensitivity);
 
             // Sound
-            masterSlider.onValueChanged.AddListener(OnMasterSoundChange);
-            musicSlider.onValueChanged.AddListener(OnMusicSoundChange);
-            effectsSlider.onValueChanged.AddListener(OnEffectsSoundChange);
+            masterSlider.onValueChanged.AddListener(SetMasterVolume);
+            musicSlider.onValueChanged.AddListener(SetMusicVolume);
+            effectsSlider.onValueChanged.AddListener(SetEffectsVolume);
         }
 
         private void OnDestroy()
         {
             // Controls
-            mouseSensitivity?.onValueChanged.RemoveListener(OnMouseSensitivityChange);
+            if (mouseSensitivity != null)
+            {
+                mouseSensitivity.onValueChanged.RemoveListener(SetMouseSensitivity);
+            }
 
             // Sound
-            masterSlider?.onValueChanged.RemoveListener(OnMasterSoundChange);
-            musicSlider?.onValueChanged.RemoveListener(OnMusicSoundChange);
-            effectsSlider?.onValueChanged.RemoveListener(OnEffectsSoundChange);
+            if (masterSlider != null)
+            {
+                masterSlider.onValueChanged.RemoveListener(SetMasterVolume);
+            }
+            if (musicSlider != null)
+            {
+                musicSlider.onValueChanged.RemoveListener(SetMusicVolume);
+            }
+            if (effectsSlider != null)
+            {
+                effectsSlider.onValueChanged.RemoveListener(SetEffectsVolume);
+            }
         }
 
-        #region Controls
-        public void OnMouseSensitivityChange(float value)
+        #region Controls        
+        public void SetMouseSensitivity(float value)
         {
-            //mouseFlightController.MouseSensitivity = value;
+            if (mouseFlightController == null) return;
+
+            mouseFlightController.MouseSensitivity = value;
         }
         #endregion
 
         #region Sound
-        public void OnMasterSoundChange(float value)
+        public void SetMasterVolume(float value)
         {
             audioMixer.SetFloat("Master", Mathf.Log10(value) * 20);
         }
 
-        public void OnMusicSoundChange(float value)
+        public void SetMusicVolume(float value)
         {
             audioMixer.SetFloat("Music", Mathf.Log10(value) * 20);
         }
-        public void OnEffectsSoundChange(float value)
+        public void SetEffectsVolume(float value)
         {
             audioMixer.SetFloat("Effects", Mathf.Log10(value) * 20);
         }
@@ -82,18 +94,16 @@ namespace SpaceGame.UI
             previousMenu.SetActive(true);
         }
 
+        #region Load/Save
         private void LoadData()
         {
-            //mouseSensitivity.value = PlayerPrefs.GetFloat("MouseSensitivity", mouseFlightController.MouseSensitivity);
-            PlayerPrefs.GetFloat("MouseSensitivity");
-
+            LoadControlsData();
             LoadSoundConfig();
         }
 
         private void SaveData()
         {
-            PlayerPrefs.SetFloat("MouseSensitivity", mouseSensitivity.value);
-
+            SaveControlsData();
             SaveSoundConfig();
         }
 
@@ -105,7 +115,8 @@ namespace SpaceGame.UI
         public void LoadControlsData()
         {
             if (!PlayerPrefs.HasKey("MouseSensitivity")) return;
-            mouseSensitivity.value = PlayerPrefs.GetFloat("MouseSensitivity");
+
+            mouseSensitivity.value = PlayerPrefs.GetFloat("MouseSensitivity", mouseFlightController != null ? mouseFlightController.MouseSensitivity : 0f);
         }
 
         public void SaveSoundConfig()
@@ -123,5 +134,6 @@ namespace SpaceGame.UI
             musicSlider.value = PlayerPrefs.GetFloat("MusicVolume");
             effectsSlider.value = PlayerPrefs.GetFloat("EffectsVolume");
         }
+        #endregion
     }
 }
