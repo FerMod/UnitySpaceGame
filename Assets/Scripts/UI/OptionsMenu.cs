@@ -1,9 +1,5 @@
-using System;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Audio;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.HID;
 using UnityEngine.UI;
 
 namespace SpaceGame.UI
@@ -34,6 +30,10 @@ namespace SpaceGame.UI
 
         private void Start()
         {
+//#if UNITY_EDITOR
+//            PlayerPrefs.DeleteAll();
+//#endif
+
             LoadData();
 
             // Controls
@@ -80,16 +80,17 @@ namespace SpaceGame.UI
         #region Sound
         public void SetMasterVolume(float value)
         {
-            audioMixer.SetFloat("Master", Mathf.Log10(value) * 20);
+            audioMixer.SetFloat("Master", valueToDecibels(value));
         }
 
         public void SetMusicVolume(float value)
         {
-            audioMixer.SetFloat("Music", Mathf.Log10(value) * 20);
+            audioMixer.SetFloat("Music", valueToDecibels(value));
         }
+
         public void SetEffectsVolume(float value)
         {
-            audioMixer.SetFloat("Effects", Mathf.Log10(value) * 20);
+            audioMixer.SetFloat("Effects", valueToDecibels(value));
         }
         #endregion
 
@@ -135,13 +136,50 @@ namespace SpaceGame.UI
 
         public void LoadSoundConfig()
         {
-            if (!PlayerPrefs.HasKey(PlayerPrefsKeys.MasterVolume)) return;
+            if (PlayerPrefs.HasKey(PlayerPrefsKeys.MasterVolume))
+            {
+                masterSlider.value = PlayerPrefs.GetFloat(PlayerPrefsKeys.MasterVolume);
+                SetMasterVolume(masterSlider.value);
+            }
+            else
+            {
+                audioMixer.GetFloat("Master", out var dbVolume);
+                masterSlider.value = decibelsToValue(dbVolume);
+            }
 
-            masterSlider.value = PlayerPrefs.GetFloat(PlayerPrefsKeys.MasterVolume);
-            musicSlider.value = PlayerPrefs.GetFloat(PlayerPrefsKeys.MusicVolume);
-            effectsSlider.value = PlayerPrefs.GetFloat(PlayerPrefsKeys.EffectsVolume);
+            if (PlayerPrefs.HasKey(PlayerPrefsKeys.MusicVolume))
+            {
+                musicSlider.value = PlayerPrefs.GetFloat(PlayerPrefsKeys.MusicVolume);
+                SetMusicVolume(musicSlider.value);
+            }
+            else
+            {
+                audioMixer.GetFloat("Music", out var dbVolume);
+                musicSlider.value = decibelsToValue(dbVolume);
+            }
+
+            if (PlayerPrefs.HasKey(PlayerPrefsKeys.EffectsVolume))
+            {
+                effectsSlider.value = PlayerPrefs.GetFloat(PlayerPrefsKeys.EffectsVolume);
+                SetEffectsVolume(effectsSlider.value);
+            }
+            else
+            {
+                audioMixer.GetFloat("Effects", out var dbVolume);
+                effectsSlider.value = decibelsToValue(dbVolume);
+            }
         }
         #endregion
+
+        private float valueToDecibels(float value)
+        {
+            return value > 0 ? Mathf.Log10(value) * 20 : -80f;
+        }
+        private float decibelsToValue(float decibels)
+        {
+            float value = Mathf.Pow(10, decibels / 20);
+            return Mathf.Clamp(value, 0f, 1f);
+        }
     }
 
 }
