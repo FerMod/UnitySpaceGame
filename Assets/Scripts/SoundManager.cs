@@ -16,8 +16,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-
-    public AudioSource PlaySoundClip(AudioClip audioClip, Transform spawnTransform, float volume = 0.5f, float minPitch = 0.5f, float maxPitch = 1.1f)
+    public AudioSource PlaySoundClip(AudioClip audioClip, Transform spawnTransform, float volume = 1f, float minPitch = 0.5f, float maxPitch = 1.1f)
     {
         var audioSource = Instantiate(audioFxSource, spawnTransform.position, Quaternion.identity);
         audioSource.clip = audioClip;
@@ -30,7 +29,7 @@ public class SoundManager : MonoBehaviour
         return audioSource;
     }
 
-    public AudioSource PlayRandomSoundClip(AudioClip[] audioClip, Transform spawnTransform, float volume = 0.5f, float minPitch = 0.5f, float maxPitch = 1.1f)
+    public AudioSource PlayRandomSoundClip(AudioClip[] audioClip, Transform spawnTransform, float volume = 1f, float minPitch = 0.5f, float maxPitch = 1.1f)
     {
         var randomIndex = Random.Range(0, audioClip.Length);
         return PlaySoundClip(audioClip[randomIndex], spawnTransform, volume, minPitch, maxPitch);
