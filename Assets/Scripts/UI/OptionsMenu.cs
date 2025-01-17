@@ -12,6 +12,13 @@ namespace SpaceGame.UI
         public const string EffectsVolume = "EffectsVolume";
     }
 
+    public static class AudioMixerParameters
+    {
+        public const string MasterVolume = "Master";
+        public const string MusicVolume = "Music";
+        public const string EffectsVolume = "Effects";
+    }
+
     public class OptionsMenu : MonoBehaviour
     {
         public GameObject menu;
@@ -30,9 +37,9 @@ namespace SpaceGame.UI
 
         private void Start()
         {
-//#if UNITY_EDITOR
-//            PlayerPrefs.DeleteAll();
-//#endif
+            //#if UNITY_EDITOR
+            //            PlayerPrefs.DeleteAll();
+            //#endif
 
             LoadData();
 
