@@ -5,7 +5,9 @@ namespace SpaceGame
 
     public class RandomObjectSpawn : MonoBehaviour
     {
+        public int seed = 0;
 
+        [Space(16)]
         public float spawnRadius = 100000f;
         public int amount = 1000;
         public float minScale = 1f;
@@ -18,7 +20,17 @@ namespace SpaceGame
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
-            SpawnObjects();
+            if (seed != 0)
+            {
+                var previousState = Random.state;
+                Random.InitState(seed);
+                SpawnObjects();
+                Random.state = previousState;
+            }
+            else
+            {
+                SpawnObjects();
+            }
         }
 
         private void SpawnObjects()
