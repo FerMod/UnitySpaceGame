@@ -135,7 +135,7 @@ namespace SpaceGame
 
         public void Shoot()
         {
-            Gun.Fire();
+            Gun.Fire(gameObject);
         }
     }
 }

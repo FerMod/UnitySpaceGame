@@ -67,7 +67,7 @@ namespace SpaceGame
             parent.LookAt(interceptPoint);
 
             Debug.DrawLine(shooterPosition, interceptPoint, Color.magenta, 0.05f);
-            parent.Gun.Fire();
+            parent.Gun.Fire(parent.gameObject);
 
             if (!HasDirectSight() && !HasUnobstructedPath(interceptPoint, Color.green))
             {

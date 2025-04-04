@@ -31,20 +31,20 @@ namespace SpaceGame
             activeSounds = new AudioSource[projectileSpawnPoints.Length];
         }
 
-        public void Fire()
+        public void Fire(GameObject owner = null)
         {
             if (!canFire) return;
             canFire = false;
 
-            FireProjectiles();
+            FireProjectiles(owner);
             StartCoroutine(FireRateHandler());
         }
 
-        private void FireProjectiles()
+        private void FireProjectiles(GameObject owner = null)
         {
             for (var i = 0; i < projectileSpawnPoints.Length; i++)
             {
-                var instancedProjectile = CreateProjectile(projectile, projectileSpawnPoints[i]);
+                var instancedProjectile = CreateProjectile(projectile, projectileSpawnPoints[i], owner);
                 PlayFireSound(i, instancedProjectile.transform);
                 Destroy(instancedProjectile, projectileLifeTime);
             }
@@ -56,12 +56,19 @@ namespace SpaceGame
             //}
         }
 
-        private GameObject CreateProjectile(GameObject gameObject, Transform spawnPoint)
+        private GameObject CreateProjectile(GameObject gameObject, Transform spawnPoint, GameObject owner = null)
         {
             var headingDirection = Quaternion.FromToRotation(projectile.transform.forward, spawnPoint.forward);
 
             //Debug.DrawLine(spawnPoint.position, spawnPoint.forward * 10000, Color.red, 0.5f);
             var instance = Instantiate(gameObject, spawnPoint.position, headingDirection);
+
+            // Add owner velocity to projectile
+            if (instance.TryGetComponent(out Rigidbody projectileRb) && owner.TryGetComponent(out Rigidbody ownerRb))
+            {
+                projectileRb.linearVelocity = ownerRb.linearVelocity;
+            }
+
             return instance;
         }
 

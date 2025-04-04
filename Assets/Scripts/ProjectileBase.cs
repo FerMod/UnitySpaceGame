@@ -27,17 +27,6 @@ namespace SpaceGame
             Destroy(gameObject, lifetime);
         }
 
-        void Update()
-        {
-            //transform.position += speed * Time.deltaTime * transform.forward;
-            // rb.linearVelocity += speed * Time.deltaTime * transform.forward;
-        }
-
-        void FixedUpdate()
-        {
-            //rb.AddForce(transform.forward * speed, ForceMode.VelocityChange);
-        }
-
         protected void OnCollisionEnter(Collision collision)
         {
             DamageComponent(collision.gameObject);

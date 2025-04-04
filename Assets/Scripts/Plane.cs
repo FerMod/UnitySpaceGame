@@ -300,13 +300,13 @@ namespace SpaceGame
         void FireLaser()
         {
             if (!IsFiringLaser) return;
-            laserWeapon.Fire();
+            laserWeapon.Fire(gameObject);
         }
 
         void FireRocket()
         {
             if (!IsFiringRocket) return;
-            rocketWeapon.Fire();
+            rocketWeapon.Fire(gameObject);
         }
 
         private void Update()
