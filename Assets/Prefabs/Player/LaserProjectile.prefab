@@ -233,6 +233,8 @@ MonoBehaviour:
   explosionForce: 1000
   explosionRadius: 100
   forceMode: 0
+  owner: {fileID: 0}
+  inheritOwnerVelocity: 1
 --- !u!54 &6202405748223549957
 Rigidbody:
   m_ObjectHideFlags: 0
