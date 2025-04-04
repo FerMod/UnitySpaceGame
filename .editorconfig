@@ -66,9 +66,9 @@ dotnet_naming_style.first_word_upper.capitalization = first_word_upper
 # Rules
 
 # Private fields recommend to be camelCase
-dotnet_naming_rule.private_fields_camel_case.symbols = private_fields
-dotnet_naming_rule.private_fields_camel_case.severity = suggestion
-dotnet_naming_rule.private_fields_camel_case.style = camel_case
+#dotnet_naming_rule.private_fields_camel_case.symbols = private_fields
+#dotnet_naming_rule.private_fields_camel_case.severity = suggestion
+#dotnet_naming_rule.private_fields_camel_case.style = camel_case
 
 # Public members must be first word upper
 #dotnet_naming_rule.public_symbols_first_word_upper.symbols = public_members
