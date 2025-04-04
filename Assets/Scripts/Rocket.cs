@@ -49,7 +49,7 @@ namespace SpaceGame
             }
 
             //rb.AddRelativeForce(transform.forward * speed, ForceMode.Impulse);
-            rb.linearVelocity = rb.rotation * new Vector3(0, 0, speed);
+            rb.linearVelocity += rb.rotation * new Vector3(0, 0, speed);
         }
 
         protected new void OnCollisionEnter(Collision collision)

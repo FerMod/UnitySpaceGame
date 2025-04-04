@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e1d95d90fd588540a77014f4b0565a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 200
+  speed: 50
   damage: 25
   lifetime: 10
   hitEffect: {fileID: 1259166544223302805, guid: 2866076510ebbff45b6781e902737a8a, type: 3}
@@ -156,9 +156,6 @@ MonoBehaviour:
   explosionRadius: 100
   forceMode: 1
   smokeTrail: {fileID: 2364743747816675709}
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 0
   isGuided: 0
   trackingAngle: 80
   turningGForce: 2
