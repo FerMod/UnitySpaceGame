@@ -6787,41 +6787,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 138d927c77492e5498b0f6ce72c8e31a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalFOV: 60
+  warpFOV: 100
   warpDuration: 2
-  maxFOV: 120
-  fovCurve:
-    serializedVersion: 2
+  warpCurve:
     m_Curve:
-    - serializedVersion: 3
-      time: 0
+    - time: 0
       value: 0
       inSlope: 0
       outSlope: 0
-      tangentMode: 136
+      tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.5
+      inWeight: 0
+      outWeight: 0
+    - time: 1
       value: 1
       inSlope: 0
       outSlope: 0
-      tangentMode: 136
+      tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 136
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0
+      outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  targetCamera: {fileID: 0}
 --- !u!1 &1231748605 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1411132086413374, guid: 1ffc29c315992624cb793d6cbf2c4ac1, type: 3}
