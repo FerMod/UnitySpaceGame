@@ -6596,6 +6596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916eb447b00cb9b49800dbe0194156ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  seed: 0
   spawnRadius: 1000
   amount: 1000
   minScale: 1
@@ -14396,7 +14397,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7505445628943697435, guid: 1ad769ad1b3e05849a7e50e4b42f428a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7543737317710053614, guid: 1ad769ad1b3e05849a7e50e4b42f428a, type: 3}
       propertyPath: m_LocalPosition.x
