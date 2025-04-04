@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using SpaceGame.Extensions;
 
 namespace SpaceGame
 {
@@ -63,10 +62,9 @@ namespace SpaceGame
             //Debug.DrawLine(spawnPoint.position, spawnPoint.forward * 10000, Color.red, 0.5f);
             var instance = Instantiate(gameObject, spawnPoint.position, headingDirection);
 
-            // Add owner velocity to projectile
-            if (instance.TryGetComponent(out Rigidbody projectileRb) && owner.TryGetComponent(out Rigidbody ownerRb))
+            if (instance.TryGetComponent(out ProjectileBase projectileBase))
             {
-                projectileRb.linearVelocity = ownerRb.linearVelocity;
+                projectileBase.owner = owner;
             }
 
             return instance;

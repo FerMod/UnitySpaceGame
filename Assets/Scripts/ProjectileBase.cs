@@ -17,14 +17,26 @@ namespace SpaceGame
         public float explosionRadius = 100f;
         public ForceMode forceMode = ForceMode.Impulse;
 
+        public GameObject owner;
+        public bool inheritOwnerVelocity = true;
+
         protected Rigidbody rb;
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         protected void Start()
         {
             rb = GetComponent<Rigidbody>();
+            InheritOwnerVelocity(rb);
 
             Destroy(gameObject, lifetime);
+        }
+
+        private void InheritOwnerVelocity(Rigidbody rb)
+        {
+            if (!inheritOwnerVelocity) return;
+            if (owner == null) return;
+            if (!owner.TryGetComponent(out Rigidbody ownerRb)) return;
+            rb.linearVelocity = ownerRb.linearVelocity;
         }
 
         protected void OnCollisionEnter(Collision collision)
