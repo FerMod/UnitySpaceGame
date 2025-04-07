@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 3d80484738756bd42a05c06bc114941f
+timeCreated: 1474207114
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 72692
+  packageName: Free Missile
+  packageVersion: 1.1
+  assetPath: Assets/Missile/Materials/missile_material_green.mat
+  uploadId: 141585

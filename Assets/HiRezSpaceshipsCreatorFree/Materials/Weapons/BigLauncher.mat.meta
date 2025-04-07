@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ec6f04fd8f865a1498a4a664497961cd
+timeCreated: 1553768678
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 153363
+  packageName: Hi-Rez Sci-Fi Spaceships Creator Free Sample
+  packageVersion: 1.31
+  assetPath: Assets/HiRezSpaceshipsCreatorFree/Materials/Weapons/BigLauncher.mat
+  uploadId: 626481

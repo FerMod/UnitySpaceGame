@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 54e1b562c3fea284f8a0ec8cdc70057c
+timeCreated: 1567089179
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 153363
+  packageName: Hi-Rez Sci-Fi Spaceships Creator Free Sample
+  packageVersion: 1.31
+  assetPath: Assets/HiRezSpaceshipsCreatorFree/Prefabs/Modules/Cockpit3_WithInterior.prefab
+  uploadId: 626481

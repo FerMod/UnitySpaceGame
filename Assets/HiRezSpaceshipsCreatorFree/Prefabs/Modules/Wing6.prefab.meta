@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 6b60ceeabc86a6e43a7a918dbbcab26b
+timeCreated: 1567083951
+licenseType: Store
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 153363
+  packageName: Hi-Rez Sci-Fi Spaceships Creator Free Sample
+  packageVersion: 1.31
+  assetPath: Assets/HiRezSpaceshipsCreatorFree/Prefabs/Modules/Wing6.prefab
+  uploadId: 626481

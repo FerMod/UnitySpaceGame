@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: afcddc5880b41ed46995d9315d181ead
+timeCreated: 1553768131
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 153363
+  packageName: Hi-Rez Sci-Fi Spaceships Creator Free Sample
+  packageVersion: 1.31
+  assetPath: Assets/HiRezSpaceshipsCreatorFree/Materials/Cockpits/CockpitEquipments/CockpitsEquipments.mat
+  uploadId: 626481
