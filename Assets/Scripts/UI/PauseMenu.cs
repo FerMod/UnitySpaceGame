@@ -1,9 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.HID;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace SpaceGame.UI
 {
@@ -36,24 +34,38 @@ namespace SpaceGame.UI
 
         void ActivateMenu()
         {
-            CursorManager.EnableMenuCursor();
-            Time.timeScale = 0;
-            AudioListener.pause = true;
+            PauseGame();
+
             pauseMenu.SetActive(true);
             inGameHud.SetActive(false);
             playerInputMap.Disable();
+
             isPaused = true;
         }
 
         void DeactivateMenu()
         {
-            CursorManager.DisableMenuCursor();
-            Time.timeScale = 1;
-            AudioListener.pause = false;
+            ResumeGame();
+
             pauseMenu.SetActive(false);
             inGameHud.SetActive(true);
             playerInputMap.Enable();
+
             isPaused = false;
+        }
+
+        private void PauseGame()
+        {
+            CursorManager.EnableMenuCursor();
+            Time.timeScale = 0;
+            AudioListener.pause = true;
+        }
+
+        private void ResumeGame()
+        {
+            CursorManager.DisableMenuCursor();
+            Time.timeScale = 1;
+            AudioListener.pause = false;
         }
 
         public void OnPause(InputAction.CallbackContext context)
