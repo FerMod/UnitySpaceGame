@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionBounces: 1
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
-  m_Sun: {fileID: 641225263030221281}
+  m_Sun: {fileID: 0}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12729,7 +12729,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damagePerTick: 10
   tickInterval: 1
-  isInstaKill: 0
   tags:
   - Player
 --- !u!135 &1980861695
@@ -13214,11 +13213,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 355303876}
   m_SourcePrefab: {fileID: 100100000, guid: 86382ddba19201f41ad2c395bfe16b5a, type: 3}
---- !u!108 &641225263030221281 stripped
-Light:
-  m_CorrespondingSourceObject: {fileID: 7017879465316670077, guid: 86382ddba19201f41ad2c395bfe16b5a, type: 3}
-  m_PrefabInstance: {fileID: 641225263030221280}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4987562546564576750
 PrefabInstance:
   m_ObjectHideFlags: 0
