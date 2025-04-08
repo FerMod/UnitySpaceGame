@@ -31,7 +31,11 @@ namespace SpaceGame
 
         private void Start()
         {
-            healthBar?.SetMaxHealth(maxHealth);
+            if (healthBar != null)
+            {
+                healthBar.SetMaxHealth(maxHealth);
+            }
+
             OnHealthChanged += UpdateHealthBar;
         }
 
@@ -55,7 +59,8 @@ namespace SpaceGame
 
         private void UpdateHealthBar(object source, float oldHealth, float newHealth)
         {
-            healthBar?.SetHealth(newHealth);
+            if (healthBar == null) return;
+            healthBar.SetHealth(newHealth);
         }
     }
 }
