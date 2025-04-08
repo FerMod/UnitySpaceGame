@@ -301,34 +301,33 @@ namespace SpaceGame
 
         private void OnDrawGizmos()
         {
-            if (_showDebugInfo == true)
+            if (!_showDebugInfo) return;
+
+            var oldColor = Gizmos.color;
+
+            // Draw the boresight position.
+            if (_plane != null)
             {
-                Color oldColor = Gizmos.color;
-
-                // Draw the boresight position.
-                if (_plane != null)
-                {
-                    Gizmos.color = Color.white;
-                    Gizmos.DrawWireSphere(BoresightPos, 10f);
-                }
-
-                if (_mouseAim != null)
-                {
-                    // Draw the position of the mouse aim position.
-                    Gizmos.color = Color.red;
-                    Gizmos.DrawWireSphere(MouseAimPos, 10f);
-
-                    // Draw axes for the mouse aim transform.
-                    Gizmos.color = Color.blue;
-                    Gizmos.DrawRay(_mouseAim.position, _mouseAim.forward * 50f);
-                    Gizmos.color = Color.green;
-                    Gizmos.DrawRay(_mouseAim.position, _mouseAim.up * 50f);
-                    Gizmos.color = Color.red;
-                    Gizmos.DrawRay(_mouseAim.position, _mouseAim.right * 50f);
-                }
-
-                Gizmos.color = oldColor;
+                Gizmos.color = Color.white;
+                Gizmos.DrawWireSphere(BoresightPos, 10f);
             }
+
+            if (_mouseAim != null)
+            {
+                // Draw the position of the mouse aim position.
+                Gizmos.color = Color.red;
+                Gizmos.DrawWireSphere(MouseAimPos, 10f);
+
+                // Draw axes for the mouse aim transform.
+                Gizmos.color = Color.blue;
+                Gizmos.DrawRay(_mouseAim.position, _mouseAim.forward * 50f);
+                Gizmos.color = Color.green;
+                Gizmos.DrawRay(_mouseAim.position, _mouseAim.up * 50f);
+                Gizmos.color = Color.red;
+                Gizmos.DrawRay(_mouseAim.position, _mouseAim.right * 50f);
+            }
+
+            Gizmos.color = oldColor;
         }
     }
 }
