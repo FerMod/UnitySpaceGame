@@ -118,16 +118,13 @@ namespace SpaceGame
                 {
                     _frozenDirection = _mouseAim.forward;
                 }
+                else if ((CheckAimOffScreen() || HasMouseAimGoneOffScreenDuringLock) && LastManualInputTime > LastCameraLockTime)
+                {
+                    _mouseAim.forward = _plane.transform.forward;
+                }
                 else
                 {
-                    if ((CheckAimOffScreen() || HasMouseAimGoneOffScreenDuringLock) && LastManualInputTime > LastCameraLockTime)
-                    {
-                        _mouseAim.forward = _plane.transform.forward;
-                    }
-                    else
-                    {
-                        _mouseAim.forward = _frozenDirection;
-                    }
+                    _mouseAim.forward = _frozenDirection;
                 }
 
                 _isMouseFrozen = value;
@@ -141,11 +138,8 @@ namespace SpaceGame
         /// </summary>
         public float LastCameraLockTime
         {
-            get { return _lastCameraLockTime; }
-            set
-            {
-                _lastCameraLockTime = value;
-            }
+            get => _lastCameraLockTime;
+            set => _lastCameraLockTime = value;
         }
 
         private float _lastManualInputTime;
@@ -155,11 +149,8 @@ namespace SpaceGame
         /// </summary>
         public float LastManualInputTime
         {
-            get { return _lastManualInputTime; }
-            set
-            {
-                _lastManualInputTime = value;
-            }
+            get => _lastManualInputTime;
+            set => _lastManualInputTime = value;
         }
 
         private void Awake()
@@ -177,14 +168,14 @@ namespace SpaceGame
             // When parented to something (such as an aircraft) it will inherit those
             // rotations causing unintended rotations as it gets dragged around.
             transform.parent = null;
-
-
         }
 
         private void Update()
         {
             if (_useFixed == false)
+            {
                 UpdateCameraPos();
+            }
 
             RotateRig();
         }
@@ -215,8 +206,7 @@ namespace SpaceGame
 
         private void RotateRig()
         {
-            if (_mouseAim == null || _cam == null || _cameraRig == null)
-                return;
+            if (_mouseAim == null || _cam == null || _cameraRig == null) return;
 
             // Mouse input.
             float mouseX = Input.GetAxis("Mouse X") * MouseSensitivity;
@@ -288,11 +278,10 @@ namespace SpaceGame
 
         private void UpdateCameraPos()
         {
-            if (_plane != null)
-            {
-                // Move the whole rig to follow the aircraft.
-                transform.position = _plane.transform.position;
-            }
+            if (_plane == null) return;
+
+            // Move the whole rig to follow the aircraft.
+            transform.position = _plane.transform.position;
         }
 
         // Thanks to Rory Driscoll
