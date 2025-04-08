@@ -10,21 +10,10 @@ public class DamageArea : MonoBehaviour
     [SerializeField, Tooltip("Damage dealt per tick")]
     private float tickInterval = 1f;
 
-    [SerializeField, Tooltip("Whether the zone is an instakill")]
-    private bool isInstaKill;
-
     [SerializeField, Tooltip("Appply damage to GameObjects with specified tags")]
     private string[] tags = { };
 
-
     private float nextTickTime = 0f;
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!isInstaKill) return;
-        if (!IsValidDamageTarget(other.gameObject.tag)) return;
-
-    }
 
     private void OnTriggerStay(Collider other)
     {
@@ -51,13 +40,6 @@ public class DamageArea : MonoBehaviour
     }
 
     private void DamageTarget(Collider other)
-    {
-        other.TryGetComponent(out Health target);
-        if (target == null) return;
-        target.ChangeHealth(-damagePerTick);
-    }
-
-    private void KillTarget(Collider other)
     {
         other.TryGetComponent(out Health target);
         if (target == null) return;

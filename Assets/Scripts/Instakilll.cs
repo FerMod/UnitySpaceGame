@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Instakill : MonoBehaviour
 {
-    [SerializeField, Tooltip("Instakill GameObjects with specified tags")]
+    [SerializeField, Tooltip("Insta kill GameObjects with specified tags")]
     private string[] tags = { };
 
     private void OnTriggerEnter(Collider other)
@@ -29,6 +29,6 @@ public class Instakill : MonoBehaviour
     {
         other.TryGetComponent(out Health target);
         if (target == null) return;
-        target.ChangeHealth(-target.CurrentHealth);
+        target.ChangeHealth(-target.MaxHealth);
     }
 }
