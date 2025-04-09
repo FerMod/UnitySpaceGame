@@ -29,7 +29,7 @@ namespace SpaceGame
             health.OnNoHealth += OnNoHealth;
         }
 
-        private void OnNoHealth(object source, float oldHealth, float newHealth)
+        private void OnNoHealth(float oldHealth, float newHealth)
         {
             Split();
         }

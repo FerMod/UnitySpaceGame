@@ -16,8 +16,7 @@ namespace SpaceGame
 
         public HealthBar healthBar;
 
-        // Define the health changed event and handler delegate.
-        public delegate void HealthChangedHandler(object source, float oldHealth, float newHealth);
+        public delegate void HealthChangedHandler(float oldHealth, float newHealth);
 
         /// <summary>
         /// Invoked when health changes.
@@ -45,19 +44,18 @@ namespace SpaceGame
             currentHealth += amount;
             currentHealth = Mathf.Clamp(currentHealth, 0f, maxHealth);
 
-            // Fire health change event.
             if (oldHealth != currentHealth)
             {
-                OnHealthChanged?.Invoke(this, oldHealth, currentHealth);
+                OnHealthChanged?.Invoke(oldHealth, currentHealth);
             }
 
             if (currentHealth <= 0 && oldHealth > 0)
             {
-                OnNoHealth?.Invoke(this, oldHealth, currentHealth);
+                OnNoHealth?.Invoke(oldHealth, currentHealth);
             }
         }
 
-        private void UpdateHealthBar(object source, float oldHealth, float newHealth)
+        private void UpdateHealthBar(float oldHealth, float newHealth)
         {
             if (healthBar == null) return;
             healthBar.SetHealth(newHealth);
