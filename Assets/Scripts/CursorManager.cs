@@ -5,8 +5,8 @@ namespace SpaceGame
 {
     public class CursorManager : MonoBehaviour
     {
-        public static CursorLockMode lockMode = CursorLockMode.Confined;
-        public static bool visible = false;
+        public static CursorLockMode lockMode = CursorLockMode.None;
+        public static bool visible = true;
 
         public static bool IsInPauseMenu { get; set; }
 

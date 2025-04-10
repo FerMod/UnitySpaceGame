@@ -3,6 +3,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for details.
 //
 
+using SpaceGame.Network;
 using UnityEngine;
 
 namespace SpaceGame
@@ -16,7 +17,8 @@ namespace SpaceGame
         [Header("Components")]
         [SerializeField]
         [Tooltip("Aircraft the rig follows and references")]
-        private Plane _plane = null;
+        private PlaneNet _plane = null;
+        public PlaneNet Plane { get => _plane; set => _plane = value; }
         [SerializeField]
         [Tooltip("Transform of the object the mouse rotates to generate MouseAim position")]
         private Transform _mouseAim = null;
@@ -153,16 +155,16 @@ namespace SpaceGame
             set => _lastManualInputTime = value;
         }
 
-        private void Awake()
+        private void Start()
         {
             if (_plane == null)
-                Debug.LogError(name + "MouseFlightController - No aircraft transform assigned!");
+                Debug.LogWarning(name +  "MouseFlightController - No aircraft transform assigned!");
             if (_mouseAim == null)
-                Debug.LogError(name + "MouseFlightController - No mouse aim transform assigned!");
+                Debug.LogError(name + " MouseFlightController - No mouse aim transform assigned!");
             if (_cameraRig == null)
-                Debug.LogError(name + "MouseFlightController - No camera rig transform assigned!");
+                Debug.LogError(name + " MouseFlightController - No camera rig transform assigned!");
             if (_cam == null)
-                Debug.LogError(name + "MouseFlightController - No camera transform assigned!");
+                Debug.LogError(name + " MouseFlightController - No camera transform assigned!");
 
             // To work correctly, the entire rig must not be parented to anything.
             // When parented to something (such as an aircraft) it will inherit those

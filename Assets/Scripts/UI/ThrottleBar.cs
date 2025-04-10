@@ -1,3 +1,4 @@
+using SpaceGame.Network;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,25 +7,21 @@ namespace SpaceGame.UI
 {
     public class ThrottleBar : MonoBehaviour
     {
-
-        [SerializeField]
-        private Plane plane;
-
         public Slider slider;
         public TMP_Text text;
         public Gradient gradient;
         public Image fill;
 
 
-        private void Start()
-        {
-            SetMaxThrottle(1f);
-        }
+        //private void Start()
+        //{
+        //    SetMaxThrottle(1f);
+        //}
 
-        private void Update()
-        {
-            SetThrottle(plane.Throttle);
-        }
+        //private void Update()
+        //{
+        //    SetThrottle(plane.Throttle);
+        //}
 
         public void SetMaxThrottle(float value)
         {

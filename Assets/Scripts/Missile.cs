@@ -1,4 +1,5 @@
 using SpaceGame;
+using SpaceGame.Network;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -34,7 +35,7 @@ namespace SpaceGame
         GameObject explosionGraphic;
 
         [SerializeField]
-        Plane owner;
+        PlaneNet owner;
 
         [SerializeField]
         Target target;
@@ -50,7 +51,7 @@ namespace SpaceGame
             Launch(owner, target);
         }
 
-        public void Launch(Plane owner, Target target)
+        public void Launch(PlaneNet owner, Target target)
         {
             this.owner = owner;
             this.target = target;
@@ -77,7 +78,7 @@ namespace SpaceGame
 
             foreach (var hit in hits)
             {
-                Plane other = hit.gameObject.GetComponent<Plane>();
+                var other = hit.gameObject.GetComponent<PlaneNet>();
 
                 if (other != null && other != owner)
                 {
@@ -100,7 +101,7 @@ namespace SpaceGame
 
             if (Physics.Raycast(ray, out hit, error.magnitude, collisionMask.value))
             {
-                Plane other = hit.collider.gameObject.GetComponent<Plane>();
+                var other = hit.collider.gameObject.GetComponent<PlaneNet>();
 
                 if (other == null || other != owner)
                 {

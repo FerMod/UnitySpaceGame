@@ -3,6 +3,7 @@
 // Licensed under the MIT license. See LICENSE file in the project root for details.
 //
 
+using SpaceGame.Network;
 using UnityEngine;
 
 namespace SpaceGame
@@ -11,6 +12,7 @@ namespace SpaceGame
     {
         [Header("Components")]
         [SerializeField] private MouseFlightController mouseFlight = null;
+        public MouseFlightController MouseFlight { get => mouseFlight; set => mouseFlight = value; }
 
         [Header("HUD Elements")]
         [SerializeField] private RectTransform boresight = null;
@@ -23,9 +25,9 @@ namespace SpaceGame
         private void Awake()
         {
             if (mouseFlight == null)
-                Debug.LogError(name + ": Hud - Mouse Flight Controller not assigned!");
+                Debug.LogWarning(name + ": Hud - Mouse Flight Controller not assigned!");
 
-            playerCam = mouseFlight.GetComponentInChildren<Camera>() ?? Camera.main;
+            playerCam = mouseFlight?.GetComponentInChildren<Camera>() ?? Camera.main;
 
             if (playerCam == null)
                 Debug.LogError(name + ": Hud - No camera found on assigned Mouse Flight Controller!");
@@ -34,8 +36,7 @@ namespace SpaceGame
         private void Update()
         {
             if (IsFreezed) return;
-            if (mouseFlight == null || playerCam == null)
-                return;
+            if (mouseFlight == null || playerCam == null) return;
 
             UpdateGraphics(mouseFlight);
         }

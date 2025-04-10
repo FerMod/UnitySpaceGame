@@ -1,3 +1,6 @@
+using SpaceGame.Network;
+using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,8 +9,9 @@ namespace SpaceGame
     public class PlayerInputControl : MonoBehaviour
     {
         [Header("Components")]
-        [SerializeField] private Plane plane;
+        [SerializeField] private PlaneNet plane;
         [SerializeField] private MouseFlightController controller;
+        public MouseFlightController Controller { get => controller; set => controller = value; }
 
         [Header("Autopilot")]
         [Tooltip("Sensitivity for autopilot flight.")] public float sensitivity = 5f;
@@ -189,10 +193,10 @@ namespace SpaceGame
 
         private void Awake()
         {
-            plane = GetComponent<Plane>();
+            plane = GetComponent<PlaneNet>();
 
             if (controller == null)
-                Debug.LogError(name + ": Plane - Missing reference to MouseFlightController!");
+                Debug.LogWarning(name + ": Plane - Missing reference to MouseFlightControllerNet!");
         }
 
         private void ThrottleControl()
@@ -215,6 +219,8 @@ namespace SpaceGame
 
         private void Update()
         {
+            if (!GetComponent<NetworkObject>().IsLocalPlayer) return;
+
             ThrottleControl();
             CheckAllInputCancelled();
 

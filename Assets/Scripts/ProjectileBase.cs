@@ -1,3 +1,4 @@
+using SpaceGame.Network;
 using UnityEngine;
 
 namespace SpaceGame
@@ -52,7 +53,7 @@ namespace SpaceGame
         protected void DamageComponent(GameObject gameObject)
         {
             if (gameObject == null) return;
-            gameObject.TryGetComponent(out Health health);
+            gameObject.TryGetComponent(out HealthNet health);
 
             if (health == null) return;
             health.ChangeHealth(-damage);

@@ -87,17 +87,17 @@ namespace SpaceGame.UI
         #region Sound
         public void SetMasterVolume(float value)
         {
-            audioMixer.SetFloat("Master", valueToDecibels(value));
+            audioMixer.SetFloat("Master", ValueToDecibels(value));
         }
 
         public void SetMusicVolume(float value)
         {
-            audioMixer.SetFloat("Music", valueToDecibels(value));
+            audioMixer.SetFloat("Music", ValueToDecibels(value));
         }
 
         public void SetEffectsVolume(float value)
         {
-            audioMixer.SetFloat("Effects", valueToDecibels(value));
+            audioMixer.SetFloat("Effects", ValueToDecibels(value));
         }
         #endregion
 
@@ -151,7 +151,7 @@ namespace SpaceGame.UI
             else
             {
                 audioMixer.GetFloat("Master", out var dbVolume);
-                masterSlider.value = decibelsToValue(dbVolume);
+                masterSlider.value = DecibelsToValue(dbVolume);
             }
 
             if (PlayerPrefs.HasKey(PlayerPrefsKeys.MusicVolume))
@@ -162,7 +162,7 @@ namespace SpaceGame.UI
             else
             {
                 audioMixer.GetFloat("Music", out var dbVolume);
-                musicSlider.value = decibelsToValue(dbVolume);
+                musicSlider.value = DecibelsToValue(dbVolume);
             }
 
             if (PlayerPrefs.HasKey(PlayerPrefsKeys.EffectsVolume))
@@ -173,18 +173,18 @@ namespace SpaceGame.UI
             else
             {
                 audioMixer.GetFloat("Effects", out var dbVolume);
-                effectsSlider.value = decibelsToValue(dbVolume);
+                effectsSlider.value = DecibelsToValue(dbVolume);
             }
         }
         #endregion
 
-        private float valueToDecibels(float value)
+        private float ValueToDecibels(float value)
         {
             return value > 0 ? Mathf.Log10(value) * 20 : -80f;
         }
-        private float decibelsToValue(float decibels)
+        private float DecibelsToValue(float decibels)
         {
-            float value = Mathf.Pow(10, decibels / 20);
+            var value = Mathf.Pow(10, decibels / 20);
             return Mathf.Clamp(value, 0f, 1f);
         }
     }

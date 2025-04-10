@@ -1,3 +1,4 @@
+using SpaceGame.Network;
 using System.Collections;
 using UnityEngine;
 
@@ -5,7 +6,7 @@ namespace SpaceGame
 {
     public class SpaceshipDestruction : MonoBehaviour
     {
-        public Plane plane;
+        public PlaneNet plane;
 
         /// <summary>
         /// The parent of all the spaceship parts.
@@ -20,7 +21,7 @@ namespace SpaceGame
 
         void Start()
         {
-            plane.GetComponent<Health>().OnNoHealth += OnNoHealth;
+            plane.GetComponent<HealthNet>().OnNoHealth += OnNoHealth;
         }
 
         private void OnNoHealth(float oldHealth, float newHealth)

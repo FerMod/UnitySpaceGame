@@ -1,3 +1,5 @@
+using SpaceGame.Network;
+using SpaceGame.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,8 +10,8 @@ namespace SpaceGame
     public class PlaneUIHandler : MonoBehaviour
     {
         [Header("Components")]
-        [SerializeField] private Plane plane;
-
+        [SerializeField] private PlaneNet plane;
+        public PlaneNet Plane { get => plane; set => plane = value; }
 
         [Header("Components - UI Fields")]
         [SerializeField] private ValueUIField speed;
@@ -18,18 +20,24 @@ namespace SpaceGame
         [SerializeField] private ValueUIField aoa;
         [SerializeField] private Vector3UIField drag;
         [SerializeField] private Vector3UIField velocity;
-        [SerializeField] private Slider throttle;
+        [SerializeField] private ThrottleBar throttle;
 
         [Header("Flaps & Airbreak")]
         [SerializeField] private Text airBreakNotification;
         [SerializeField] private Text flapNotification;
+
+        private void Start()
+        {
+            if (throttle != null)
+                throttle.SetMaxThrottle(1f);
+        }
 
         void FixedUpdate()
         {
             if (plane == null) return;
 
             if (throttle != null)
-                throttle.value = plane.Throttle;
+                throttle.SetThrottle(plane.Throttle);
 
             if (velocity != null)
                 velocity.OnValueChanged(plane.LocalVelocity);

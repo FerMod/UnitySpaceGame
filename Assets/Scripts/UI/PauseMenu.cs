@@ -1,3 +1,4 @@
+using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,6 +11,7 @@ namespace SpaceGame.UI
     {
         public GameObject pauseMenu;
         public GameObject optionsMenu;
+        public GameObject multiplayerMenu;
         public GameObject inGameHud;
 
         public InputActionAsset inputActionAsset;
@@ -73,6 +75,11 @@ namespace SpaceGame.UI
                 DisableOptionsMenu();
                 return;
             }
+            else if (multiplayerMenu.activeSelf)
+            {
+                DisableMultiplayerMenu();
+                return;
+            }
 
             isPaused = !isPaused;
             SetMenuActive(isPaused);
@@ -87,6 +94,11 @@ namespace SpaceGame.UI
         {
             SceneManager.LoadScene("MainScene");
             SetMenuActive(false);
+        }
+
+        public void OnMultiplayerPressed()
+        {
+            EnableMultiplayerMenu();
         }
 
         public void OnOptionsPressed()
@@ -120,6 +132,20 @@ namespace SpaceGame.UI
         {
             pauseMenu.SetActive(true);
             optionsMenu.SetActive(false);
+        }
+        #endregion
+
+        #region Multiplayer Menu
+        public void EnableMultiplayerMenu()
+        {
+            pauseMenu.SetActive(false);
+            multiplayerMenu.SetActive(true);
+        }
+
+        public void DisableMultiplayerMenu()
+        {
+            pauseMenu.SetActive(true);
+            multiplayerMenu.SetActive(false);
         }
         #endregion
     }

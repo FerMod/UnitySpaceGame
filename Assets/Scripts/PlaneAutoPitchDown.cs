@@ -1,10 +1,10 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-[RequireComponent(typeof(SpaceGame.Plane))]
+[RequireComponent(typeof(SpaceGame.Network.PlaneNet))]
 public class PlaneAutoPitchDown : MonoBehaviour
 {
     [Header("Components")]
-    [SerializeField] private SpaceGame.Plane _plane;
+    [SerializeField] private SpaceGame.Network.PlaneNet _plane;
 
     [Header("Stall Detection")]
     [SerializeField] private bool _isInStall;

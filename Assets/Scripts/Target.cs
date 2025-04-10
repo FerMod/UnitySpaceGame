@@ -1,4 +1,5 @@
 using SpaceGame;
+using SpaceGame.Network;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,7 +35,7 @@ namespace SpaceGame
             }
         }
 
-        public Plane Plane { get; private set; }
+        public PlaneNet Plane { get; private set; }
 
         new Rigidbody rigidbody;
 
@@ -45,7 +46,7 @@ namespace SpaceGame
         void Awake()
         {
             rigidbody = GetComponent<Rigidbody>();
-            Plane = GetComponent<Plane>();
+            Plane = GetComponent<PlaneNet>();
 
             incomingMissiles = new List<Missile>();
         }
