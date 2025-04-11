@@ -309,6 +309,8 @@ namespace SpaceGame.Network
 
         private void Update()
         {
+            if (!IsOwner) return;
+
             FireLaser();
             FireRocket();
         }

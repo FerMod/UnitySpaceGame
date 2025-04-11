@@ -334,7 +334,6 @@ GameObject:
   - component: {fileID: 114329657595640044}
   - component: {fileID: 87202153866856979}
   - component: {fileID: 124851125681522089}
-  - component: {fileID: 3139207761791786427}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -758,6 +757,9 @@ MonoBehaviour:
   gLimitPitch: 1
   isFiringLaser: 0
   laserWeapon: {fileID: 0}
+  isFiringRocket: 0
+  rocketWeapon: {fileID: 0}
+  target: {fileID: 0}
 --- !u!114 &87202153866856979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -960,104 +962,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 362e58b4f915a6c48ad8f401a1286261, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plane: {fileID: 114329657595640044}
+  plane: {fileID: 0}
   controller: {fileID: 0}
   sensitivity: 5
   aggressiveTurnAngle: 10
   _disableAutoPilotOnCameraLock: 0
---- !u!114 &3139207761791786427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1630319604630382}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a62f60af34ddf7d4bb93430f07952cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _plane: {fileID: 114329657595640044}
-  _isInStall: 0
-  _pitchCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: -1
-      value: 0
-      inSlope: 0.0000000013018412
-      outSlope: 0.0000000013018412
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.44725737
-      outWeight: 0.40697673
-    - serializedVersion: 3
-      time: -0.7
-      value: 1
-      inSlope: -1.9861383
-      outSlope: -1.9861383
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.17649497
-    - serializedVersion: 3
-      time: 0
-      value: 0.3366527
-      inSlope: 0.0035205572
-      outSlope: 0.0035205572
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.7226194
-    - serializedVersion: 3
-      time: 0.7
-      value: 1
-      inSlope: 1.8204209
-      outSlope: 1.8204209
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.25166115
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: -1.6749512
-      outSlope: -1.6749512
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _pitchPower: 5
-  _altitudeCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0.0005
-      outSlope: 0.0005
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 2000
-      value: 1
-      inSlope: 0.0005
-      outSlope: 0.0005
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  _minPitchEval: 0.1
-  _targetStallVelocity: -20
-  _outStallVelocity: 40
 --- !u!1 &1693954784331664
 GameObject:
   m_ObjectHideFlags: 0
