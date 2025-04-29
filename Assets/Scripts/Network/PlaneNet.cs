@@ -68,7 +68,7 @@ namespace SpaceGame.Network
 
         [Header("Weapons")]
         public bool isFiringLaser = false;
-        public Weapon laserWeapon;
+        public WeaponNet laserWeapon;
 
         public bool isFiringRocket = false;
         public Weapon rocketWeapon;

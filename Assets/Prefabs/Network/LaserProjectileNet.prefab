@@ -410,15 +410,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6953207337087634427, guid: 87fe6faccb7d9df4394db7687d3fe6be, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.0182927
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6953207337087634427, guid: 87fe6faccb7d9df4394db7687d3fe6be, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -19.274586
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6953207337087634427, guid: 87fe6faccb7d9df4394db7687d3fe6be, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.67250556
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6953207337087634427, guid: 87fe6faccb7d9df4394db7687d3fe6be, type: 3}
       propertyPath: m_LocalRotation.w
@@ -451,6 +451,10 @@ PrefabInstance:
     - target: {fileID: 7380714045958210704, guid: 87fe6faccb7d9df4394db7687d3fe6be, type: 3}
       propertyPath: m_Name
       value: SoundFXObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 7380714045958210704, guid: 87fe6faccb7d9df4394db7687d3fe6be, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

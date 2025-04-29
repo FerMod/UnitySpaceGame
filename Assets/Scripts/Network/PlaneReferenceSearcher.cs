@@ -1,7 +1,6 @@
 using SpaceGame;
 using SpaceGame.Network;
 using Unity.Netcode;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

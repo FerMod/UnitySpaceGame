@@ -1828,7 +1828,7 @@ MonoBehaviour:
   gLimit: 1
   gLimitPitch: 1
   isFiringLaser: 0
-  laserWeapon: {fileID: 6880743933673922742}
+  laserWeapon: {fileID: 1164802805821493417}
   isFiringRocket: 0
   rocketWeapon: {fileID: 9179731852259539479}
 --- !u!114 &8832742506519102096
