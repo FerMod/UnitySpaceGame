@@ -34,15 +34,21 @@ public class NBodySimulation : MonoBehaviour
     {
         for (var i = 0; i < bodies.Length; i++)
         {
-            var acceleration = CalculateAcceleration(bodies[i].Position, bodies[i]);
-            bodies[i].UpdateVelocity(acceleration, Time.fixedDeltaTime);
-            //bodies[i].UpdateVelocity(bodies, Universe.physicsTimeStep);
+            if (bodies[i] != null)
+            {
+                var acceleration = CalculateAcceleration(bodies[i].Position, bodies[i]);
+                bodies[i].UpdateVelocity(acceleration, Time.fixedDeltaTime);
+                //bodies[i].UpdateVelocity(bodies, Universe.physicsTimeStep);
+            }
         }
 
         for (var i = 0; i < bodies.Length; i++)
         {
-            bodies[i].UpdatePosition(Time.fixedDeltaTime);
-            bodies[i].UpdateRotation(Time.fixedDeltaTime);
+            if (bodies[i] != null)
+            {
+                bodies[i].UpdatePosition(Time.fixedDeltaTime);
+                bodies[i].UpdateRotation(Time.fixedDeltaTime);
+            }
         }
 
     }

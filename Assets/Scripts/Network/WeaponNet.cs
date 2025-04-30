@@ -26,12 +26,7 @@ namespace SpaceGame
             if (!canFire) return;
             canFire = false;
 
-            // Only the server spawns projectiles
-            if (IsServer)
-            {
-                FireProjectiles(owner);
-            }
-
+            FireProjectiles(owner);
             StartCoroutine(FireRateHandler());
         }
 
