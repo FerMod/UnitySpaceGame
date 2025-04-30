@@ -366,9 +366,12 @@ MonoBehaviour:
   - {fileID: 5873531149125259906}
   - {fileID: 4895995648331898395, guid: 918d33f20e0bc6840b99c0c8bd9a3b10, type: 3}
   - {fileID: 4734686959102738942, guid: e09411fb754afbb40be46e24889cb4c7, type: 3}
-  showSpawnRadius: 1
   radius: 5
   power: 100
+  randomTorque: 10
+  color: {r: 1, g: 1, b: 1, a: 1}
+  showSpawnRadius: 1
+  showImpulseRadius: 0
 --- !u!1 &6702883729708134614
 GameObject:
   m_ObjectHideFlags: 0

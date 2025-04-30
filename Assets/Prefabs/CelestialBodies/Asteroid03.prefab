@@ -261,6 +261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 1
   currentHealth: 1
+  healthBar: {fileID: 0}
 --- !u!114 &940438804123196254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,9 +280,12 @@ MonoBehaviour:
   - {fileID: 5873531149125259906, guid: ab361608d508b8245865674cd9563a95, type: 3}
   - {fileID: 4895995648331898395, guid: 918d33f20e0bc6840b99c0c8bd9a3b10, type: 3}
   - {fileID: 4734686959102738942}
-  showSpawnRadius: 1
   radius: 5
   power: 100
+  randomTorque: 10
+  color: {r: 1, g: 1, b: 1, a: 1}
+  showSpawnRadius: 1
+  showImpulseRadius: 0
 --- !u!1 &6652947325535094796
 GameObject:
   m_ObjectHideFlags: 0

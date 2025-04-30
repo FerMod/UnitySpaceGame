@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace SpaceGame
@@ -7,26 +8,41 @@ namespace SpaceGame
     [RequireComponent(typeof(Health))]
     public class AsteroidSplit : MonoBehaviour
     {
-
         public float spawnRadius = 1f;
         public int amount = 5;
         public GameObject[] debris = { };
 
+        [Space]
+        [Tooltip("The maximum depth of splitting. When this limit is reached, the object will be destroyed instead of splitting.")]
+        [Min(0)]
+        public int depthLimit = 3;
+        public float minDespawnTime = 5f;
+        public float maxDespawnTime = 8f;
+
+        [Header("Split Force")]
+        public float radius = 100.0f;
+        public float power = 5000.0f;
+        public float randomTorque = 10f;
+
         [Header("Debug")]
+        public Color color = Color.white;
         public bool showSpawnRadius = false;
+        public bool showImpulseRadius = false;
 
         private Health health;
 
-        [Header("TEST")]
-        public float radius = 100.0f;
-        public float power = 5000.0f;
-
-
-        // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
             health = GetComponent<Health>();
             health.OnNoHealth += OnNoHealth;
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Split();
+            }
         }
 
         private void OnNoHealth(float oldHealth, float newHealth)
@@ -34,35 +50,53 @@ namespace SpaceGame
             Split();
         }
 
-        void Split()
+        private void Split()
         {
-            if (debris.Length == 0) return;
+            StartCoroutine(SplitCoroutine());
+        }
 
-            for (int i = 0; i < amount; i++)
+        private IEnumerator SplitCoroutine()
+        {
+            if (debris.Length == 0) yield break;
+
+            var reachedDepthLimit = depthLimit <= 0;
+
+            // Iterate through the debris and spawn them.
+            // If the depth limit is reached, it does not spawn more debris and instead proceeds to destroy the object
+            for (var i = 0; i < amount && !reachedDepthLimit; i++)
             {
-
                 var instance = SpawnDebris();
 
-                // TODO: This logic should be handled on the proyectile logic
                 var rb = instance.GetComponent<Rigidbody>();
-
-                rb.AddExplosionForce(power, transform.position, spawnRadius * 100f, 0f, ForceMode.Impulse);
-                rb.AddRelativeTorque(RandomTorque(-10f, 10f));
-                // rb.angularVelocity = Random.insideUnitSphere * 0.9f;
+                rb.AddExplosionForce(power, transform.position, radius, 0f, ForceMode.Impulse);
+                rb.AddRelativeTorque(RandomTorque(-randomTorque, randomTorque));
 
                 if (ShouldDestroyObject(instance, Vector3.one))
                 {
-                    Destroy(instance, Random.Range(5f, 8f));
+                    Destroy(instance, Random.Range(minDespawnTime, maxDespawnTime));
                 }
             }
 
-            Destroy(gameObject);
+            var despawnTime = 0f;
+            if (reachedDepthLimit)
+            {
+                despawnTime = Random.Range(minDespawnTime, maxDespawnTime);
+            }
+            Destroy(gameObject, despawnTime);
         }
+
         private GameObject SpawnDebris()
         {
             var index = Random.Range(0, debris.Length);
             var instance = Instantiate(debris[index], transform.position + Random.insideUnitSphere * spawnRadius, Random.rotation);
             instance.transform.localScale = transform.localScale * Random.Range(0.2f, 0.8f);
+
+            // Pass the depth to the debris if they also have the AsteroidSplit component
+            if (instance.TryGetComponent<AsteroidSplit>(out var asteroidSplit))
+            {
+                asteroidSplit.depthLimit = depthLimit - 1; // Pass the decremented depth to the debris
+            }
+
             return instance;
         }
 
@@ -82,11 +116,20 @@ namespace SpaceGame
             return new Vector3(x, y, z);
         }
 
-
         private void OnDrawGizmos()
         {
-            if (!showSpawnRadius) return;
-            Gizmos.DrawWireSphere(transform.position, spawnRadius);
+            Gizmos.color = color;
+
+            if (showSpawnRadius)
+            {
+                Gizmos.DrawWireSphere(transform.position, spawnRadius);
+            }
+
+            if (showImpulseRadius)
+            {
+                Gizmos.color *= 0.4f;
+                Gizmos.DrawWireSphere(transform.position, radius);
+            }
         }
     }
 }
