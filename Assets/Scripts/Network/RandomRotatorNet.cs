@@ -1,58 +1,25 @@
 using UnityEngine;
 using Unity.Netcode;
+using Unity.Netcode.Components;
 
-[RequireComponent(typeof(Rigidbody))]
-public class RandomRotatorNet : NetworkBehaviour
+namespace SpaceGame.Network
 {
-    [SerializeField]
-    private float _tumble = 5f;
-
-    private Rigidbody _rigidbody;
-
-    // Synced angular velocity
-    private NetworkVariable<Vector3> angularVelocity = new(writePerm: NetworkVariableWritePermission.Server);
-
-    private void Awake()
+    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(NetworkRigidbody))]
+    [RequireComponent(typeof(NetworkObject))]
+    [RequireComponent(typeof(NetworkTransform))]
+    public class RandomRotatorNet : NetworkBehaviour
     {
-        _rigidbody = GetComponent<Rigidbody>();
-    }
+        public float minSpeed = 0f;
+        public float maxSpeed = 0.5f;
 
-    public override void OnNetworkSpawn()
-    {
-        if (IsServer)
+        public override void OnNetworkSpawn()
         {
+            if (!IsServer) return;
+            if (!TryGetComponent(out Rigidbody rb)) return;
+
             // Set random angular velocity only on server
-            angularVelocity.Value = Random.insideUnitSphere * _tumble;
+            rb.angularVelocity = Random.Range(minSpeed, maxSpeed) * Random.insideUnitSphere;
         }
-
-        if (IsClient)
-        {
-            // Apply angularVelocity when joining client
-            _rigidbody.angularVelocity = angularVelocity.Value;
-            angularVelocity.OnValueChanged += HandleAngularVelocityChanged;
-        }
-    }
-
-    private void HandleAngularVelocityChanged(Vector3 oldValue, Vector3 newValue)
-    {
-        _rigidbody.angularVelocity = newValue;
-    }
-
-    //private void FixedUpdate()
-    //{
-    //    if (!IsServer) return;
-    //    if (_rigidbody.angularVelocity == angularVelocity.Value) return;
-    //    // Keep updating the rotation to make sure it's consistent
-    //    _rigidbody.angularVelocity = angularVelocity.Value;
-    //}
-
-    new void OnDestroy()
-    {
-        if (IsClient)
-        {
-            angularVelocity.OnValueChanged -= HandleAngularVelocityChanged;
-        }
-
-        base.OnDestroy();
     }
 }
