@@ -27,15 +27,33 @@ namespace SpaceGame.Network
 
         protected Rigidbody rb;
 
-        public void Start()
+        public override void OnNetworkSpawn()
         {
             rb = GetComponent<Rigidbody>();
-            InheritOwnerVelocity(rb);
-
             if (!IsServer) return;
+            InheritOwnerVelocity(rb);
             //Destroy(gameObject, lifetime);
-            Debug.Log($"Despawning projectile after {lifetime} seconds.");
+            Debug.Log($"[ProjectileBaseNet] Despawning projectile after {lifetime} seconds.");
             Despawn(gameObject, lifetime);
+        }
+
+        private void IgnoreColliders(GameObject owner, GameObject projectile)
+        {
+            if (owner == null || projectile == null) return;
+
+            var ownerColliders = owner.GetComponentsInChildren<Collider>(includeInactive: true);
+            var projectileColliders = projectile.GetComponentsInChildren<Collider>(includeInactive: true);
+
+            if (ownerColliders.Length == 0 || projectileColliders.Length == 0) return;
+
+            foreach (var projectileCollider in projectileColliders)
+            {
+                foreach (var ownerCollider in ownerColliders)
+                {
+
+                    Physics.IgnoreCollision(projectileCollider, ownerCollider);
+                }
+            }
         }
 
         private void InheritOwnerVelocity(Rigidbody rb)
@@ -56,7 +74,7 @@ namespace SpaceGame.Network
             AddExplosionForce(collision.gameObject);
 
             //Destroy(gameObject);
-            Debug.Log($"Despawning projectile on collision with {collision.gameObject.name}");
+            Debug.Log($"[ProjectileBaseNet] Despawning projectile on collision with {collision.gameObject.name}");
             Despawn(gameObject);
         }
 
@@ -91,7 +109,7 @@ namespace SpaceGame.Network
             effect.Play();
 
             // Destroy(effectInstance, effect.main.duration);
-            Debug.Log($"Despawn projectile hit effect.");
+            Debug.Log($"[ProjectileBaseNet] Despawn projectile hit effect.");
             Despawn(effectInstance, effect.main.duration);
         }
 
@@ -101,7 +119,7 @@ namespace SpaceGame.Network
             if (gameObject == null) return;
             if (!gameObject.TryGetComponent(out NetworkObject networkObject))
             {
-                Debug.Log($"Destroying game object {gameObject.name} without NetworkObject.");
+                Debug.Log($"[ProjectileBaseNet] Destroying game object {gameObject.name} without NetworkObject.");
                 Destroy(gameObject, lifetime);
                 return;
             }
@@ -125,8 +143,9 @@ namespace SpaceGame.Network
         public void DespawnNetworkObject(NetworkObject networkObject)
         {
             if (!IsServer) return;
+            if (networkObject == null) return;
             if (!networkObject.IsSpawned) return;
-            Debug.Log($"Despawn network object {networkObject.name}.");
+            Debug.Log($"[ProjectileBaseNet] Destroying game object {gameObject.name} with NetworkObject.");
             networkObject.Despawn();
         }
     }

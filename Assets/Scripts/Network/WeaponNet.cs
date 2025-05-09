@@ -57,7 +57,7 @@ namespace SpaceGame
             }
             else
             {
-                Debug.LogWarning("ProjectileNet prefab does not have a NetworkObject component.");
+                Debug.LogWarning("[WeaponNet] ProjectileNet prefab does not have a NetworkObject component.");
             }
 
             if (instance.TryGetComponent(out ProjectileBaseNet projectileBase))
@@ -111,10 +111,12 @@ namespace SpaceGame
             if (gameObject == null) yield break;
             if (gameObject.TryGetComponent(out NetworkObject networkObject) && networkObject.IsSpawned)
             {
+                Debug.Log($"[WeaponNet] Destroying game object {gameObject.name} with NetworkObject.");
                 networkObject.Despawn();
             }
             else
             {
+                Debug.Log($"[WeaponNet] Destroying game object {gameObject.name} without NetworkObject.");
                 Destroy(gameObject);
             }
         }

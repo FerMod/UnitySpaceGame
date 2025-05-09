@@ -28,8 +28,10 @@ namespace SpaceGame.Network
         private NetworkVariable<bool> IsGuidedNet = new(true);
         private NetworkVariable<Vector3> TargetPositionNet = new(Vector3.zero);
 
-        protected new void Start()
+        public override void OnNetworkSpawn()
         {
+            base.OnNetworkSpawn();
+
             smokeTrailParticles = smokeTrail.GetComponent<ParticleSystem>();
 
             if (IsServer)

@@ -1541,7 +1541,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 320
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -2047,6 +2047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2aa88102ee577a49a76826237be98e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   projectile: {fileID: 136330, guid: de5ba6f591591ce4580124cb61bc34e6, type: 3}
   projectileLifeTime: 5
   fireRate: 10
@@ -2087,6 +2088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2aa88102ee577a49a76826237be98e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ShowTopMostFoldoutHeaderGroup: 1
   projectile: {fileID: 1635393891143576765, guid: 4c5576b2199ed52418638bc4a6896e91, type: 3}
   projectileLifeTime: 20
   fireRate: 1
@@ -2157,13 +2159,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  plane: {fileID: 7129496064612643871}
   spaceship: {fileID: 8393103263003817793}
   explosionEffect: {fileID: 1173571998619323067, guid: eb34afed52f6789449ab6dca8bfbe210, type: 3}
   explosionForce: 100
   explosionRadius: 5
   explosionCenterOffset: {x: 0, y: 0, z: 0}
-  keyCode: 257
 --- !u!4 &6086141177458660761 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4563113176137864, guid: 76845026de374da4aa455cd164e63143, type: 3}
