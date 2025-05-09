@@ -40,7 +40,7 @@ namespace SpaceGame
                 PlayFireSound(i, instancedProjectile.transform);
 
                 // Schedule destruction on the server
-                // StartCoroutine(DestroyAfterTime(instancedProjectile, projectileLifeTime));
+                StartCoroutine(DestroyAfterTime(instancedProjectile, projectileLifeTime));
             }
         }
 

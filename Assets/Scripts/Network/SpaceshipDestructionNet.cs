@@ -53,7 +53,7 @@ namespace SpaceGame.Network
 
             // Destroy the spaceship itself
             Debug.Log("Spaceship destroyed");
-            Destroy(spaceship.gameObject);
+            //Destroy(spaceship.gameObject);
         }
 
         private void PlayEffect(GameObject gameObject, Vector3 position, Quaternion rotation)
