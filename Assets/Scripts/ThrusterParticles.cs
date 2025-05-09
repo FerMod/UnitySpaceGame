@@ -29,7 +29,7 @@ namespace SpaceGame
 
         private void Update()
         {
-            UpdateThrottle(plane.Throttle);
+            UpdateThrottle(plane != null ? plane.Throttle : 1f);
         }
 
         public void UpdateThrottle(float value)
