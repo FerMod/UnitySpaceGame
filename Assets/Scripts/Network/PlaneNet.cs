@@ -300,25 +300,25 @@ namespace SpaceGame.Network
         void FireLaser()
         {
             if (!IsFiringLaser) return;
-            FireLaserServerRpc();
+            FireLaserRpc();
             //laserWeapon.Fire(gameObject);
         }
 
         void FireRocket()
         {
             if (!IsFiringRocket) return;
-            FireRocketServerRpc();
+            FireRocketRpc();
             //rocketWeapon.Fire(gameObject);
         }
 
-        [ServerRpc]
-        void FireLaserServerRpc()
+        [Rpc(SendTo.Server)]
+        void FireLaserRpc()
         {
             laserWeapon.Fire(gameObject);
         }
 
-        [ServerRpc]
-        void FireRocketServerRpc()
+        [Rpc(SendTo.Server)]
+        void FireRocketRpc()
         {
             rocketWeapon.Fire(gameObject);
         }
