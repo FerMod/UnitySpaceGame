@@ -15,14 +15,14 @@ GameObject:
   - component: {fileID: 11468384}
   - component: {fileID: 10825254}
   - component: {fileID: -3553738548812469523}
-  - component: {fileID: -5738468512789664403}
   - component: {fileID: 6202405748223549957}
   - component: {fileID: 9055100933072836592}
   - component: {fileID: -2919061761014890877}
   - component: {fileID: -744808900942981365}
   - component: {fileID: -2152077506425664085}
+  - component: {fileID: -5738468512789664403}
   - component: {fileID: 3657813334458922047}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: LaserProjectileNet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,28 +217,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
---- !u!114 &-5738468512789664403
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 136330}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6297a4f587d0949449f891ee5383844e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 100
-  damage: 25
-  lifetime: 5
-  hitEffect: {fileID: 1194486973065411878, guid: 8a7e1401837add249a6d86a7df9041a5, type: 3}
-  isExplosive: 1
-  explosionForce: 1000
-  explosionRadius: 100
-  forceMode: 0
-  owner: {fileID: 0}
-  inheritOwnerVelocity: 1
 --- !u!54 &6202405748223549957
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -279,7 +257,7 @@ BoxCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -365,6 +343,28 @@ MonoBehaviour:
   UseRigidBodyForMotion: 0
   AutoUpdateKinematicState: 1
   AutoSetKinematicOnDespawn: 1
+--- !u!114 &-5738468512789664403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136330}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6297a4f587d0949449f891ee5383844e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 100
+  damage: 25
+  lifetime: 5
+  hitEffect: {fileID: 1194486973065411878, guid: 8a7e1401837add249a6d86a7df9041a5, type: 3}
+  isExplosive: 1
+  explosionForce: 1000
+  explosionRadius: 100
+  forceMode: 0
+  owner: {fileID: 0}
+  inheritOwnerVelocity: 1
 --- !u!114 &3657813334458922047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -379,7 +379,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   speed: 100
-  damage: 25
+  damage: 5
   lifetime: 5
   hitEffect: {fileID: 1194486973065411878, guid: 8a7e1401837add249a6d86a7df9041a5, type: 3}
   isExplosive: 0

@@ -1,5 +1,6 @@
 using SpaceGame;
 using SpaceGame.Network;
+using SpaceGame.UI;
 using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -21,7 +22,13 @@ public class PlaneReferenceSearcher : NetworkBehaviour
 
         var playerHudGameObject = FindPlayerHudGameObject();
         playerHudGameObject.GetComponent<Hud>().MouseFlight = mouseFlightController;
-        playerHudGameObject.GetComponent<PlaneUIHandler>().Plane = planeNet;
+
+        if (playerHudGameObject.TryGetComponent(out PlaneUIHandler planeUIHandler))
+        {
+            planeUIHandler.Plane = planeNet;
+            GetComponent<HealthNet>().healthBar = planeUIHandler.healthBar;
+        }
+
 
         GetComponent<PlayerInput>().enabled = true;
     }
@@ -54,5 +61,4 @@ public class PlaneReferenceSearcher : NetworkBehaviour
         }
         return gameObject;
     }
-
 }

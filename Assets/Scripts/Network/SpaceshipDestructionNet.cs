@@ -1,12 +1,11 @@
-using SpaceGame.Network;
+using Unity.Netcode;
 using UnityEngine;
 
-namespace SpaceGame
+namespace SpaceGame.Network
 {
-    public class SpaceshipDestruction : MonoBehaviour
+    [RequireComponent(typeof(HealthNet))]
+    public class SpaceshipDestructionNet : NetworkBehaviour
     {
-        public PlaneNet plane;
-
         /// <summary>
         /// The parent of all the spaceship parts.
         /// </summary>
@@ -18,9 +17,9 @@ namespace SpaceGame
         public float explosionRadius = 5f;
         public Vector3 explosionCenterOffset = Vector3.zero;
 
-        void Start()
+        public override void OnNetworkSpawn()
         {
-            plane.GetComponent<HealthNet>().OnNoHealth += OnNoHealth;
+            GetComponent<HealthNet>().OnNoHealth += OnNoHealth;
         }
 
         private void OnNoHealth(float oldHealth, float newHealth)
@@ -30,7 +29,6 @@ namespace SpaceGame
 
         public void Die()
         {
-
             PlayEffect(explosionEffect, transform.position, transform.rotation);
 
             // Unparent all children
@@ -42,8 +40,7 @@ namespace SpaceGame
                 child.SetParent(null);
 
                 // Add Rigidbody if it doesn't already have one
-                var rb = child.gameObject.GetComponent<Rigidbody>();
-                if (rb == null)
+                if (!child.gameObject.TryGetComponent<Rigidbody>(out var rb))
                 {
                     rb = child.gameObject.AddComponent<Rigidbody>();
                 }
@@ -55,7 +52,8 @@ namespace SpaceGame
             }
 
             // Destroy the spaceship itself
-            Destroy(plane);
+            Debug.Log("Spaceship destroyed");
+            Destroy(spaceship.gameObject);
         }
 
         private void PlayEffect(GameObject gameObject, Vector3 position, Quaternion rotation)
@@ -63,8 +61,8 @@ namespace SpaceGame
             if (gameObject == null) return;
 
             var effectInstance = Instantiate(gameObject, position, rotation);
-            effectInstance.TryGetComponent(out ParticleSystem effect);
-            if (effect == null) return;
+
+            if (!effectInstance.TryGetComponent(out ParticleSystem effect)) return;
 
             effect.Play();
 

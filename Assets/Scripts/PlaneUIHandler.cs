@@ -22,6 +22,10 @@ namespace SpaceGame
         [SerializeField] private Vector3UIField velocity;
         [SerializeField] private ThrottleBar throttle;
 
+        // Used to hold the health bar reference
+        public HealthBar healthBar;
+
+
         [Header("Flaps & Airbreak")]
         [SerializeField] private Text airBreakNotification;
         [SerializeField] private Text flapNotification;

@@ -71,7 +71,7 @@ namespace SpaceGame.Network
         public WeaponNet laserWeapon;
 
         public bool isFiringRocket = false;
-        public Weapon rocketWeapon;
+        public WeaponNet rocketWeapon;
 
         public Vector3 Velocity { get; private set; }
         public Vector3 Drag { get; private set; }
@@ -103,6 +103,8 @@ namespace SpaceGame.Network
         private void Start()
         {
             Rigidbody = GetComponent<Rigidbody>();
+
+            if (!IsServer) return;
             Rigidbody.linearVelocity = Rigidbody.rotation * new Vector3(0, 0, initialSpeed);
         }
 
@@ -305,7 +307,7 @@ namespace SpaceGame.Network
         void FireRocket()
         {
             if (!IsFiringRocket) return;
-            FireLaserServerRpc();
+            FireRocketServerRpc();
             //rocketWeapon.Fire(gameObject);
         }
 

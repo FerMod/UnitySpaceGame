@@ -1,12 +1,13 @@
 using System.Collections;
 using UnityEngine;
 using Unity.Netcode;
+using SpaceGame.Network;
 
 namespace SpaceGame
 {
     public class WeaponNet : NetworkBehaviour
     {
-        public GameObject projectile; // Must be a prefab with NetworkObject attached
+        public GameObject projectile;
 
         public float projectileLifeTime = 5f;
         public float fireRate = 3f;
@@ -23,6 +24,7 @@ namespace SpaceGame
 
         public void Fire(GameObject owner = null)
         {
+            if (!IsServer) return;
             if (!canFire) return;
             canFire = false;
 
@@ -38,7 +40,7 @@ namespace SpaceGame
                 PlayFireSound(i, instancedProjectile.transform);
 
                 // Schedule destruction on the server
-                StartCoroutine(DestroyAfterTime(instancedProjectile, projectileLifeTime));
+                // StartCoroutine(DestroyAfterTime(instancedProjectile, projectileLifeTime));
             }
         }
 
@@ -47,6 +49,8 @@ namespace SpaceGame
             var headingDirection = Quaternion.FromToRotation(projectile.transform.forward, spawnPoint.forward);
 
             var instance = Instantiate(gameObject, spawnPoint.position, headingDirection);
+            IgnoreColliders(owner, instance);
+
             if (instance.TryGetComponent(out NetworkObject netObj))
             {
                 netObj.Spawn();
@@ -56,12 +60,31 @@ namespace SpaceGame
                 Debug.LogWarning("ProjectileNet prefab does not have a NetworkObject component.");
             }
 
-            if (instance.TryGetComponent(out ProjectileBase projectileBase))
+            if (instance.TryGetComponent(out ProjectileBaseNet projectileBase))
             {
                 projectileBase.owner = owner;
             }
 
             return instance;
+        }
+
+        private void IgnoreColliders(GameObject owner, GameObject projectile)
+        {
+            if (owner == null || projectile == null) return;
+
+            var ownerColliders = owner.GetComponentsInChildren<Collider>(includeInactive: true);
+            var projectileColliders = projectile.GetComponentsInChildren<Collider>(includeInactive: true);
+
+            if (ownerColliders.Length == 0 || projectileColliders.Length == 0) return;
+
+            foreach (var projectileCollider in projectileColliders)
+            {
+                foreach (var ownerCollider in ownerColliders)
+                {
+
+                    Physics.IgnoreCollision(projectileCollider, ownerCollider);
+                }
+            }
         }
 
         private void PlayFireSound(int index, Transform soundLocation)
@@ -75,14 +98,14 @@ namespace SpaceGame
             activeSounds[index] = SoundManager.Instance.PlayRandomSoundClip(fireSounds, soundLocation);
         }
 
-        IEnumerator FireRateHandler()
+        private IEnumerator FireRateHandler()
         {
             var timeToNextFire = 1 / fireRate;
             yield return new WaitForSeconds(timeToNextFire);
             canFire = true;
         }
 
-        IEnumerator DestroyAfterTime(GameObject gameObject, float time = 0f)
+        private IEnumerator DestroyAfterTime(GameObject gameObject, float time = 0f)
         {
             yield return new WaitForSeconds(time);
             if (gameObject == null) yield break;

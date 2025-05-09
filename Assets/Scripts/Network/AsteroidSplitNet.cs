@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace SpaceGame
@@ -6,7 +7,7 @@ namespace SpaceGame
 
     [RequireComponent(typeof(Rigidbody))]
     [RequireComponent(typeof(Health))]
-    public class AsteroidSplit : MonoBehaviour
+    public class AsteroidSplitNet : NetworkBehaviour
     {
         public float spawnRadius = 1f;
         public int amount = 5;
@@ -36,6 +37,14 @@ namespace SpaceGame
             health = GetComponent<Health>();
             health.OnNoHealth += OnNoHealth;
         }
+
+        //private void Update()
+        //{
+        //    if (Input.GetKeyDown(KeyCode.Space))
+        //    {
+        //        Split();
+        //    }
+        //}
 
         private void OnNoHealth(float oldHealth, float newHealth)
         {

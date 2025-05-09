@@ -38,7 +38,7 @@ namespace SpaceGame.Network
         {
             if (objects.Length == 0) return;
 
-            for (int i = 0; i < amount; i++)
+            for (var i = 0; i < amount; i++)
             {
                 InstantiateObject();
             }

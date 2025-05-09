@@ -1,8 +1,6 @@
-using NUnit.Framework;
 using SpaceGame.UI;
 using Unity.Netcode;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 
 // https://docs-multiplayer.unity3d.com/netcode/current/basics/networkvariable/#synchronization-and-notification-example
 namespace SpaceGame.Network
@@ -38,13 +36,14 @@ namespace SpaceGame.Network
                 currentHealth.Value = maxHealth;
             }
 
+            currentHealth.OnValueChanged += OnCurrentHealthChanged;
+
             if (healthBar != null)
             {
                 healthBar.SetMaxHealth(maxHealth);
             }
 
             OnHealthChanged += UpdateHealthBar;
-            currentHealth.OnValueChanged += OnCurrentHealthChanged;
         }
 
         public override void OnNetworkDespawn()
@@ -64,16 +63,19 @@ namespace SpaceGame.Network
 
         public void ChangeHealth(float amount)
         {
+            if (!IsServer) return;
             currentHealth.Value = Mathf.Clamp(currentHealth.Value + amount, 0, maxHealth);
         }
 
         private void OnCurrentHealthChanged(float oldHealth, float newHealth)
         {
+            Debug.Log($"Health changed from {oldHealth} to {newHealth}");
             OnHealthChanged?.Invoke(oldHealth, newHealth);
 
-            if (currentHealth.Value <= 0 && oldHealth > 0)
+            if (newHealth <= 0 && oldHealth > 0)
             {
-                OnNoHealth?.Invoke(oldHealth, currentHealth.Value);
+                Debug.Log($"Health reached 0");
+                OnNoHealth?.Invoke(oldHealth, newHealth);
             }
         }
 
