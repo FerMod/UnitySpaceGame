@@ -6790,31 +6790,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 138d927c77492e5498b0f6ce72c8e31a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  normalFOV: 60
-  warpFOV: 100
-  warpDuration: 2
-  warpCurve:
-    m_Curve:
-    - time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - time: 1
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  targetCamera: {fileID: 0}
 --- !u!1 &1231748605 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1411132086413374, guid: 1ffc29c315992624cb793d6cbf2c4ac1, type: 3}
@@ -13657,6 +13632,10 @@ PrefabInstance:
       propertyPath: m_UseCustomVertexStreams
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3881645466346239759, guid: d108e4876f5e8244583993bf9e72e630, type: 3}
+      propertyPath: plane
+      value: 
+      objectReference: {fileID: 1276877358}
     - target: {fileID: 4853205704705114374, guid: d108e4876f5e8244583993bf9e72e630, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -14109,6 +14088,10 @@ PrefabInstance:
       propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.minCurve.m_Curve.Array.data[1].outWeight
       value: 0.33333334
       objectReference: {fileID: 0}
+    - target: {fileID: 5223217721624760921, guid: d108e4876f5e8244583993bf9e72e630, type: 3}
+      propertyPath: plane
+      value: 
+      objectReference: {fileID: 1276877358}
     - target: {fileID: 5397033018197324171, guid: d108e4876f5e8244583993bf9e72e630, type: 3}
       propertyPath: m_Layer
       value: 6
