@@ -16863,18 +16863,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkManager
       objectReference: {fileID: 0}
-    - target: {fileID: 2413888185951342658, guid: f06eaf1af9eb5c840bf840068fe914be, type: 3}
-      propertyPath: NetworkConfig.TickRate
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 2413888185951342658, guid: f06eaf1af9eb5c840bf840068fe914be, type: 3}
-      propertyPath: NetworkConfig.PlayerPrefab
-      value: 
-      objectReference: {fileID: 6080894976928355967, guid: 33f933e6f6883a543b935636f5a0353d, type: 3}
-    - target: {fileID: 7796631953636351868, guid: f06eaf1af9eb5c840bf840068fe914be, type: 3}
-      propertyPath: ConnectionData.ServerListenAddress
-      value: 127.0.0.1
-      objectReference: {fileID: 0}
     - target: {fileID: 8232565867754981891, guid: f06eaf1af9eb5c840bf840068fe914be, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.82

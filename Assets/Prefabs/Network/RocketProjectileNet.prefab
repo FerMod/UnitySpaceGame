@@ -89,9 +89,6 @@ PrefabInstance:
       addedObject: {fileID: -4523102790434606426}
     - targetCorrespondingSourceObject: {fileID: 162538, guid: 8360bcdf5f97bdc44ae3e39b8aca3404, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -4463262744705808605}
-    - targetCorrespondingSourceObject: {fileID: 162538, guid: 8360bcdf5f97bdc44ae3e39b8aca3404, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 3172995878970570526}
   m_SourcePrefab: {fileID: 100100000, guid: 8360bcdf5f97bdc44ae3e39b8aca3404, type: 3}
 --- !u!1 &1635393891143576765 stripped
@@ -225,33 +222,6 @@ MonoBehaviour:
   UseRigidBodyForMotion: 0
   AutoUpdateKinematicState: 1
   AutoSetKinematicOnDespawn: 1
---- !u!114 &-4463262744705808605
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1635393891143576765}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e1d95d90fd588540a77014f4b0565a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 50
-  damage: 25
-  lifetime: 10
-  hitEffect: {fileID: 1259166544223302805, guid: 2866076510ebbff45b6781e902737a8a, type: 3}
-  isExplosive: 0
-  explosionForce: 1000
-  explosionRadius: 100
-  forceMode: 1
-  owner: {fileID: 0}
-  inheritOwnerVelocity: 1
-  smokeTrail: {fileID: 2364743747816675709}
-  isGuided: 0
-  trackingAngle: 80
-  turningGForce: 2
-  target: {fileID: 0}
 --- !u!114 &3172995878970570526
 MonoBehaviour:
   m_ObjectHideFlags: 0

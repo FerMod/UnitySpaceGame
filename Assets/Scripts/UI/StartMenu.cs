@@ -9,6 +9,7 @@ namespace SpaceGame.UI
     {
 
         public GameObject mainMenu;
+        public GameObject multiplayerMenu;
         public GameObject optionsMenu;
 
         private void Start()
@@ -16,10 +17,15 @@ namespace SpaceGame.UI
             CursorManager.FreeMouse();
         }
 
-        public void OnStartGamePressed()
+        public void OnSinglePlayerPressed()
         {
             SceneManager.LoadScene("MainScene");
             CursorManager.CaptureMouse();
+        }
+        public void OnMultiplayerPressed()
+        {
+            mainMenu.SetActive(false);
+            multiplayerMenu.SetActive(true);
         }
 
         public void OnOptionsPressed()
