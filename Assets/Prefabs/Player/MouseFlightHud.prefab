@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 8639449807766104320}
   m_Layer: 5
   m_Name: MouseFlightHud
-  m_TagString: Untagged
+  m_TagString: PlayerHud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -197,7 +197,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseFlight: {fileID: 0}
-  plane: {fileID: 0}
   boresight: {fileID: 224222720421087158}
   mousePos: {fileID: 224020837011058284}
 --- !u!114 &8639449807766104320
@@ -219,7 +218,8 @@ MonoBehaviour:
   aoa: {fileID: 6492543046841680274}
   drag: {fileID: 1612272146101110327}
   velocity: {fileID: 4654508838122054296}
-  throttle: {fileID: 8628328916032542353}
+  throttle: {fileID: 0}
+  healthBar: {fileID: 0}
   airBreakNotification: {fileID: 2286206473043640380}
   flapNotification: {fileID: 1383681631788575475}
 --- !u!1 &1699826897553592

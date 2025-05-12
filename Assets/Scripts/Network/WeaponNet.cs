@@ -111,12 +111,10 @@ namespace SpaceGame
             if (gameObject == null) yield break;
             if (gameObject.TryGetComponent(out NetworkObject networkObject) && networkObject.IsSpawned)
             {
-                Debug.Log($"[WeaponNet] Destroying game object {gameObject.name} with NetworkObject.");
                 networkObject.Despawn();
             }
             else
             {
-                Debug.Log($"[WeaponNet] Destroying game object {gameObject.name} without NetworkObject.");
                 Destroy(gameObject);
             }
         }

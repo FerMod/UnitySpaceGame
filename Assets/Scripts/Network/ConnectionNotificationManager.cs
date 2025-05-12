@@ -34,7 +34,7 @@ public class ConnectionNotificationManager : MonoBehaviour
 
     public Dictionary<ulong, PlayerData> DictPlayerUI = new();
 
-    public static ConnectionNotificationManager Singleton {get; internal set; }
+    public static ConnectionNotificationManager Singleton { get; internal set; }
 
     public enum ConnectionStatus
     {
@@ -94,7 +94,6 @@ public class ConnectionNotificationManager : MonoBehaviour
         }
     }
 
-
     private void ApprovalCheck(NetworkManager.ConnectionApprovalRequest request, NetworkManager.ConnectionApprovalResponse response)
     {
         Debug.Log("ApprovalCheck: id:" + request.ClientNetworkId + " count:" + NetworkManager.Singleton.ConnectedClients.Count);
@@ -122,7 +121,7 @@ public class ConnectionNotificationManager : MonoBehaviour
         // The Prefab hash value of the NetworkPrefab, if null the default NetworkManager player Prefab is used
         // response.PlayerPrefabHash = playerPrefabs[pd.playerPrefab].GetComponent<NetworkObject>().PrefabIdHash;
         //response.PlayerPrefabHash = null;
-        // response.PlayerPrefabHash = playerPrefabs[0].GetComponent<NetworkObject>().PrefabIdHash;
+        response.PlayerPrefabHash = playerPrefabs[request.ClientNetworkId%2].GetComponent<NetworkObject>().PrefabIdHash;
         // Position to spawn the player object (if null it uses default of Vector3.zero)
         //response.Position = Vector3.zero;
         response.Position = new Vector3(request.ClientNetworkId * 15, 0, 0);
@@ -149,10 +148,10 @@ public class ConnectionNotificationManager : MonoBehaviour
     {
         OnClientConnectionNotification?.Invoke(clientId, ConnectionStatus.Connected);
 
-        int total_clientes = NetworkManager.Singleton.ConnectedClients.Count;
-        Debug.Log("OnClientConnectedCallback: id " + clientId + " count:" + total_clientes);
+        var totalClients = NetworkManager.Singleton.ConnectedClients.Count;
+        Debug.Log("OnClientConnectedCallback: id " + clientId + " count:" + totalClients);
 
-        NetworkObject o = NetworkManager.Singleton.ConnectedClients[clientId].PlayerObject; // accedemos al prefab del player
+        var o = NetworkManager.Singleton.ConnectedClients[clientId].PlayerObject; // accedemos al prefab del player
 
         if (NetworkManager.Singleton.IsServer)// SI SOMOS SERVER 
         {

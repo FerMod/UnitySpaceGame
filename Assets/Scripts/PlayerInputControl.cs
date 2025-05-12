@@ -246,15 +246,14 @@ namespace SpaceGame
 
             var flag = _disableAutoPilotOnCameraLock && controller.IsMouseAimFrozen;
             var autoFlag = true;
-            if (controller.CheckAimOffScreen())
+            if (controller != null && controller.CheckAimOffScreen())
             {
                 autoFlag = controller.LastManualInputTime < controller.LastCameraLockTime;
             }
 
-            if (controller != null && !flag)
+            if (controller != null && !flag && autoFlag)
             {
-                if (autoFlag)
-                    RunAutopilot(controller.MouseAimPos, out autoYaw, out autoPitch, out autoRoll);
+                RunAutopilot(controller.MouseAimPos, out autoYaw, out autoPitch, out autoRoll);
             }
 
 

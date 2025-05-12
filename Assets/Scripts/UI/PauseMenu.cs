@@ -57,14 +57,14 @@ namespace SpaceGame.UI
         {
             if (paused)
             {
-                CursorManager.EnableMenuCursor();
+                CursorManager.Instance.EnableMenuCursor();
             }
             else
             {
-                CursorManager.DisableMenuCursor();
+                CursorManager.Instance.DisableMenuCursor();
             }
-
-            Time.timeScale = paused ? 0 : 1;
+            
+            // Time.timeScale = paused ? 0 : 1;
             AudioListener.pause = paused;
         }
 
@@ -92,7 +92,8 @@ namespace SpaceGame.UI
 
         public void OnRestartPressed()
         {
-            SceneManager.LoadScene("MainScene");
+            //SceneManager.LoadScene("MainScene");
+            NetworkManager.Singleton.SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
             SetMenuActive(false);
         }
 
@@ -108,6 +109,7 @@ namespace SpaceGame.UI
 
         public void OnMainMenuPressed()
         {
+            NetworkManager.Singleton.Shutdown();
             SceneManager.LoadScene("StartMenu");
             SetMenuActive(false);
         }

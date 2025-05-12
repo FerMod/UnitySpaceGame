@@ -1,6 +1,7 @@
 using Unity.Netcode.Transports.UTP;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace SpaceGame.UI
 {
@@ -9,6 +10,7 @@ namespace SpaceGame.UI
     {
         public GameObject menu;
         public GameObject previousMenu;
+        public string mainScene = "MainScene";
 
         [Space]
         public UnityTransport unityTransport;
@@ -17,17 +19,26 @@ namespace SpaceGame.UI
 
         public void OnHostPressed()
         {
-            NetworkManager.StartHost();
+            if (NetworkManager.StartHost())
+            {
+                //LoadScene(mainScene);
+            }
         }
 
         public void OnServerPressed()
         {
-            NetworkManager.StartServer();
+            if (NetworkManager.StartServer())
+            {
+                //LoadScene(mainScene);
+            }
         }
 
         public void OnClientPressed()
         {
-            NetworkManager.StartClient();
+            if (NetworkManager.StartClient())
+            {
+                //LoadScene(mainScene);
+            }
         }
 
         public void OnIpChanged(string value)
@@ -39,6 +50,12 @@ namespace SpaceGame.UI
         {
             menu.SetActive(false);
             previousMenu.SetActive(true);
+        }
+
+        private void LoadScene(string sceneName)
+        {
+            NetworkManager.SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+            CursorManager.Instance.CaptureMouse();
         }
     }
 
