@@ -356,7 +356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   speed: 100
-  damage: 25
+  damage: 5
   lifetime: 5
   hitEffect: {fileID: 1194486973065411878, guid: 8a7e1401837add249a6d86a7df9041a5, type: 3}
   isExplosive: 0

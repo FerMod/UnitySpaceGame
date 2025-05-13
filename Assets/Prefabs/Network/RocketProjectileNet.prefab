@@ -235,8 +235,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
-  speed: 50
-  damage: 25
+  speed: 10
+  damage: 10
   lifetime: 10
   hitEffect: {fileID: 1259166544223302805, guid: 2866076510ebbff45b6781e902737a8a, type: 3}
   isExplosive: 0
@@ -246,7 +246,7 @@ MonoBehaviour:
   owner: {fileID: 0}
   inheritOwnerVelocity: 1
   smokeTrail: {fileID: 2364743747816675709}
-  isGuided: 0
+  isGuided: 1
   trackingAngle: 80
   turningGForce: 2
   target: {fileID: 0}

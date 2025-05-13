@@ -10,39 +10,35 @@ namespace SpaceGame.Network
         public GameObject smokeTrail;
         private ParticleSystem smokeTrailParticles;
 
-        [SerializeField]
-        private bool isGuided = true;
-
-        [SerializeField]
-        private float trackingAngle = 80f;
-
-        [SerializeField]
-        private float turningGForce = 2f;
-
-        [SerializeField]
-        private Transform target;
+        public bool isGuided = true;
+        public float trackingAngle = 80f;
+        public float turningGForce = 2f;
+        public Transform target;
 
         public bool HasTarget => target != null;
-
-        // Network variables
-        private NetworkVariable<bool> IsGuidedNet = new(true);
-        private NetworkVariable<Vector3> TargetPositionNet = new(Vector3.zero);
 
         public override void OnNetworkSpawn()
         {
             base.OnNetworkSpawn();
-
             smokeTrailParticles = smokeTrail.GetComponent<ParticleSystem>();
 
             if (IsServer)
             {
-                IsGuidedNet.Value = isGuided;
-
-                if (HasTarget)
-                {
-                    TargetPositionNet.Value = target.position;
-                }
+                //var testTarget = GameObject.Find("MercuryMoon");
+                //if (testTarget != null)
+                //{
+                //    target = testTarget.transform;
+                //}
+                SearchTarget();
             }
+        }
+
+        private void SearchTarget(float maxDistance = Mathf.Infinity)
+        {
+            if (target != null) return;
+            if (!Physics.Raycast(transform.position, transform.forward, out var hit, maxDistance)) return;
+            if (!hit.collider.CompareTag("Player")) return;
+            target = hit.collider.transform;
         }
 
         void FixedUpdate()
@@ -51,9 +47,9 @@ namespace SpaceGame.Network
 
             //rb.AddForce(transform.forward * speed, ForceMode.VelocityChange);
 
-            if (IsGuidedNet.Value && HasTarget)
+            if (isGuided && HasTarget)
             {
-                TargetPositionNet.Value = target.position; // Live tracking
+                target = target.transform; // Live tracking
                 LookTowards(Time.fixedDeltaTime, target, turningGForce);
             }
 
@@ -127,19 +123,6 @@ namespace SpaceGame.Network
             var dir = Vector3.RotateTowards(currentDir, targetDir, maxTurnRate * dt, 0);
 
             rb.rotation = Quaternion.LookRotation(dir);
-        }
-
-        // Network setters
-        [ServerRpc]
-        public void SetTargetServerRpc(Vector3 targetPosition)
-        {
-            TargetPositionNet.Value = targetPosition;
-        }
-
-        [ServerRpc]
-        public void SetIsGuidedServerRpc(bool isGuided)
-        {
-            IsGuidedNet.Value = isGuided;
         }
     }
 }

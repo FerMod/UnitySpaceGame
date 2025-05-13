@@ -44,11 +44,11 @@ namespace SpaceGame
             }
         }
 
-        private GameObject CreateProjectile(GameObject gameObject, Transform spawnPoint, GameObject owner = null)
+        private GameObject CreateProjectile(GameObject projectile, Transform spawnPoint, GameObject owner = null)
         {
-            var headingDirection = Quaternion.FromToRotation(projectile.transform.forward, spawnPoint.forward);
+            var headingDirection = Quaternion.FromToRotation(this.projectile.transform.forward, spawnPoint.forward);
 
-            var instance = Instantiate(gameObject, spawnPoint.position, headingDirection);
+            var instance = Instantiate(projectile, spawnPoint.position, headingDirection);
             IgnoreColliders(owner, instance);
 
             if (instance.TryGetComponent(out NetworkObject netObj))

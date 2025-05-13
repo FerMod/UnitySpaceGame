@@ -1,7 +1,5 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions;
-using static UnityEngine.UI.GridLayoutGroup;
 
 namespace SpaceGame
 {
@@ -36,7 +34,6 @@ namespace SpaceGame
         {
             base.Start();
             smokeTrailParticles = smokeTrail.GetComponent<ParticleSystem>();
-
         }
 
         void FixedUpdate()

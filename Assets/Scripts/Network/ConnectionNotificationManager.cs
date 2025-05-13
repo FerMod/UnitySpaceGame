@@ -121,10 +121,11 @@ public class ConnectionNotificationManager : MonoBehaviour
         // The Prefab hash value of the NetworkPrefab, if null the default NetworkManager player Prefab is used
         // response.PlayerPrefabHash = playerPrefabs[pd.playerPrefab].GetComponent<NetworkObject>().PrefabIdHash;
         //response.PlayerPrefabHash = null;
-        response.PlayerPrefabHash = playerPrefabs[request.ClientNetworkId%2].GetComponent<NetworkObject>().PrefabIdHash;
+        response.PlayerPrefabHash = playerPrefabs[request.ClientNetworkId % 2].GetComponent<NetworkObject>().PrefabIdHash;
         // Position to spawn the player object (if null it uses default of Vector3.zero)
         //response.Position = Vector3.zero;
-        response.Position = new Vector3(request.ClientNetworkId * 15, 0, 0);
+        //response.Position = new Vector3(request.ClientNetworkId * 15, 0, 0);
+        response.Position = new Vector3(0, 0, request.ClientNetworkId * 50);
 
         // Rotation to spawn the player object (if null it uses the default of Quaternion.identity)
         //response.Rotation = Quaternion.identity;
@@ -174,7 +175,11 @@ public class ConnectionNotificationManager : MonoBehaviour
         /// Borramos el cliente de la UI
         if (DictPlayerUI.ContainsKey(clientId))
         {
-            Destroy(DictPlayerUI[clientId].uiPanel);
+            var uiPanel = DictPlayerUI[clientId].uiPanel;
+            if (uiPanel != null)
+            {
+                Destroy(uiPanel);
+            }
         }
 
     }
