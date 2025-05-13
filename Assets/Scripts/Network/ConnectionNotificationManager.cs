@@ -124,8 +124,8 @@ public class ConnectionNotificationManager : MonoBehaviour
         response.PlayerPrefabHash = playerPrefabs[request.ClientNetworkId % 2].GetComponent<NetworkObject>().PrefabIdHash;
         // Position to spawn the player object (if null it uses default of Vector3.zero)
         //response.Position = Vector3.zero;
-        //response.Position = new Vector3(request.ClientNetworkId * 15, 0, 0);
-        response.Position = new Vector3(0, 0, request.ClientNetworkId * 50);
+        response.Position = new Vector3(request.ClientNetworkId * 15, 0, 0);
+        //response.Position = new Vector3(0, 0, request.ClientNetworkId * 50);
 
         // Rotation to spawn the player object (if null it uses the default of Quaternion.identity)
         //response.Rotation = Quaternion.identity;
