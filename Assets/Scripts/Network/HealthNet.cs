@@ -69,12 +69,10 @@ namespace SpaceGame.Network
 
         private void OnCurrentHealthChanged(float oldHealth, float newHealth)
         {
-            Debug.Log($"Health changed from {oldHealth} to {newHealth}");
             OnHealthChanged?.Invoke(oldHealth, newHealth);
 
             if (newHealth <= 0 && oldHealth > 0)
             {
-                Debug.Log($"Health reached 0");
                 OnNoHealth?.Invoke(oldHealth, newHealth);
             }
         }
