@@ -730,7 +730,7 @@ Transform:
   m_GameObject: {fileID: 383257715}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1480, y: 39.2, z: 1450}
+  m_LocalPosition: {x: -1389, y: 39.2, z: 2128}
   m_LocalScale: {x: 80, y: 80, z: 80}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -754,7 +754,7 @@ MonoBehaviour:
   bodyType: 1
   radius: 26
   surfaceGravity: 0
-  initialVelocity: {x: 25.3, y: 0.3, z: 0}
+  initialVelocity: {x: -20, y: 0, z: 0}
   bodyName: MercuryMoon
   rotationAxis: {x: 0, y: 1, z: 0}
   rotationSpeed: 7
@@ -2039,7 +2039,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 680876908}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
@@ -14375,8 +14375,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefabs:
   - {fileID: 6080894976928355967, guid: 33f933e6f6883a543b935636f5a0353d, type: 3}
-  - {fileID: 6080894976928355967, guid: d5879819e95b7ed4bb3f2f6e205c6af1, type: 3}
+  - {fileID: 158011993381231963, guid: e6d15a932716f254aa6f6bd89ef51a1e, type: 3}
   maxPlayers: 2
+  PanelPlayers: {fileID: 0}
+  PrefabPlayerUI: {fileID: 0}
 --- !u!4 &1533734959
 Transform:
   m_ObjectHideFlags: 0
@@ -16743,7 +16745,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1521180459888454472, guid: 86382ddba19201f41ad2c395bfe16b5a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1243
+      value: -104
       objectReference: {fileID: 0}
     - target: {fileID: 1521180459888454472, guid: 86382ddba19201f41ad2c395bfe16b5a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -16751,7 +16753,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1521180459888454472, guid: 86382ddba19201f41ad2c395bfe16b5a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8049
+      value: 8361
       objectReference: {fileID: 0}
     - target: {fileID: 1521180459888454472, guid: 86382ddba19201f41ad2c395bfe16b5a, type: 3}
       propertyPath: m_LocalRotation.w
