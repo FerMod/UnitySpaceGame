@@ -82,13 +82,13 @@ namespace SpaceGame.Network
                 smokeTrailParticles.Stop();
             }
 
-            HandleCollisionClientRpc();
+            HandleCollisionRpc();
 
             base.OnCollisionEnter(collision);
         }
 
-        [ClientRpc]
-        private void HandleCollisionClientRpc()
+        [Rpc(SendTo.NotServer)]
+        private void HandleCollisionRpc()
         {
             if (smokeTrailParticles != null)
             {
@@ -112,7 +112,7 @@ namespace SpaceGame.Network
             if (Vector3.Angle(currentDir, targetDir) > trackingAngle)
             {
                 PlayHitEffect();
-                HandleCollisionClientRpc();
+                HandleCollisionRpc();
                 Despawn(gameObject);
                 //Destroy(gameObject);
                 //Explode();
