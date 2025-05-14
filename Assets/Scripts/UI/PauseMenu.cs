@@ -55,11 +55,11 @@ namespace SpaceGame.UI
         {
             if (paused)
             {
-                CursorManager.EnableMenuCursor();
+                CursorManager.Instance.EnableMenuCursor();
             }
             else
             {
-                CursorManager.DisableMenuCursor();
+                CursorManager.Instance.DisableMenuCursor();
             }
 
             Time.timeScale = paused ? 0 : 1;
