@@ -1,5 +1,7 @@
+using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace SpaceGame.Network
 {
@@ -11,31 +13,49 @@ namespace SpaceGame.Network
         /// </summary>
         public Transform spaceship;
 
+        public float debriDespawnTime = 10f;
+
         [Header("Explosion")]
         public GameObject explosionEffect;
         public float explosionForce = 100f;
         public float explosionRadius = 5f;
         public Vector3 explosionCenterOffset = Vector3.zero;
 
+        [Header("Respawn")]
+        public InputActionAsset inputActionAsset;
+        public float respawnDelay = 3f;
+        public Vector3 respawnPosition = Vector3.zero;
+
+        private HealthNet health;
+
         public override void OnNetworkSpawn()
         {
-            GetComponent<HealthNet>().OnNoHealth += OnNoHealth;
+            health = GetComponent<HealthNet>();
+            health.OnNoHealth += HandleNoHealth;
         }
 
-        private void OnNoHealth(float oldHealth, float newHealth)
+        private void HandleNoHealth(float oldHealth, float newHealth)
         {
             Die();
         }
 
         public void Die()
         {
+            spaceship.gameObject.SetActive(false);
+
+            var obj = Instantiate(spaceship.gameObject, transform.position, transform.rotation);
+            if (obj.TryGetComponent(out NetworkObject networkObject))
+            {
+                networkObject.Spawn();
+            }
+
             PlayEffect(explosionEffect, transform.position, transform.rotation);
 
             // Unparent all children
-            var childCount = spaceship.transform.childCount;
+            var childCount = obj.transform.childCount;
             for (var i = childCount - 1; i >= 0; i--)
             {
-                var child = spaceship.transform.GetChild(i);
+                var child = obj.transform.GetChild(i);
                 // Detach the child from the parent
                 child.SetParent(null);
 
@@ -49,11 +69,12 @@ namespace SpaceGame.Network
                 rb.AddExplosionForce(explosionForce, explosionCenterOffset, explosionRadius);
                 //rb.AddForce(Random.insideUnitSphere * explosionForce);
                 rb.AddTorque(Random.insideUnitSphere * explosionForce);
+
+                // Destroy the child after a delay
+                Destroy(child.gameObject, debriDespawnTime);
             }
 
-            // Destroy the spaceship itself
-            Debug.Log("Spaceship destroyed");
-            //Destroy(spaceship.gameObject);
+            Respawn(respawnDelay);
         }
 
         private void PlayEffect(GameObject gameObject, Vector3 position, Quaternion rotation)
@@ -67,6 +88,29 @@ namespace SpaceGame.Network
             effect.Play();
 
             Destroy(effectInstance, effect.main.duration);
+        }
+
+        private void Respawn(float delay = 3f)
+        {
+            inputActionAsset.Disable();
+
+            var planeNet = GetComponent<PlaneNet>();
+            planeNet.Throttle = 0f;
+            planeNet.Rigidbody.linearVelocity = Vector3.zero;
+            planeNet.Rigidbody.angularVelocity = Vector3.zero;
+
+            StartCoroutine(RespawnAfterDelay(delay));
+        }
+
+        private IEnumerator RespawnAfterDelay(float seconds)
+        {
+            yield return new WaitForSeconds(seconds);
+            health.ChangeHealth(health.MaxHealth);
+
+            gameObject.transform.SetPositionAndRotation(respawnPosition, Quaternion.Euler(Vector3.forward));
+            spaceship.gameObject.SetActive(true);
+
+            inputActionAsset.Enable();
         }
     }
 }
