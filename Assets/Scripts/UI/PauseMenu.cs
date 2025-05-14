@@ -93,8 +93,8 @@ namespace SpaceGame.UI
         public void OnRestartPressed()
         {
             //SceneManager.LoadScene("MainScene");
-            NetworkManager.Singleton.SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
             SetMenuActive(false);
+            NetworkManager.Singleton.SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
         }
 
         public void OnMultiplayerPressed()
@@ -109,9 +109,9 @@ namespace SpaceGame.UI
 
         public void OnMainMenuPressed()
         {
+            SetMenuActive(false);
             NetworkManager.Singleton.Shutdown();
             SceneManager.LoadScene("StartMenu");
-            SetMenuActive(false);
         }
 
         public void OnQuitPressed()
