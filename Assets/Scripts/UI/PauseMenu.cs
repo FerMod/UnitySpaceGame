@@ -1,9 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.HID;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 namespace SpaceGame.UI
 {
@@ -34,26 +32,38 @@ namespace SpaceGame.UI
             pauseInputAction.action.performed -= OnPause;
         }
 
-        void ActivateMenu()
+        void SetMenuActive(bool active)
         {
-            CursorManager.EnableMenuCursor();
-            Time.timeScale = 0;
-            AudioListener.pause = true;
-            pauseMenu.SetActive(true);
-            inGameHud.SetActive(false);
-            playerInputMap.Disable();
-            isPaused = true;
+            SetGamePaused(active);
+
+            pauseMenu.SetActive(active);
+            inGameHud.SetActive(!active);
+
+            if (active)
+            {
+                playerInputMap.Disable();
+            }
+            else
+            {
+                playerInputMap.Enable();
+            }
+
+            isPaused = active;
         }
 
-        void DeactivateMenu()
+        private void SetGamePaused(bool paused)
         {
-            CursorManager.DisableMenuCursor();
-            Time.timeScale = 1;
-            AudioListener.pause = false;
-            pauseMenu.SetActive(false);
-            inGameHud.SetActive(true);
-            playerInputMap.Enable();
-            isPaused = false;
+            if (paused)
+            {
+                CursorManager.Instance.EnableMenuCursor();
+            }
+            else
+            {
+                CursorManager.Instance.DisableMenuCursor();
+            }
+
+            Time.timeScale = paused ? 0 : 1;
+            AudioListener.pause = paused;
         }
 
         public void OnPause(InputAction.CallbackContext context)
@@ -65,26 +75,18 @@ namespace SpaceGame.UI
             }
 
             isPaused = !isPaused;
-            if (isPaused)
-            {
-                ActivateMenu();
-            }
-            else
-            {
-                DeactivateMenu();
-            }
-
+            SetMenuActive(isPaused);
         }
 
         public void OnResumePressed()
         {
-            DeactivateMenu();
+            SetMenuActive(false);
         }
 
         public void OnRestartPressed()
         {
             SceneManager.LoadScene("MainScene");
-            DeactivateMenu();
+            SetMenuActive(false);
         }
 
         public void OnOptionsPressed()
@@ -95,7 +97,7 @@ namespace SpaceGame.UI
         public void OnMainMenuPressed()
         {
             SceneManager.LoadScene("StartMenu");
-            DeactivateMenu();
+            SetMenuActive(false);
         }
 
         public void OnQuitPressed()

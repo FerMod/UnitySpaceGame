@@ -13,13 +13,13 @@ namespace SpaceGame.UI
 
         private void Start()
         {
-            CursorManager.FreeMouse();
+            CursorManager.Instance.FreeMouse();
         }
 
         public void OnStartGamePressed()
         {
             SceneManager.LoadScene("MainScene");
-            CursorManager.CaptureMouse();
+            CursorManager.Instance.CaptureMouse();
         }
 
         public void OnOptionsPressed()
