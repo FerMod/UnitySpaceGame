@@ -10,7 +10,10 @@ namespace SpaceGame
         public CursorLockMode LockMode = CursorLockMode.None;
         public bool Visible = true;
 
-        public bool IsInPauseMenu { get; set; }
+        [SerializeField]
+        private bool _isInPauseMenu = false;
+        public bool IsInPauseMenu { get => _isInPauseMenu; set => _isInPauseMenu = value; }
+
 
         private void Awake()
         {

@@ -1,10 +1,7 @@
 using System;
 using UnityEngine;
 using Unity.Netcode;
-using UnityEngine.UI;
 using System.Collections.Generic;
-using TMPro;
-using UnityEditor.PackageManager;
 
 
 /// <summary>

@@ -112,5 +112,13 @@ namespace SpaceGame.Network
 
             inputActionAsset.Enable();
         }
+
+        /*private void Update()
+        {
+            if (IsServer && Input.GetKeyDown(KeyCode.K))
+            {
+                health.ChangeHealth(-health.MaxHealth);
+            }
+        }*/
     }
 }
