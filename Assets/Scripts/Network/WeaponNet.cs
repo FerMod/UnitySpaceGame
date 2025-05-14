@@ -54,6 +54,11 @@ namespace SpaceGame
             if (instance.TryGetComponent(out NetworkObject netObj))
             {
                 netObj.Spawn();
+
+                if (owner != null && owner.TryGetComponent(out NetworkObject ownerNetObj))
+                {
+                    IgnoreOwnerCollisionRpc(ownerNetObj.OwnerClientId, netObj);
+                }
             }
             else
             {
@@ -66,6 +71,15 @@ namespace SpaceGame
             }
 
             return instance;
+        }
+
+        [Rpc(SendTo.NotServer)]
+        private void IgnoreOwnerCollisionRpc(ulong ownerClientId, NetworkObjectReference projectileRef)
+        {
+            if (NetworkManager.Singleton.LocalClientId != ownerClientId) return;
+            if (!projectileRef.TryGet(out var projectile)) return;
+            var owner = NetworkManager.Singleton.SpawnManager.GetLocalPlayerObject()?.gameObject;
+            IgnoreColliders(owner, projectile.gameObject);
         }
 
         private void IgnoreColliders(GameObject owner, GameObject projectile)
