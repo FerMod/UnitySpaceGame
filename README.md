@@ -1,3 +1,7 @@
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/da126510-96dd-49b9-b21a-cc74b3562627" alt="space_game_start_menu">
+</p>
+
 # SpaceGame
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
@@ -7,6 +11,7 @@ A 3D space shooter game where you control a spaceship and engage in combat by sh
 This game is made in Unity 6 using URP.
 
 There is a very short video showcasing how the game looks and controls: [SpaceGame Video Showcase](https://youtu.be/mxj6AtJX-so?si=M20i_M47cugWKjuk)
+
 
 > [!NOTE]
 > This project is not a complete product and is considered unfinished in its current state.
