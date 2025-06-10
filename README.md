@@ -1,8 +1,10 @@
-# UnitySpaceGame
+# SpaceGame
+
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
 A 3D space shooter game where you control a spaceship and engage in combat by shooting projectiles. The controls are inspired by the planes controls of War Thunder.
 
-This game is made in Unity 6 URP.
+This game is made in Unity 6 using URP.
 
 There is a very short video showcasing how the game looks and controls: [SpaceGame Video Showcase](https://youtu.be/mxj6AtJX-so?si=M20i_M47cugWKjuk)
 
@@ -26,7 +28,8 @@ There is a very short video showcasing how the game looks and controls: [SpaceGa
    ```bash
    git clone https://github.com/FerMod/UnitySpaceGame.git
    ```
-2. Add the project in Unity Hub. Install the propper version of Unity.
+2. Add the project in [Unity Hub](https://unity.com/download).
+   1. Install the right version of Unity.
 4. Navigate to Assets/Scenes and open the main scene `StartScene`.
 5. Press the Play button to start the game.
 
