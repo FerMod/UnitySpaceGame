@@ -9,7 +9,7 @@ This game is made in Unity 6 using URP.
 There is a very short video showcasing how the game looks and controls: [SpaceGame Video Showcase](https://youtu.be/mxj6AtJX-so?si=M20i_M47cugWKjuk)
 
 > [!NOTE]
-> This project is currently in development and not yet a complete product. Contributions and feedback are welcome!
+> This project is not a complete product and is considered unfinished in its current state.
 
 ## Controls
 
